@@ -35,7 +35,8 @@ void printArr(int arr[], int N) {
     cout << endl;
 }
 
-void fillArr(int arr[], int N) {
+template<class T>
+void fillArr(T arr[], size_t N) {
     for (size_t i = 0; i < N; i++)
     {
         arr[i] = rand() % 10;
@@ -381,4 +382,118 @@ T* pop(T* arr, size_t size, size_t pos) {
     delete arr;
     return newArr;
 }
+
 /// </Функции>
+
+/// <Классы>
+class myVector {
+private:
+    int *arr;
+    size_t s;
+public:
+    /// Перегрузка оператора =
+    myVector &operator = (const myVector &other) 
+    {
+        this -> s = other.s;
+
+        delete this -> arr;
+
+        this -> arr = new int[other.s];
+
+        for (size_t i = 0; i < other.s; i++)
+        {
+            this->arr[i] = other.arr[i];
+        }
+
+        return *this;
+    }
+    /// Конструктор по умол.
+    myVector(){}
+
+    /// Конструктор копирования
+    myVector(const myVector &other) 
+    {
+        this -> s = other.s;
+
+        this -> arr = new int[other.s];
+
+        for (size_t i = 0; i < other.s; i++)
+        {
+            this -> arr[i] = other.arr[i];
+        }
+    }
+
+    /// Конструктор с параметрами
+    myVector(size_t s, int n = 0)
+    {
+        this -> s = s;
+
+        this -> arr = new int[s];
+
+        for (size_t i = 0; i < s; i++)
+        {
+            arr[i] = n;
+        }
+    }
+
+    /// Деструктор
+    ~myVector() 
+    {
+        delete[] arr;
+    }
+
+    /// <Методы>
+    
+    ///Добавляет указанный елемент в конец вектора
+    void add(int elem) {
+        int* newArr = new int[s + 1];
+
+        for (size_t i = 0; i < s; i++)
+            newArr[i] = arr[i];
+        newArr[s] = elem;
+
+        delete[] arr;
+        arr = newArr;
+
+        this -> s++;
+    }
+
+    ///Вставляет указанный елемент в указаную позицую вектора
+    void insert(int elem, size_t pos) {
+        int* newArr = new int[s + 1];
+
+        for (size_t i = 0, j = 0; i < s + 1; i++)
+            newArr[i] = (i != pos) ? arr[j++] : elem;
+
+        delete[] arr;
+        arr = newArr;
+
+        this -> s++;
+    }
+
+    ///Удаляет елемент в указаной позиции вектора
+    void pop(size_t pos) {
+        int* newArr = new int[s - 1];
+
+        for (size_t i = 0, j = 0; i < s; i++)
+            if (i != pos) newArr[j++] = arr[i];
+
+        delete[] arr;
+        arr = newArr;
+
+        this -> s--;
+    }
+
+    ///Выводит массив в консоль
+    void print() {
+        for (size_t i = 0; i < s; i++) {
+            cout << arr[i] << " ";
+        }
+        cout << endl;
+    }
+
+    int size() {
+        return this -> s;
+    }
+};
+/// </Классы>
