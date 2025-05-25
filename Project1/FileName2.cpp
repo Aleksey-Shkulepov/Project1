@@ -26,8 +26,9 @@ int main() {
     //arr.print();
     //arr.add(5);
     //arr.print();
-    myVector arr(8); arr.print();
+    myVector arr; arr.print();
     arr.add(5); arr.print();
     arr.insert(100, 5); arr.print();
     arr.pop(2); arr.print(); 
+    arr.resize(-1); arr.print();
 }

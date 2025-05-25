@@ -402,7 +402,7 @@ public:
 
         for (size_t i = 0; i < other.s; i++)
         {
-            this->arr[i] = other.arr[i];
+            this -> arr[i] = other.arr[i];
         }
 
         return *this;
@@ -459,7 +459,9 @@ public:
     }
 
     ///Вставляет указанный елемент в указаную позицую вектора
-    void insert(int elem, size_t pos) {
+    bool insert(int elem, size_t pos) {
+        if (pos >= this -> s) { cout << "Ошибка. Такой позиции в векторе не существует(out of range)\n"; return false; }
+
         int* newArr = new int[s + 1];
 
         for (size_t i = 0, j = 0; i < s + 1; i++)
@@ -472,7 +474,9 @@ public:
     }
 
     ///Удаляет елемент в указаной позиции вектора
-    void pop(size_t pos) {
+    bool pop(size_t pos) {
+        if (pos >= this -> s) { cout << "Ошибка. Такой позиции в векторе не существует(out of range)\n"; return false; }
+
         int* newArr = new int[s - 1];
 
         for (size_t i = 0, j = 0; i < s; i++)
@@ -484,15 +488,32 @@ public:
         this -> s--;
     }
 
-    ///Выводит массив в консоль
-    void print() {
+    ///Розширяет/Уменьшает вектор до n-го кол-ва елементов(Меняет кол-во елементов на n)
+    void resize(size_t s, int value = 0) {
+        int* newArr = new int[s];
+
+        size_t min_s = (s < this -> s) ? s : this -> s;
+
+        for (size_t i = 0; i < min_s; i++)
+            newArr[i] = arr[i];
+        for (size_t i = min_s; i < s; i++)
+            newArr[i] = value;
+
+        delete[] arr;
+        arr = newArr;
+
+        this -> s = s;
+    }
+
+    ///Выводит вектор на экран/консоль
+    void print() const {
         for (size_t i = 0; i < s; i++) {
             cout << arr[i] << " ";
         }
         cout << endl;
     }
 
-    int size() {
+    int size() const {
         return this -> s;
     }
 };
