@@ -19,4 +19,6 @@ int main() {
     cout << "deletelast - \t"; arr = deletelast(arr, s--); printArr(arr, s);
     cout << "insert(pos=3) - \t"; arr = insert(arr, s++, -52, 3); printArr(arr, s);
     cout << "pop(pos=2) - \t\t"; arr = pop(arr, s--, 2); printArr(arr, s);
+
+    cout << "git";
 }
