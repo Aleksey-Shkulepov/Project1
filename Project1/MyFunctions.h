@@ -513,6 +513,7 @@ public:
         cout << endl;
     }
 
+    ///Возвращает размер вектора
     int size() const {
         return this -> s;
     }
