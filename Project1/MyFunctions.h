@@ -8,11 +8,11 @@
 
 using namespace std;
 
-/// <Переменные>
+/// <ГЏГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ>
 const long double pi = 3.14159265358979L;
-/// </Переменные>
+/// </ГЏГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ>
 
-/// <Енумы>
+/// <Г…Г­ГіГ¬Г»>
 enum DIRECTION
 {
     UP = 72, DOWN = 80, LEFT = 75, RIGHT = 77, ESC = 27
@@ -23,11 +23,11 @@ enum Color {
     DarkGray = 8, LightBlue = 9, LightGreen = 10, LightCyan = 11, LightRed = 12,
     LightMagenta = 13, Yellow = 14, White = 15
 };
-/// </Енумы>
+/// </Г…Г­ГіГ¬Г»>
 
-/// <Функции>
+/// <Г”ГіГ­ГЄГ¶ГЁГЁ>
 
-/// Просто существуют
+/// ГЏГ°Г®Г±ГІГ® Г±ГіГ№ГҐГ±ГІГўГіГѕГІ
 void printArr(int arr[], int N) {
     for (int i = 0; i < N; i++) {
         cout << arr[i] << " ";
@@ -156,9 +156,9 @@ void findPerfectnums(int start, int end) {
 void printCard(int price, int kozir) {
     price -= 6;
     const char* prices[] = { "6", "7", "8", "9", "10", "J", "Q", "K", "A" };
-    const char* kozirs[] = { "черва", "бубна", "пика", "трефы" };
+    const char* kozirs[] = { "Г·ГҐГ°ГўГ ", "ГЎГіГЎГ­Г ", "ГЇГЁГЄГ ", "ГІГ°ГҐГґГ»" };
     if (price >= 0 && price <= 8 && kozir >= 0 && kozir <= 3) cout << prices[price] << " " << kozirs[kozir] << endl;
-    else cout << "Некоректные вводные данные" << endl;
+    else cout << "ГЌГҐГЄГ®Г°ГҐГЄГІГ­Г»ГҐ ГўГўГ®Г¤Г­Г»ГҐ Г¤Г Г­Г­Г»ГҐ" << endl;
 }
 
 bool isLuckyTicket(int num) {
@@ -331,7 +331,7 @@ void gameFifteen() {
         }
         win = isWin(arr);
     }
-    cout << "Пабеда";
+    cout << "ГЏГ ГЎГҐГ¤Г ";
 }
 /// 24.05.25 lesson
 
@@ -366,7 +366,7 @@ template<class T>
 T* insert(T* arr, size_t size, T elem, size_t pos) {
     T* newArr = new T[size + 1];
     for (size_t i = 0, j = 0; i < size + 1; i++)
-        /// Ура хоть где-то тернарник пригодился
+        /// Г“Г°Г  ГµГ®ГІГј ГЈГ¤ГҐ-ГІГ® ГІГҐГ°Г­Г Г°Г­ГЁГЄ ГЇГ°ГЁГЈГ®Г¤ГЁГ«Г±Гї
         newArr[i] = (i != pos) ? arr[j++] : elem;
     delete arr;
     return newArr;
@@ -383,15 +383,15 @@ T* pop(T* arr, size_t size, size_t pos) {
     return newArr;
 }
 
-/// </Функции>
+/// </Г”ГіГ­ГЄГ¶ГЁГЁ>
 
-/// <Классы>
+/// <ГЉГ«Г Г±Г±Г»>
 class myVector {
 private:
     int *arr;
     size_t s;
 public:
-    /// Перегрузка оператора =
+    /// ГЏГҐГ°ГҐГЈГ°ГіГ§ГЄГ  Г®ГЇГҐГ°Г ГІГ®Г°Г  =
     myVector &operator = (const myVector &other) 
     {
         this -> s = other.s;
@@ -407,10 +407,10 @@ public:
 
         return *this;
     }
-    /// Конструктор по умол.
+    /// ГЉГ®Г­Г±ГІГ°ГіГЄГІГ®Г° ГЇГ® ГіГ¬Г®Г«.
     myVector(){}
 
-    /// Конструктор копирования
+    /// ГЉГ®Г­Г±ГІГ°ГіГЄГІГ®Г° ГЄГ®ГЇГЁГ°Г®ГўГ Г­ГЁГї
     myVector(const myVector &other) 
     {
         this -> s = other.s;
@@ -423,7 +423,7 @@ public:
         }
     }
 
-    /// Конструктор с параметрами
+    /// ГЉГ®Г­Г±ГІГ°ГіГЄГІГ®Г° Г± ГЇГ Г°Г Г¬ГҐГІГ°Г Г¬ГЁ
     myVector(size_t s, int n = 0)
     {
         this -> s = s;
@@ -436,15 +436,15 @@ public:
         }
     }
 
-    /// Деструктор
+    /// Г„ГҐГ±ГІГ°ГіГЄГІГ®Г°
     ~myVector() 
     {
         delete[] arr;
     }
 
-    /// <Методы>
+    /// <ГЊГҐГІГ®Г¤Г»>
     
-    ///Добавляет указанный елемент в конец вектора
+    ///Г„Г®ГЎГ ГўГ«ГїГҐГІ ГіГЄГ Г§Г Г­Г­Г»Г© ГҐГ«ГҐГ¬ГҐГ­ГІ Гў ГЄГ®Г­ГҐГ¶ ГўГҐГЄГІГ®Г°Г 
     void add(int elem) {
         int* newArr = new int[s + 1];
 
@@ -458,9 +458,9 @@ public:
         this -> s++;
     }
 
-    ///Вставляет указанный елемент в указаную позицую вектора
+    ///Г‚Г±ГІГ ГўГ«ГїГҐГІ ГіГЄГ Г§Г Г­Г­Г»Г© ГҐГ«ГҐГ¬ГҐГ­ГІ Гў ГіГЄГ Г§Г Г­ГіГѕ ГЇГ®Г§ГЁГ¶ГіГѕ ГўГҐГЄГІГ®Г°Г 
     bool insert(int elem, size_t pos) {
-        if (pos >= this -> s) { cout << "Ошибка. Такой позиции в векторе не существует(out of range)\n"; return false; }
+        if (pos >= this -> s) { cout << "ГЋГёГЁГЎГЄГ . Г’Г ГЄГ®Г© ГЇГ®Г§ГЁГ¶ГЁГЁ Гў ГўГҐГЄГІГ®Г°ГҐ Г­ГҐ Г±ГіГ№ГҐГ±ГІГўГіГҐГІ(out of range)\n"; return false; }
 
         int* newArr = new int[s + 1];
 
@@ -473,9 +473,9 @@ public:
         this -> s++;
     }
 
-    ///Удаляет елемент в указаной позиции вектора
+    ///Г“Г¤Г Г«ГїГҐГІ ГҐГ«ГҐГ¬ГҐГ­ГІ Гў ГіГЄГ Г§Г Г­Г®Г© ГЇГ®Г§ГЁГ¶ГЁГЁ ГўГҐГЄГІГ®Г°Г 
     bool pop(size_t pos) {
-        if (pos >= this -> s) { cout << "Ошибка. Такой позиции в векторе не существует(out of range)\n"; return false; }
+        if (pos >= this -> s) { cout << "ГЋГёГЁГЎГЄГ . Г’Г ГЄГ®Г© ГЇГ®Г§ГЁГ¶ГЁГЁ Гў ГўГҐГЄГІГ®Г°ГҐ Г­ГҐ Г±ГіГ№ГҐГ±ГІГўГіГҐГІ(out of range)\n"; return false; }
 
         int* newArr = new int[s - 1];
 
@@ -488,7 +488,7 @@ public:
         this -> s--;
     }
 
-    ///Розширяет/Уменьшает вектор до n-го кол-ва елементов(Меняет кол-во елементов на n)
+    ///ГђГ®Г§ГёГЁГ°ГїГҐГІ/Г“Г¬ГҐГ­ГјГёГ ГҐГІ ГўГҐГЄГІГ®Г° Г¤Г® n-ГЈГ® ГЄГ®Г«-ГўГ  ГҐГ«ГҐГ¬ГҐГ­ГІГ®Гў(ГЊГҐГ­ГїГҐГІ ГЄГ®Г«-ГўГ® ГҐГ«ГҐГ¬ГҐГ­ГІГ®Гў Г­Г  n)
     void resize(size_t s, int value = 0) {
         int* newArr = new int[s];
 
@@ -505,7 +505,7 @@ public:
         this -> s = s;
     }
 
-    ///Выводит вектор на экран/консоль
+    ///Г‚Г»ГўГ®Г¤ГЁГІ ГўГҐГЄГІГ®Г° Г­Г  ГЅГЄГ°Г Г­/ГЄГ®Г­Г±Г®Г«Гј
     void print() const {
         for (size_t i = 0; i < s; i++) {
             cout << arr[i] << " ";
@@ -513,9 +513,9 @@ public:
         cout << endl;
     }
 
-    ///Возвращает размер вектора
+    ///Г‚Г®Г§ГўГ°Г Г№Г ГҐГІ Г°Г Г§Г¬ГҐГ° ГўГҐГЄГІГ®Г°Г  .
     int size() const {
         return this -> s;
     }
 };
-/// </Классы>
+/// </ГЉГ«Г Г±Г±Г»>
