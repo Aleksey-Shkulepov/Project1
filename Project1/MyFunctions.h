@@ -383,6 +383,97 @@ T* pop(T* arr, size_t size, size_t pos) {
     return newArr;
 }
 
+///28.05.25 lesson
+
+void my_swap(int& a, int& b)
+{
+    int t = a;
+    a = b;
+    b = t;
+
+    cout << a << " " << b << endl;
+}
+
+//void newArray(int*& arr, int size)
+//{
+//	arr = new int[size];
+//	fillArray(arr, size);
+//	printArray(arr, size);
+//}
+
+
+// delElemArray(arr, size)
+// insertArray(arr, size, elem, pos)
+// removeArray(arr, size, pos)
+
+
+template<class T>
+void colabArrays(T* arr1, size_t size1, T* arr2, size_t size2, T*& arr3, size_t& size3)
+{
+    size3 = size1 + size2;
+    arr3 = new T[size1 + size2];
+    for (size_t i = 0; i < size1; i++)
+    {
+        arr3[i] = arr1[i];
+    }
+    for (size_t i = 0; i < size2; i++)
+    {
+        arr3[i + size1] = arr2[i];
+    }
+}
+
+void delValueArray(int*& arr, size_t& size, bool isEven = true)
+{
+    size_t newSize = 0;
+    int* temp = nullptr;
+    if (isEven)
+    {
+        for (size_t i = 0; i < size; i++)
+        {
+            if (arr[i] % 2 == 0)
+                newSize++;
+        }
+        temp = new int[newSize];
+        newSize = 0;
+        for (size_t i = 0; i < size; i++)
+        {
+            if (arr[i] % 2 == 0)
+                temp[newSize++] = arr[i];
+        }
+    }
+    else
+    {
+        for (size_t i = 0; i < size; i++)
+        {
+            if (arr[i] % 2 != 0)
+                newSize++;
+        }
+        temp = new int[newSize];
+        newSize = 0;
+        for (size_t i = 0; i < size; i++)
+        {
+            if (arr[i] % 2 != 0)
+                temp[newSize++] = arr[i];
+        }
+    }
+
+    delete arr;
+    size = newSize;
+    arr = temp;
+}
+
+template<class T>
+void bublik(T*& arr, size_t size, int& sum, int& dobutok)
+{
+    sum = 0, dobutok = 1;
+    for (size_t i = 0; i < size; i++)
+    {
+        sum += arr[i];
+        dobutok *= arr[i];
+    }
+
+}
+
 /// </Ôóíêöèè>
 
 /// <Êëàññû>
@@ -513,7 +604,7 @@ public:
         cout << endl;
     }
 
-    ///Âîçâðàùàåò ðàçìåð âåêòîðà .
+    ///Âîçâðàùàåò ðàçìåð âåêòîðà
     int size() const {
         return this -> s;
     }
