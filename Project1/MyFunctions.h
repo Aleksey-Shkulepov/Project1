@@ -70,12 +70,20 @@ void bubbleSort(T arr[], size_t size, bool(*comp)(T a, T b) = defcomp)
     }
 }
 
-template<typename T, size_t ROWS, size_t COLS>
+template<class T, size_t ROWS, size_t COLS>
 bool isNumberInArr(T(&arr)[ROWS][COLS], T value) {
     for (size_t i = 0; i < ROWS; i++)
         for (size_t j = 0; j < COLS; j++)
             if (arr[i][j] == value)
                 return true;
+    return false;
+}
+
+template<class T>
+bool isNumberInArr(T* arr, size_t size, T value) {
+    for (size_t i = 0; i < size; i++)
+        if (arr[i] == value)
+            return true;
     return false;
 }
 
@@ -394,19 +402,6 @@ void my_swap(int& a, int& b)
     cout << a << " " << b << endl;
 }
 
-//void newArray(int*& arr, int size)
-//{
-//	arr = new int[size];
-//	fillArray(arr, size);
-//	printArray(arr, size);
-//}
-
-
-// delElemArray(arr, size)
-// insertArray(arr, size, elem, pos)
-// removeArray(arr, size, pos)
-
-
 template<class T>
 void colabArrays(T* arr1, size_t size1, T* arr2, size_t size2, T*& arr3, size_t& size3)
 {
@@ -472,6 +467,38 @@ void bublik(T*& arr, size_t size, int& sum, int& dobutok)
         dobutok *= arr[i];
     }
 
+}
+
+///28.05.25 h/w
+
+template<class T>
+void delIncludeElems(T* arr1, size_t size1, T* arr2, size_t size2, T*& arr3, size_t& size3)
+{
+    size3 = 0;
+    for (int i = 0; i < size1; i++) {
+        if (!isNumberInArr(arr2, size2, arr1[i]) && !isNumberInArr(arr3, size3, arr1[i])) {
+            arr3[size3] = arr1[i];
+            size3++;
+        }
+    }
+}
+
+template<class T>
+void colabDifferentInArrs(T* arr1, size_t size1, T* arr2, size_t size2, T*& arr3, size_t& size3)
+{
+    size3 = 0;
+    for (size_t i = 0; i < size1; i++)
+    {
+        if (!isNumberInArr(arr2, size2, arr1[i]) && !isNumberInArr(arr3, size3, arr1[i]))
+            arr3[i] = arr1[i];
+            size3++;
+    }
+    for (size_t i = 0; i < size1; i++)
+    {
+        if (!isNumberInArr(arr1, size1, arr2[i]) && !isNumberInArr(arr3, size3, arr2[i]))
+            arr3[i] = arr2[i];
+            size3++;
+    }
 }
 
 /// </Ôóíêöèè>
