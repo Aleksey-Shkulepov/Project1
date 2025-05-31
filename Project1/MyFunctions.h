@@ -538,7 +538,8 @@ void colabDifferentInArrs(T* arr1, size_t size1, T* arr2, size_t size2, T*& arr3
 ///31.05.25 lesson
 
 template<class T>
-bool uniqcomp(T a, T b) {
+bool uniqcomp(T a, T b) 
+{
     if (a % 10 > b % 10)
     {
         if (a / 10 > b / 10)
@@ -550,12 +551,67 @@ bool uniqcomp(T a, T b) {
 }
 
 template<class T>
-double Action(T* arr1, T* arr2, size_t size1, size_t size2, double(*method)(int*, size_t))  {
+double Action(T* arr1, T* arr2, size_t size1, size_t size2, double(*method)(int*, size_t))  
+{
     size_t size3;
     T* arr3 = nullptr;
     colabArrays(arr1, size1, arr2, size2, arr3, size3);
 
     return method(arr3, size3);
+}
+
+///31.05.25-03.05.25 hw
+
+/// <summary>
+/// Сложение чисел а и b
+/// </summary>
+template<class T>
+T addition(T a, T b) {
+    return a + b;
+}
+
+/// <summary>
+/// Вычитание числа b от а
+/// </summary>
+template<class T>
+T subtraction(T a, T b) {
+    return a - b;
+}
+
+/// <summary>
+/// Умножение чисел a и b
+/// </summary>
+template<class T>
+T multiplication(T a, T b) {
+    return a * b;
+}
+
+/// <summary>
+/// Деление числа a на b
+/// </summary>
+template<class T>
+T division(T a, T b) {
+    return a / b;
+}
+
+/// <summary>
+/// Введение числа а в степень числа b
+/// </summary>
+template<class T>
+T power(T a, T b) {
+    T res = 1;
+    for (size_t i = 0; i < b; i++) {
+        res *= a;
+    }
+    return res;
+}
+
+double(*methods[])(double, double) = { addition, subtraction, multiplication, division, power };
+
+template<class T>
+T Calculate(T Num1, T Num2, T(*method)(T, T)) 
+{
+    return method(Num1, Num2);
 }
 
 /// </Ôóíêöèè>

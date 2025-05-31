@@ -13,12 +13,22 @@ int main() {
     SetConsoleOutputCP(1251);
     srand(time(0));
 
-    ///31.05.25 lesson
-    size_t M = 10, N = 10;
+    ///31.05.25-03.05.25 hw
 
-    int* arr1 = new int[M]; fillArr(arr1, M); printArr(arr1, M);
-    int* arr2 = new int[N]; fillArr(arr2, N); printArr(arr2, N);
-    cout << Action(arr1, arr2, M, N, avgArray);
+    size_t option; double Num1, Num2;
+    cout << "Выберете действие(метод) из следущего списка: 1(+), 2(-), 3(*), 4(/), 5(**): "; cin >> option;
+
+    cout << "Введите первое число: "; cin >> Num1;
+    cout << "Введите второе число: "; cin >> Num2;
+
+    cout << Calculate(Num1, Num2, methods[option - 1]);
+    ///31.05.25 lesson
+
+    //size_t M = 10, N = 10;
+
+    //int* arr1 = new int[M]; fillArr(arr1, M); printArr(arr1, M);
+    //int* arr2 = new int[N]; fillArr(arr2, N); printArr(arr2, N);
+    //cout << Action(arr1, arr2, M, N, avgArray);
 
     //int* arr = new int[10]; fillArr(arr, 10, 10, 100); printArr(arr, 10);
     //bubbleSort(arr, 10, uniqcomp);
