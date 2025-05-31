@@ -493,7 +493,7 @@ void colabDifferentInArrs(T* arr1, size_t size1, T* arr2, size_t size2, T*& arr3
             arr3[i] = arr1[i];
             size3++;
     }
-    for (size_t i = 0; i < size1; i++)
+    for (size_t i = 0; i < size2; i++)
     {
         if (!isNumberInArr(arr1, size1, arr2[i]) && !isNumberInArr(arr3, size3, arr2[i]))
             arr3[i] = arr2[i];
