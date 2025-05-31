@@ -36,10 +36,11 @@ void printArr(int arr[], int N) {
 }
 
 template<class T>
-void fillArr(T arr[], size_t N) {
-    for (size_t i = 0; i < N; i++)
+void fillArr(T arr[], size_t size, T min = 0, T max = 9)
+{
+    for (auto i = 0; i < size; i++)
     {
-        arr[i] = rand() % 10;
+        arr[i] = rand() % (max - min + 1) + min;
     }
 }
 
@@ -54,12 +55,12 @@ void printArr(const T(&arr)[ROWS][COLS]) {
 }
 
 template<class T>
-bool defcomp(T a, T b) {
+bool asc(T a, T b) {
     return a > b;
 }
 
 template<class T>
-void bubbleSort(T arr[], size_t size, bool(*comp)(T a, T b) = defcomp)
+void bubbleSort(T arr[], size_t size, bool(*comp)(T a, T b) = asc)
 {
     for (size_t i = 0; i < size - 1; i++)
     {
@@ -499,6 +500,20 @@ void colabDifferentInArrs(T* arr1, size_t size1, T* arr2, size_t size2, T*& arr3
             arr3[i] = arr2[i];
             size3++;
     }
+}
+
+///31.05.25 lesson
+
+template<class T>
+bool uniqcomp(T a, T b) {
+    if (a % 10 > b % 10)
+    {
+        if (a / 10 < b / 10)
+        {
+            return a > b;
+        }
+    }
+    return a < b;
 }
 
 /// </Ôóíêöèè>
