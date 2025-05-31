@@ -60,7 +60,7 @@ bool asc(T a, T b) {
 }
 
 template<class T>
-void bubbleSort(T arr[], size_t size, bool(*comp)(T a, T b) = asc)
+void bubbleSort(T arr[], size_t size, bool(*comp)(T, T) = asc)
 {
     for (size_t i = 0; i < size - 1; i++)
     {
@@ -219,6 +219,39 @@ double avgArray(T arr[], size_t size)
         sum += arr[i];
     }
     return (double)sum / size;
+}
+
+double avgArray(int arr[], size_t size)
+{
+    int sum = 0;
+    for (size_t i = 0; i < size; i++)
+    {
+        sum += arr[i];
+    }
+    return (double)sum / size;
+}
+
+int maxArray(int arr[], size_t size)
+{
+    int max = arr[0];
+    for (size_t i = 0; i < size; i++)
+    {
+        if (arr[i] > max)
+            max = arr[i];
+    }
+    return max;
+}
+
+template<class T>
+T maxArray(T arr[], size_t size)
+{
+    T max = arr[0];
+    for (size_t i = 0; i < size; i++)
+    {
+        if (arr[i] > max)
+            max = arr[i];
+    }
+    return max;
 }
 
 template<class T>
@@ -508,12 +541,21 @@ template<class T>
 bool uniqcomp(T a, T b) {
     if (a % 10 > b % 10)
     {
-        if (a / 10 < b / 10)
+        if (a / 10 > b / 10)
         {
             return a > b;
         }
     }
     return a < b;
+}
+
+template<class T>
+double Action(T* arr1, T* arr2, size_t size1, size_t size2, double(*method)(int*, size_t))  {
+    size_t size3;
+    T* arr3 = nullptr;
+    colabArrays(arr1, size1, arr2, size2, arr3, size3);
+
+    return method(arr3, size3);
 }
 
 /// </Ôóíêöèè>

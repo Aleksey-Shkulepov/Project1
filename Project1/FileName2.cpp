@@ -14,10 +14,15 @@ int main() {
     srand(time(0));
 
     ///31.05.25 lesson
+    size_t M = 10, N = 10;
 
-    int* arr = new int[10]; fillArr(arr, 10, 10, 100); printArr(arr, 10);
-    bubbleSort(arr, 10, uniqcomp);
-    printArr(arr, 10);
+    int* arr1 = new int[M]; fillArr(arr1, M); printArr(arr1, M);
+    int* arr2 = new int[N]; fillArr(arr2, N); printArr(arr2, N);
+    cout << Action(arr1, arr2, M, N, avgArray);
+
+    //int* arr = new int[10]; fillArr(arr, 10, 10, 100); printArr(arr, 10);
+    //bubbleSort(arr, 10, uniqcomp);
+    //printArr(arr, 10);
 
     ///31.05.25 hw
 
