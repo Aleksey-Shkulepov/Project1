@@ -8,11 +8,11 @@
 
 using namespace std;
 
-/// <Ïåðåìåííûå>
+/// <Переменные константы>
 const long double pi = 3.14159265358979L;
-/// </Ïåðåìåííûå>
+/// </Переменные константы>
 
-/// <Åíóìû>
+/// <Енумы>
 enum DIRECTION
 {
     UP = 72, DOWN = 80, LEFT = 75, RIGHT = 77, ESC = 27
@@ -23,9 +23,9 @@ enum Color {
     DarkGray = 8, LightBlue = 9, LightGreen = 10, LightCyan = 11, LightRed = 12,
     LightMagenta = 13, Yellow = 14, White = 15
 };
-/// </Åíóìû>
+/// </Енумы>
 
-/// <Ôóíêöèè>
+/// <Фукнции>
 
 /// Ïðîñòî ñóùåñòâóþò
 void printArr(int arr[], int N) {
@@ -614,15 +614,15 @@ T Calculate(T Num1, T Num2, T(*method)(T, T))
     return method(Num1, Num2);
 }
 
-/// </Ôóíêöèè>
+/// </Фукнции>
 
-/// <Êëàññû>
+/// <Классы>
 class myVector {
 private:
     int *arr;
     size_t s;
 public:
-    /// Ïåðåãðóçêà îïåðàòîðà =
+    /// Перегрузка оператора = (присваивания)
     myVector &operator = (const myVector &other) 
     {
         this -> s = other.s;
@@ -638,23 +638,24 @@ public:
 
         return *this;
     }
-    /// Êîíñòðóêòîð ïî óìîë.
-    myVector(){}
 
-    /// Êîíñòðóêòîð êîïèðîâàíèÿ
-    myVector(const myVector &other) 
+    /// Конструктор копирования
+    myVector(const myVector& other)
     {
-        this -> s = other.s;
+        this->s = other.s;
 
-        this -> arr = new int[other.s];
+        this->arr = new int[other.s];
 
         for (size_t i = 0; i < other.s; i++)
         {
-            this -> arr[i] = other.arr[i];
+            this->arr[i] = other.arr[i];
         }
     }
 
-    /// Êîíñòðóêòîð ñ ïàðàìåòðàìè
+    /// Конструктор по умол.
+    myVector(){}
+
+    /// Конструктор с параметрами
     myVector(size_t s, int n = 0)
     {
         this -> s = s;
@@ -667,15 +668,13 @@ public:
         }
     }
 
-    /// Äåñòðóêòîð
+    /// Деструктор
     ~myVector() 
     {
         delete[] arr;
     }
-
-    /// <Ìåòîäû>
     
-    ///Äîáàâëÿåò óêàçàííûé åëåìåíò â êîíåö âåêòîðà
+    /// Добавляет указанный элемент в конец вектора
     void add(int elem) {
         int* newArr = new int[s + 1];
 
@@ -689,9 +688,9 @@ public:
         this -> s++;
     }
 
-    ///Âñòàâëÿåò óêàçàííûé åëåìåíò â óêàçàíóþ ïîçèöóþ âåêòîðà
+    /// Вставляет элемент на указанную позицую вектора
     bool insert(int elem, size_t pos) {
-        if (pos >= this -> s) { cout << "Îøèáêà. Òàêîé ïîçèöèè â âåêòîðå íå ñóùåñòâóåò(out of range)\n"; return false; }
+        if (pos >= this -> s) { cout << "Ошибка. Указанный индекс не находиться в диапозоне вектора (оut of range)\n"; return false; }
 
         int* newArr = new int[s + 1];
 
@@ -704,9 +703,9 @@ public:
         this -> s++;
     }
 
-    ///Óäàëÿåò åëåìåíò â óêàçàíîé ïîçèöèè âåêòîðà
+    /// Удаляет элемент вектора на указаной позиции
     bool pop(size_t pos) {
-        if (pos >= this -> s) { cout << "Îøèáêà. Òàêîé ïîçèöèè â âåêòîðå íå ñóùåñòâóåò(out of range)\n"; return false; }
+        if (pos >= this -> s) { cout << "Ошибка. Указанный индекс не находиться в диапозоне вектора (out of range)\n"; return false; }
 
         int* newArr = new int[s - 1];
 
@@ -719,7 +718,7 @@ public:
         this -> s--;
     }
 
-    ///Ðîçøèðÿåò/Óìåíüøàåò âåêòîð äî n-ãî êîë-âà åëåìåíòîâ(Ìåíÿåò êîë-âî åëåìåíòîâ íà n)
+    /// Расширяет вектор до n-го размера элементов
     void resize(size_t s, int value = 0) {
         int* newArr = new int[s];
 
@@ -736,7 +735,7 @@ public:
         this -> s = s;
     }
 
-    ///Âûâîäèò âåêòîð íà ýêðàí/êîíñîëü
+    /// Выводит вектор в консоль
     void print() const {
         for (size_t i = 0; i < s; i++) {
             cout << arr[i] << " ";
@@ -744,9 +743,9 @@ public:
         cout << endl;
     }
 
-    ///Âîçâðàùàåò ðàçìåð âåêòîðà
+    /// Возвращает размер вектора
     int size() const {
         return this -> s;
     }
 };
-/// </Êëàññû>
+/// </Классы>
