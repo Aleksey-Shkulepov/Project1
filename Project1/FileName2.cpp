@@ -1,4 +1,4 @@
-#include<iostream>
+ï»¿#include<iostream>
 #include<Windows.h>
 #include<iomanip>
 #include<algorithm>
@@ -16,10 +16,10 @@ int main() {
     ///31.05.25-03.05.25 hw
 
     size_t option; double Num1, Num2;
-    cout << "Âûáåðåòå äåéñòâèå(ìåòîä) èç ñëåäóùåãî ñïèñêà: 1(+), 2(-), 3(*), 4(/), 5(**): "; cin >> option;
+    cout << "Ð’Ñ‹Ð±ÐµÑ€ÐµÑ‚Ðµ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ(Ð¼ÐµÑ‚Ð¾Ð´) Ð¸Ð· ÑÐ»ÐµÐ´ÑƒÑ‰ÐµÐ³Ð¾ ÑÐ¿Ð¸ÑÐºÐ°: 1(+), 2(-), 3(*), 4(/), 5(**): "; cin >> option;
 
-    cout << "Ââåäèòå ïåðâîå ÷èñëî: "; cin >> Num1;
-    cout << "Ââåäèòå âòîðîå ÷èñëî: "; cin >> Num2;
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿ÐµÑ€Ð²Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; cin >> Num1;
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ñ‚Ð¾Ñ€Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; cin >> Num2;
 
     cout << Calculate(Num1, Num2, methods[option - 1]);
     ///31.05.25 lesson
