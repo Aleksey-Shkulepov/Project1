@@ -408,7 +408,6 @@ template<class T>
 T* insert(T* arr, size_t size, T elem, size_t pos) {
     T* newArr = new T[size + 1];
     for (size_t i = 0, j = 0; i < size + 1; i++)
-        /// Óðà õîòü ãäå-òî òåðíàðíèê ïðèãîäèëñÿ
         newArr[i] = (i != pos) ? arr[j++] : elem;
     delete arr;
     return newArr;
@@ -560,7 +559,7 @@ double Action(T* arr1, T* arr2, size_t size1, size_t size2, double(*method)(int*
     return method(arr3, size3);
 }
 
-///31.05.25-03.05.25 hw
+///31.05.25-04.06.25 hw
 
 /// <summary>
 /// Сложение чисел а и b
@@ -622,6 +621,12 @@ private:
     int *arr;
     size_t s;
 public:
+    /// Перегрузка оператора [] (индексирования)
+    int &operator[] (int index)
+    {
+        return arr[index];
+    }
+
     /// Перегрузка оператора = (присваивания)
     myVector &operator = (const myVector &other) 
     {
@@ -653,7 +658,7 @@ public:
     }
 
     /// Конструктор по умол.
-    myVector(){}
+    myVector() {}
 
     /// Конструктор с параметрами
     myVector(size_t s, int n = 0)
@@ -735,6 +740,27 @@ public:
         this -> s = s;
     }
 
+    /// Заполняет вектор рандомными числами от мин(по умол. 0) до макс(по умол. 9)
+    void fill(int min = 0, int max = 9)
+    {
+        for (auto i = 0; i < s; i++)
+        {
+            arr[i] = rand() % (max - min + 1) + min;
+        }
+    }
+
+    /// Сортирует вектор, по умол. от мин до макс
+    void sort(bool(*comp)(int, int) = asc)
+    {
+        for (size_t i = 0; i < s - 1; i++)
+        {
+            for (size_t j = 0; j < s - 1 - i; j++)
+            {
+                if (comp(arr[j], arr[j + 1])) swap(arr[j], arr[j + 1]);
+            }
+        }
+    }
+
     /// Выводит вектор в консоль
     void print() const {
         for (size_t i = 0; i < s; i++) {
@@ -744,7 +770,7 @@ public:
     }
 
     /// Возвращает размер вектора
-    int size() const {
+    int get_size() const {
         return this -> s;
     }
 };

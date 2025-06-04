@@ -13,15 +13,20 @@ int main() {
     SetConsoleOutputCP(1251);
     srand(time(0));
 
-    ///31.05.25-03.05.25 hw
+    ///04.06.25 lesson 
 
-    size_t option; double Num1, Num2;
-    cout << "Выберете действие(метод) из следущего списка: 1(+), 2(-), 3(*), 4(/), 5(**): "; cin >> option;
+    myVector arr(10);
 
-    cout << "Введите первое число: "; cin >> Num1;
-    cout << "Введите второе число: "; cin >> Num2;
+    ///31.05.25-04.06.25 hw
 
-    cout << Calculate(Num1, Num2, methods[option - 1]);
+    //size_t option; double Num1, Num2;
+    //cout << "Выберете действие(метод) из следущего списка: 1(+), 2(-), 3(*), 4(/), 5(**): "; cin >> option;
+
+    //cout << "Введите первое число: "; cin >> Num1;
+    //cout << "Введите второе число: "; cin >> Num2;
+
+    //cout << Calculate(Num1, Num2, methods[option - 1]);
+
     ///31.05.25 lesson
 
     //size_t M = 10, N = 10;
