@@ -27,7 +27,6 @@ enum Color {
 
 /// <Фукнции>
 
-/// Ïðîñòî ñóùåñòâóþò
 void printArr(int arr[], int N) {
     for (int i = 0; i < N; i++) {
         cout << arr[i] << " ";
@@ -611,6 +610,41 @@ template<class T>
 T Calculate(T Num1, T Num2, T(*method)(T, T)) 
 {
     return method(Num1, Num2);
+}
+
+///04.06.25 lesson
+
+size_t lenStr(const char* str)
+{
+    size_t s = 0;
+    while (str[s] != '\0')
+        s++;
+    return s;
+}
+
+char* delSymbol(const char* str, size_t pos)
+{
+    size_t tempS = lenStr(str);
+    char* temp = new char(tempS) + 1;
+    for (size_t i = 0; i <= tempS; i++)
+    {
+        temp[i] = str[i];
+    }
+    char* res = pop(temp, tempS + 1, pos);
+    delete[] temp;
+    return res;
+}
+
+char* addSymbol(const char* str, size_t pos)
+{
+    size_t tempS = lenStr(str) + 1;
+    char* temp = new char(tempS);
+    for (size_t i = 0; i < tempS; i++)
+    {
+        temp[i] = str[i];
+    }
+    temp = pop(temp, tempS, pos);
+    return temp;
 }
 
 /// </Фукнции>

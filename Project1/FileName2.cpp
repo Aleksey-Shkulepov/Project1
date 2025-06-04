@@ -13,9 +13,13 @@ int main() {
     SetConsoleOutputCP(1251);
     srand(time(0));
 
-    ///04.06.25 lesson 
+    ///04.06.25 lesson
 
-    myVector arr(10);
+    char str[] = "Python";
+
+
+
+    cout << delSymbol(str, 5);
 
     ///31.05.25-04.06.25 hw
 
