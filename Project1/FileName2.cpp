@@ -6,6 +6,8 @@
 #include <vector>
 
 #include "MyFunctions.h"
+#include "mylibrary.h"
+
 using namespace std;
 
 int main() {
@@ -13,13 +15,22 @@ int main() {
     SetConsoleOutputCP(1251);
     srand(time(0));
 
+    ///04.06.25-08.06.25 hw
+
+    char str1[8000] = "Python is the capital of programming";
+    //char str2[] = " the best!";
+
+    cout << mystrstr(str1, "capital");
+    /*cout << mystrcpy(str, "C++");*/
+
+    //cout << str1;
+
     ///04.06.25 lesson
 
-    char str[] = "Python";
+    //char str[] = "Python";
 
-
-
-    cout << delSymbol(str, 5);
+    //cout << delSymbol(str, 5);
+    //cout << addSymbol(str, 'f', 2);
 
     ///31.05.25-04.06.25 hw
 

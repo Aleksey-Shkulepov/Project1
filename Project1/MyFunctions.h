@@ -27,7 +27,8 @@ enum Color {
 
 /// <Фукнции>
 
-void printArr(int arr[], int N) {
+template<class T>
+void printArr(T arr[], size_t N) {
     for (int i = 0; i < N; i++) {
         cout << arr[i] << " ";
     }
@@ -385,7 +386,7 @@ T* add(T* arr, size_t size, T elem) {
         newArr[i] = arr[i];
     }
     newArr[size] = elem;
-    delete arr;
+    delete[] arr;
     return newArr;
 }
 /// 24.05.25 h/w
@@ -398,7 +399,7 @@ T* deletelast(T* arr, size_t size) {
     {
         newArr[i] = arr[i];
     }
-    delete arr;
+    delete[] arr;
     return newArr;
 }
 
@@ -408,18 +409,19 @@ T* insert(T* arr, size_t size, T elem, size_t pos) {
     T* newArr = new T[size + 1];
     for (size_t i = 0, j = 0; i < size + 1; i++)
         newArr[i] = (i != pos) ? arr[j++] : elem;
-    delete arr;
+    delete[] arr;
     return newArr;
 }
 
 ///removeElemInArr
 template<class T>
 T* pop(T* arr, size_t size, size_t pos) {
+    if (pos >= size or pos < 0) return nullptr;
     T* newArr = new T[size - 1];
     for (size_t i = 0, j = 0; i < size; i++)
         if (i != pos) 
             newArr[j++] = arr[i];
-    delete arr;
+    delete[] arr;
     return newArr;
 }
 
@@ -435,7 +437,7 @@ void my_swap(int& a, int& b)
 }
 
 template<class T>
-void colabArrays(T* arr1, size_t size1, T* arr2, size_t size2, T*& arr3, size_t& size3)
+void margeArrs(T* arr1, size_t size1, const T* arr2, size_t size2, T*& arr3, size_t& size3)
 {
     size3 = size1 + size2;
     arr3 = new T[size1 + size2];
@@ -553,7 +555,7 @@ double Action(T* arr1, T* arr2, size_t size1, size_t size2, double(*method)(int*
 {
     size_t size3;
     T* arr3 = nullptr;
-    colabArrays(arr1, size1, arr2, size2, arr3, size3);
+    margeArrs(arr1, size1, arr2, size2, arr3, size3);
 
     return method(arr3, size3);
 }
@@ -625,26 +627,27 @@ size_t lenStr(const char* str)
 char* delSymbol(const char* str, size_t pos)
 {
     size_t tempS = lenStr(str);
-    char* temp = new char(tempS) + 1;
+    if (pos >= tempS) return nullptr;
+    char* temp = new char[tempS + 1];
     for (size_t i = 0; i <= tempS; i++)
     {
         temp[i] = str[i];
     }
     char* res = pop(temp, tempS + 1, pos);
-    delete[] temp;
     return res;
 }
 
-char* addSymbol(const char* str, size_t pos)
+char* addSymbol(const char* str, char elem,  size_t pos)
 {
-    size_t tempS = lenStr(str) + 1;
-    char* temp = new char(tempS);
-    for (size_t i = 0; i < tempS; i++)
+    size_t tempS = lenStr(str);
+    if (pos >= tempS) return nullptr;
+    char* temp = new char[tempS + 1];
+    for (size_t i = 0; i <= tempS; i++)
     {
         temp[i] = str[i];
     }
-    temp = pop(temp, tempS, pos);
-    return temp;
+    char* res = insert(temp, tempS + 1, elem, pos);
+    return res;
 }
 
 /// </Фукнции>
