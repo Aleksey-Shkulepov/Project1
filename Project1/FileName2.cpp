@@ -4,6 +4,8 @@
 #include<algorithm>
 #include<conio.h>
 #include <vector>
+#include <cstring>
+#include <cctype>
 
 #include "MyFunctions.h"
 #include "mylibrary.h"
@@ -15,12 +17,22 @@ int main() {
     SetConsoleOutputCP(1251);
     srand(time(0));
 
+    ///08.06.25-12.06.25 hw
+
+    char str1[8000] = "Python is the capital of programming. Python is nohtyp, Python Python!";
+
+    cout << countIncludingWord(str1, "Python") << endl;
+    cout << countSentences(str1) << endl;
+    cout << countPunctuation(str1) << endl;
+
+    //reverseString(str1); cout << str1 << endl;
+    reverseEachSentence(str1); cout << str1;
     ///04.06.25-08.06.25 hw
 
-    char str1[8000] = "Python is the capital of programming";
-    //char str2[] = " the best!";
+    //char str1[8000] = "Python is the capital of programming";
+    ////char str2[] = " the best!";
 
-    cout << mystrstr(str1, "capital");
+    //cout << mystrstr(str1, "capital");
     /*cout << mystrcpy(str, "C++");*/
 
     //cout << str1;
