@@ -17,16 +17,41 @@ int main() {
     SetConsoleOutputCP(1251);
     srand(time(0));
 
+    ///12.06.25 lesson
+
+
+    int row = 10, col = 5;
+    int** arr = nullptr;
+    createArray2D(arr, row, col);
+    fillArray2D(arr, row, col);
+    printArray2D(arr, row, col);
+    //cout << "\n";
+    //addRowArray2D(arr, row, col);
+    //printArray2D(arr, row, col);
+    //cout << "\n";
+    //deleteRowArray2D(arr, row, col);
+    //printArray2D(arr, row, col);
+    //cout << "\n";
+    //insertRowArray2D(arr, row,col, 2);
+    //printArray2D(arr, row, col);
+    //cout << "\n";
+    //popRowArray2D(arr, row,col, 1);
+    //printArray2D(arr, row, col);
+    cout << "\n";
+    //delZeroRow(arr, row, col);
+    trancportArray2D(arr, row, col);
+    printArray2D(arr, row, col);
+
     ///08.06.25-12.06.25 hw
 
-    char str1[8000] = "Python is the capital of programming. Python is nohtyp, Python Python!";
+    //char str1[8000] = "Python is the capital of programming. Python is nohtyp, Python Python!";
 
-    cout << countIncludingWord(str1, "Python") << endl;
-    cout << countSentences(str1) << endl;
-    cout << countPunctuation(str1) << endl;
+    //cout << countIncludingWord(str1, "Python") << endl;
+    //cout << countSentences(str1) << endl;
+    //cout << countPunctuation(str1) << endl;
 
-    //reverseString(str1); cout << str1 << endl;
-    reverseEachSentence(str1); cout << str1;
+    ////reverseString(str1); cout << str1 << endl;
+    //reverseEachSentence(str1); cout << str1;
     ///04.06.25-08.06.25 hw
 
     //char str1[8000] = "Python is the capital of programming";

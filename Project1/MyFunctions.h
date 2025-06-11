@@ -650,6 +650,129 @@ char* addSymbol(const char* str, char elem,  size_t pos)
     return res;
 }
 
+//11.06.2025
+template<class T>
+void createArray2D(T**& arr, size_t row, size_t col) {
+    arr = new T*[row];
+    for (size_t i = 0; i < row; i++)
+    {
+        arr[i] = new T[col];
+    }
+}
+
+
+void fillArray2D(int** arr, int row, int col)
+{
+    for (size_t i = 0; i < row; i++)
+    {
+        for (size_t j = 0; j < col; j++)
+        {
+            arr[i][j] = rand() % 10;
+        }
+    }
+}
+
+template<class T>
+void printArray2D(T** arr, int row, int col)
+{
+    for (size_t i = 0; i < row; i++)
+    {
+        for (size_t j = 0; j < col; j++)
+        {
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+template<class T>
+void deleteArray2D(T**& arr, int row)
+{
+    for (size_t i = 0; i < row; i++)
+    {
+        delete[] arr[i];
+    }
+    delete[] arr;
+    arr = nullptr;
+}
+
+template<class T>
+void addRowArray2D(T**& arr, int& row, int col)
+{
+    T** temp = new T* [row + 1];
+    for (size_t i = 0; i < row; i++)
+    {
+        temp[i] = arr[i];
+    }
+    temp[row] = new T[col]{ 0 };
+    row++;
+    delete[] arr;
+    arr = temp;
+}
+
+template<class T>
+void deleteRowArray2D(T**& arr, int& row, int col)
+{
+    T** temp = new T * [row - 1];
+    for (size_t i = 0; i < row - 1; i++)
+    {
+        temp[i] = arr[i];
+    }
+    delete[] arr[row - 1];
+    row--;
+    delete[] arr;
+    arr = temp;
+}
+
+template<class T>
+void insertRowArray2D(T**& arr, int& row, int col, size_t pos) {
+    T** temp = new T * [row + 1];
+    for (size_t i = 0, j = 0; i < row + 1; i++)
+        temp[i] = (i != pos) ? arr[j++] : new T[col]{ 0 };
+    row++;
+    delete[] arr;
+    arr = temp;
+}
+
+template<class T>
+void popRowArray2D(T**& arr, int& row, int col, size_t pos) {
+    T** temp = new T * [row - 1];
+    for (size_t i = 0, j = 0; i < row; i++)
+        if (i != pos) temp[j++] = arr[i];
+    row--;
+    delete[] arr;
+    arr = temp;
+}
+
+void delZeroRow(int**& arr, int& row, int col)
+{
+    for (size_t i = 0; i < row; i++)
+    {
+        if (lineSearch(arr[i], 0, col) != -1)
+        {
+            popRowArray2D(arr, row, col, i--);
+        }
+    }
+}
+
+template<class T>
+void trancportArray2D(T**& arr, int& row, int &col)
+{
+    T** temp = nullptr;
+    createArray2D(temp, col, row);
+    for (size_t i = 0; i < row; i++)
+    {
+        for (size_t j = 0; j < col; j++)
+        {
+            temp[j][i] = arr[i][j];
+        }
+    }
+
+    deleteArray2D(arr, row);
+    swap(row, col);
+    arr = temp;
+}
+
 /// </Фукнции>
 
 /// <Классы>
