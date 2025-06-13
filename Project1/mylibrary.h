@@ -1,5 +1,36 @@
 ﻿#pragma once
 
+///12.06.25-15.06.25 h/w
+
+struct Abonent
+{
+    char* name = nullptr;
+    unsigned long long phone = 0;
+};
+
+Abonent* searchByName(Abonent* user, size_t size, const char* name) {
+    for (size_t i = 0; i < size; i++)
+        if (strcmp(user[i].name, name) == 0)
+            return &user[i];
+    return nullptr;
+}
+
+Abonent* searchByPhone(Abonent* user, size_t size, unsigned long long phone) {
+    for (size_t i = 0; i < size; i++) 
+        if (user[i].phone == phone)
+            return &user[i];
+    return nullptr;
+}
+
+void editContact(Abonent* user, size_t size, const char* name, unsigned long long phone) {
+    for (size_t i = 0; i < size; i++) {
+        if (strcmp(user[i].name, name) == 0 || user[i].phone == phone) {
+            strcpy(user[i].name, name);
+            user[i].phone = phone;
+        }
+    }
+}
+
 ///08.06.25-12.06.25 hw
 
 /// <summary>
@@ -8,7 +39,7 @@
 /// <param name="str1"> Основная строка(в ней осуществляеться поиск) </param>
 /// <param name="str2"> Указаная строка которую нужно найти </param>
 /// <returns> Возвращает количество нахождений заданого слова(заданой строки) </returns>
-size_t countIncludingWord(const char* str1, const char* str2) 
+unsigned int countIncludingWord(const char* str1, const char* str2) 
 {
     size_t count = 0, reapets = 0, len1 = lenStr(str1), len2 = lenStr(str2);
     for (size_t i = 0; i <= len1 - len2; i++)
@@ -26,7 +57,7 @@ size_t countIncludingWord(const char* str1, const char* str2)
 /// </summary>
 /// <param name="str">Заданная строка</param>
 /// <returns>Возвращает количество предложений в строке</returns>
-size_t countSentences(const char* str) 
+unsigned int countSentences(const char* str)
 {
     size_t count = 0;
     for (size_t i = 0; str[i] != '\0'; i++)
@@ -40,7 +71,7 @@ size_t countSentences(const char* str)
 /// </summary>
 /// <param name="str"> Заданная строка </param>
 /// <returns> Возвращает количество знаков пункутации(запятая, точка) в строке </returns>
-size_t countPunctuation(const char* str) {
+unsigned int countPunctuation(const char* str) {
     size_t count = 0;
     for (size_t i = 0; str[i] != '\0'; i++)
         if (str[i] == '.' || str[i] == ',')
@@ -87,7 +118,7 @@ void reverseEachSentence(char* str) {
 
 ///04.06.25-08.06.25 hw
 
-size_t mylenstr(const char* str)
+unsigned int mylenstr(const char* str)
 {
     size_t s = 0;
     while (str[s] != '\0')

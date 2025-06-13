@@ -17,20 +17,50 @@ int main() {
     SetConsoleOutputCP(1251);
     srand(time(0));
 
+    ///12.06.25-15.06.25 h/w structure
+
+    size_t s = 5; Abonent* user;
+    Abonent* users = new Abonent[s];
+
+    for (size_t i = 0; i < s; i++)
+        users[i].name = new char[20];
+
+    strcpy(users[0].name, "Sergei");
+    users[0].phone = 88005353535;
+
+    user = searchByName(users, s, "Sergei");
+    if (user)
+        cout << "[name - " << user->name <<  ", phone - " << user->phone << "]" << endl;
+
+    user = searchByPhone(users, s, 88005353535);
+    if (user)
+        cout << "[name - " << user->name << ", phone - " << user->phone << "]" << endl;
+
+    editContact(users, s, "Sergei", 38095193787);
+    editContact(users, s, "Aleksey", 38095193787);
+
+    user = searchByName(users, s, "Aleksey");
+    if(user)
+        cout << "[name - " << user->name << ", phone - " << user->phone << "]"<< endl;
+
+    user = searchByPhone(users, s, 38095193787);
+    if (user)
+        cout << "[name - " << user->name << ", phone - " << user->phone << "]" << endl;
+
     ///12.06.25-15.06.25 h/w
 
-    size_t row = 2, col = 5, len = 8000;
-    char*** Abonents = nullptr;
-    createArray3D<char>(Abonents, row, col, len);
+    //size_t row = 2, col = 5, len = 8000;
+    //char*** Abonents = nullptr;
+    //createArray3D<char>(Abonents, row, col, len);
 
-    strcpy(Abonents[0][0], "Sergei");
-    strcpy(Abonents[0][1], "88005353535");
+    //strcpy(Abonents[0][0], "Sergei");
+    //strcpy(Abonents[0][1], "88005353535");
 
-    printArr(searchByName(Abonents, col, "Sergei"), row);
-    printArr(searchByPhone(Abonents, col, "88005353535"), row);
+    //printArr(searchByName(Abonents, col, "Sergei"), row);
+    //printArr(searchByPhone(Abonents, col, "88005353535"), row);
 
-    editContact(Abonents, col, "Sergei", "88005353535");
-    editContact(Abonents, col, "Aleksey", "0");
+    //editContact(Abonents, col, "Sergei", "88005353535");
+    //editContact(Abonents, col, "Aleksey", "0");
 
 
     ///12.06.25 lesson
