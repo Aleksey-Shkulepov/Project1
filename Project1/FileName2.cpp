@@ -1,4 +1,5 @@
-﻿#include<iostream>
+﻿#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
 #include<Windows.h>
 #include<iomanip>
 #include<algorithm>
@@ -9,7 +10,6 @@
 
 #include "MyFunctions.h"
 #include "mylibrary.h"
-
 using namespace std;
 
 int main() {
@@ -17,30 +17,47 @@ int main() {
     SetConsoleOutputCP(1251);
     srand(time(0));
 
+    ///12.06.25-15.06.25 h/w
+
+    size_t row = 2, col = 5, len = 8000;
+    char*** Abonents = nullptr;
+    createArray3D<char>(Abonents, row, col, len);
+
+    strcpy(Abonents[0][0], "Sergei");
+    strcpy(Abonents[0][1], "88005353535");
+
+    printArr(searchByName(Abonents, col, "Sergei"), row);
+    printArr(searchByPhone(Abonents, col, "88005353535"), row);
+
+    editContact(Abonents, col, "Sergei", "88005353535");
+    editContact(Abonents, col, "Aleksey", "0");
+
+
     ///12.06.25 lesson
 
 
-    int row = 10, col = 5;
-    int** arr = nullptr;
-    createArray2D(arr, row, col);
-    fillArray2D(arr, row, col);
-    printArray2D(arr, row, col);
-    //cout << "\n";
-    //addRowArray2D(arr, row, col);
+
+    //int row = 10, col = 5;
+    //int** arr = nullptr;
+    //createArray2D(arr, row, col);
+    //fillArray2D(arr, row, col);
     //printArray2D(arr, row, col);
+    ////cout << "\n";
+    ////addRowArray2D(arr, row, col);
+    ////printArray2D(arr, row, col);
+    ////cout << "\n";
+    ////deleteRowArray2D(arr, row, col);
+    ////printArray2D(arr, row, col);
+    ////cout << "\n";
+    ////insertRowArray2D(arr, row,col, 2);
+    ////printArray2D(arr, row, col);
+    ////cout << "\n";
+    ////popRowArray2D(arr, row,col, 1);
+    ////printArray2D(arr, row, col);
     //cout << "\n";
-    //deleteRowArray2D(arr, row, col);
+    ////delZeroRow(arr, row, col);
+    //trancportArray2D(arr, row, col);
     //printArray2D(arr, row, col);
-    //cout << "\n";
-    //insertRowArray2D(arr, row,col, 2);
-    //printArray2D(arr, row, col);
-    //cout << "\n";
-    //popRowArray2D(arr, row,col, 1);
-    //printArray2D(arr, row, col);
-    cout << "\n";
-    //delZeroRow(arr, row, col);
-    trancportArray2D(arr, row, col);
-    printArray2D(arr, row, col);
 
     ///08.06.25-12.06.25 hw
 

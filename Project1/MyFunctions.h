@@ -650,7 +650,8 @@ char* addSymbol(const char* str, char elem,  size_t pos)
     return res;
 }
 
-//11.06.2025
+///12.06.2025 lesson
+
 template<class T>
 void createArray2D(T**& arr, size_t row, size_t col) {
     arr = new T*[row];
@@ -660,8 +661,8 @@ void createArray2D(T**& arr, size_t row, size_t col) {
     }
 }
 
-
-void fillArray2D(int** arr, int row, int col)
+template<class T>
+void fillArray2D(T** arr, size_t row, size_t col)
 {
     for (size_t i = 0; i < row; i++)
     {
@@ -673,7 +674,7 @@ void fillArray2D(int** arr, int row, int col)
 }
 
 template<class T>
-void printArray2D(T** arr, int row, int col)
+void printArray2D(T** arr, size_t row, size_t col)
 {
     for (size_t i = 0; i < row; i++)
     {
@@ -773,6 +774,44 @@ void trancportArray2D(T**& arr, int& row, int &col)
     arr = temp;
 }
 
+///12.06.25-15.06.25 h/w
+
+template<class T>
+void createArray3D(T***& arr, size_t row, size_t col, size_t len) {
+    arr = new T * *[col];
+    for (size_t i = 0; i < col; i++) {
+        arr[i] = new T * [row];
+        for (size_t j = 0; j < row; j++) {
+            arr[i][j] = new T[len];
+        }
+    }
+}
+
+char** searchByName(char*** Abonents, size_t col, const char* name) {
+    for (size_t i = 0; i < col; i++) {
+        if (strcmp(Abonents[i][0], name) == 0)
+            return Abonents[i];
+    }
+    return 0;
+}
+
+char** searchByPhone(char*** Abonents, size_t col, const char* phone) {
+    for (size_t i = 0; i < col; i++) {
+        if (strcmp(Abonents[i][1], phone) == 0)
+            return Abonents[i];
+    }
+    return 0;
+}
+
+void editContact(char***& Abonents, size_t col, const char* name, const char* phone) {
+    for (size_t i = 0; i < col; i++) {
+        if (strcmp(Abonents[i][0], name) == 0 || strcmp(Abonents[i][1], phone) == 0) {
+            strcpy(Abonents[i][0], name);
+            strcpy(Abonents[i][1], phone);
+        }
+    }
+}
+
 /// </Фукнции>
 
 /// <Классы>
@@ -818,7 +857,11 @@ public:
     }
 
     /// Конструктор по умол.
-    myVector() {}
+    myVector() 
+    {
+        arr = nullptr;
+        s = 0;
+    }
 
     /// Конструктор с параметрами
     myVector(size_t s, int n = 0)
