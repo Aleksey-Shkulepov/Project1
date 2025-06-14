@@ -812,4 +812,4 @@ void editContact(char***& Abonents, size_t col, const char* name, const char* ph
     }
 }
 
-/// </Фукнции>
+/// </Фукнции> 
