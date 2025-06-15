@@ -127,8 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="FileName.cpp" />
-    <ClCompile Include="FileName2.cpp" />
+    <ClCompile Include="source.cpp" />
     <ClCompile Include="MyVector.cpp" />
   </ItemGroup>
   <ItemGroup>
