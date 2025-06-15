@@ -21,9 +21,35 @@ int main() {
     SetConsoleOutputCP(1251);
     srand(time(0));
 
-    ///15.06.25-15.06.25 h/w
+    ///15.06.25-18.06.25 h/w
 
+    int N = 3;
+    Car* cars = new Car[N];
 
+    cars[0].set(4.2, 0.18, 2.0, 150, 17, "Красный", AUTOMATIC);
+    cars[1].set(3.9, 0.16, 1.6, 110, 15, "Синий", MANUAL);
+    cars[2].set(4.5, 0.20, 2.5, 200, 18, "Красный", AUTOMATIC);
+
+    for (size_t i = 0; i < N; i++)
+        cout << cars[i] << endl;
+
+    cout << searchByColor(cars, N, "Красный");
+
+    fraction fr1{ 1, 2 };
+    fraction fr2{ 4, 5 };
+    
+    try {
+        cin >> fr1;
+        cin >> fr2;
+
+        cout << fr1 + fr2 << endl;
+        cout << fr1 - fr2 << endl;
+        cout << fr1 * fr2 << endl;
+        cout << fr1 / fr2 << endl;
+    }
+    catch(exception &ex){
+        cout << "ЗНАМЕНАТЕЛЬ НЕ МОЖЕТ РАВНЯТЬСЯ НУЛЮ!" << endl;
+    }
 
     ///14.06.25 lesson
 

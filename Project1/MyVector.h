@@ -1,6 +1,10 @@
 ﻿#pragma once
 
-/// 24.05.25 My first class
+using namespace std;
+
+#include<iostream>
+#include<Windows.h>
+#include<iomanip>
 
 template<typename T>
 class myVector {
@@ -140,6 +144,11 @@ public:
         {
             arr[i] = rand() % ((int)max - (int)min + 1) + min;
         }
+    }
+
+    template<class T>
+    bool asc(T a, T b) {
+        return a > b;
     }
 
     /// Сортирует вектор, по умол. от мин до макс

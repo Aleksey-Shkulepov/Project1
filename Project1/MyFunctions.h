@@ -803,13 +803,13 @@ char** searchByPhone(char*** Abonents, size_t col, const char* phone) {
     return 0;
 }
 
-void editContact(char***& Abonents, size_t col, const char* name, const char* phone) {
-    for (size_t i = 0; i < col; i++) {
-        if (strcmp(Abonents[i][0], name) == 0 || strcmp(Abonents[i][1], phone) == 0) {
-            strcpy(Abonents[i][0], name);
-            strcpy(Abonents[i][1], phone);
-        }
-    }
-}
+//void editContact(char***& Abonents, size_t col, const char* name, const char* phone) {
+//    for (size_t i = 0; i < col; i++) {
+//        if (strcmp(Abonents[i][0], name) == 0 || strcmp(Abonents[i][1], phone) == 0) {
+//            strcpy(Abonents[i][0], name);
+//            strcpy(Abonents[i][1], phone);
+//        }
+//    }
+//}
 
 /// </Фукнции> 
