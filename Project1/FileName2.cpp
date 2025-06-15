@@ -1,4 +1,5 @@
 ﻿#define _CRT_SECURE_NO_WARNINGS
+
 #include<iostream>
 #include<Windows.h>
 #include<iomanip>
@@ -10,6 +11,9 @@
 
 #include "MyFunctions.h"
 #include "mylibrary.h"
+#include "myVector.h"
+#include "myStructures.h"
+
 using namespace std;
 
 int main() {
@@ -17,13 +21,75 @@ int main() {
     SetConsoleOutputCP(1251);
     srand(time(0));
 
+    ///15.06.25-15.06.25 h/w
+
+
+
     ///14.06.25 lesson
 
-    myVector<double> arr(5, 0);
-    arr.fill();
-    arr.print();
-    arr.sort();
-    arr.print();
+    //Date d = { 4,6,2025 };
+    //d.print();
+    //cout << d.to_string() << endl;
+
+    /*Point p;
+    p.print();
+
+
+    Human h;
+    h.birthDay.day = 20;*/
+
+
+
+    /*Point p;
+    p.x = 12;
+    p.y = 10;
+    p.name = 'A';
+
+    Point p1 = { 13, 34, 'B' };
+
+    printPoint(p);
+    printPoint(p1);
+
+
+    Point p2[3] = { {2,4,'C'}, 5,8,'D', 2,6,'E' };
+    for (size_t i = 0; i < 3; i++)
+    {
+        printPoint(p2[i]);
+    }*/
+
+    //const int size = 10;
+    //Point p[size];
+    //for (size_t i = 0; i < size; i++)
+    //{
+    //    p[i].x = rand() % 10;
+    //    p[i].y = 0; // rand() % 10;
+    //    p[i].name = 'A' + i;
+
+    //    p[i].print();
+    //}
+    //double maxLen = 0;
+    //Point p1, p2;
+    //for (size_t i = 0; i < size - 1; i++)
+    //{
+    //    for (size_t j = i + 1; j < size; j++)
+    //    {
+    //        double len = len2Point(p[i], p[j]);
+    //        if (len > maxLen)
+    //        {
+    //            maxLen = len;
+    //            p1 = p[i];
+    //            p2 = p[j];
+    //        }
+    //    }
+    //}
+    //cout << endl;
+    //p1.print();
+    //p2.print();
+
+
+
+    //Point* p = new Point[10];
+
     ///12.06.25-15.06.25 h/w structure
 
     //size_t s = 5; Abonent* user;

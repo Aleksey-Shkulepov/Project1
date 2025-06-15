@@ -129,10 +129,13 @@
   <ItemGroup>
     <ClCompile Include="FileName.cpp" />
     <ClCompile Include="FileName2.cpp" />
+    <ClCompile Include="MyVector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyFunctions.h" />
     <ClInclude Include="mylibrary.h" />
+    <ClInclude Include="MyStructures.h" />
+    <ClInclude Include="MyVector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
