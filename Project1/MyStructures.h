@@ -1,5 +1,46 @@
 ﻿#pragma once
 
+///18.06.25 lesson
+
+struct Engine 
+{
+	int cilinder = 4;
+
+	void start()
+	{
+		cout << "Engine Start" << endl;
+	}
+
+	void stop()
+	{
+		cout << "Engine Stop" << endl;
+	}
+};
+
+struct Car2 
+{
+	Engine engine;
+
+	void drive()
+	{
+		engine.start();
+		cout << "Я еду";
+		engine.stop();
+	}
+
+	void makeNoice()
+	{
+		cout << "Бип";
+	}
+
+	friend ostream& operator<<(ostream& os, const Car2& obj);
+};
+
+ostream& operator<<(ostream& os, const Car2& obj)
+{
+	return os;
+}
+
 ///15.06.25-18.06.25 h/w
 
 

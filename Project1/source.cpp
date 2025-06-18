@@ -16,6 +16,7 @@
 #include "myStructures.h"
 #include "mylist.h"
 #include "anyTypeArray.h"
+#include "Bank.h"
 
 using namespace std;
 
@@ -24,13 +25,15 @@ int main() {
     SetConsoleOutputCP(1251);
     srand(time(0));
     ///18.06.25 lesson
-    
-    //ф
+
+    Bank bank;
+    bank.menu();
+
 
     ///17.06.25 anyType
 
-    //AnyList arr; fraction fr{2,3};
-    //arr.add("string");
+    //AnyTypeList arr; fraction fr{2,3};
+    //arr.add(string("string"));
     //arr.add(4);
     //arr.add(5.5);
     //arr.add(fr);

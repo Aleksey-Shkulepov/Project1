@@ -131,6 +131,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="anyTypeArray.h" />
+    <ClInclude Include="Bank.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="MyException.h" />
     <ClInclude Include="MyFunctions.h" />
     <ClInclude Include="mylibrary.h" />

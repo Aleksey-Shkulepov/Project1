@@ -377,18 +377,22 @@ void gameFifteen() {
 }
 /// 24.05.25 lesson
 
-///addElemtoArr
 template<class T>
-T* add(T* arr, size_t size, T elem) {
+void add(T*& arr, unsigned int& size, T elem) {
     T* newArr = new T[size + 1];
-    for (size_t i = 0; i < size + 1; i++)
-    {
+
+    for (size_t i = 0; i < size; i++)
         newArr[i] = arr[i];
-    }
     newArr[size] = elem;
+
     delete[] arr;
-    return newArr;
+    arr = newArr;
+
+    size++;
 }
+
+///addElemtoArr
+
 /// 24.05.25 h/w
 
 ///delLastElemArr
@@ -415,14 +419,19 @@ T* insert(T* arr, size_t size, T elem, size_t pos) {
 
 ///removeElemInArr
 template<class T>
-T* pop(T* arr, size_t size, size_t pos) {
-    if (pos >= size or pos < 0) return nullptr;
-    T* newArr = new T[size - 1];
-    for (size_t i = 0, j = 0; i < size; i++)
-        if (i != pos) 
-            newArr[j++] = arr[i];
+bool pop(T*& arr, unsigned int& s, size_t pos) {
+    if (pos >= s)
+        return false;
+
+    T* newArr = new T[s - 1];
+
+    for (size_t i = 0, j = 0; i < s; i++)
+        if (i != pos) newArr[j++] = arr[i];
+
     delete[] arr;
-    return newArr;
+    arr = newArr;
+
+    s--;
 }
 
 ///28.05.25 lesson
@@ -624,18 +633,18 @@ size_t lenStr(const char* str)
     return s;
 }
 
-char* delSymbol(const char* str, size_t pos)
-{
-    size_t tempS = lenStr(str);
-    if (pos >= tempS) return nullptr;
-    char* temp = new char[tempS + 1];
-    for (size_t i = 0; i <= tempS; i++)
-    {
-        temp[i] = str[i];
-    }
-    char* res = pop(temp, tempS + 1, pos);
-    return res;
-}
+//char* delSymbol(const char* str, size_t pos)
+//{
+//    size_t tempS = lenStr(str);
+//    if (pos >= tempS) return nullptr;
+//    char* temp = new char[tempS + 1];
+//    for (size_t i = 0; i <= tempS; i++)
+//    {
+//        temp[i] = str[i];
+//    }
+//    char* res = pop(temp, tempS + 1, pos);
+//    return res;
+//}
 
 char* addSymbol(const char* str, char elem,  size_t pos)
 {
