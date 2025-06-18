@@ -24,8 +24,8 @@ int main() {
     SetConsoleOutputCP(1251);
     srand(time(0));
     ///18.06.25 lesson
-
-
+    
+    //ф
 
     ///17.06.25 anyType
 
