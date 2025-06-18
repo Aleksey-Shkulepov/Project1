@@ -128,11 +128,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source.cpp" />
-    <ClCompile Include="MyVector.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="anyTypeArray.h" />
+    <ClInclude Include="MyException.h" />
     <ClInclude Include="MyFunctions.h" />
     <ClInclude Include="mylibrary.h" />
+    <ClInclude Include="mylist.h" />
     <ClInclude Include="MyStructures.h" />
     <ClInclude Include="MyVector.h" />
   </ItemGroup>

@@ -8,11 +8,14 @@
 #include <vector>
 #include <cstring>
 #include <cctype>
+#include <string>
 
 #include "MyFunctions.h"
 #include "mylibrary.h"
 #include "myVector.h"
 #include "myStructures.h"
+#include "mylist.h"
+#include "anyTypeArray.h"
 
 using namespace std;
 
@@ -20,36 +23,76 @@ int main() {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
     srand(time(0));
+    ///18.06.25 lesson
+
+
+
+    ///17.06.25 anyType
+
+    //AnyList arr; fraction fr{2,3};
+    //arr.add("string");
+    //arr.add(4);
+    //arr.add(5.5);
+    //arr.add(fr);
+    //arr.printAll();
+
+    ///16.06.25 mylist
+
+    //mylist<int> arr;
+
+    //unsigned int size;
+    //cin >> size;
+
+    //for (size_t i = 0; i < size; i++)
+    //{
+    //    arr.push_back(rand() % 10);
+    //}
+
+    //for (size_t i = 0; i < arr.GetSize(); i++)
+    //{
+    //    cout << arr[i] << endl;
+    //
+
+    //cout << arr.GetSize();
+
+    //arr.clear();
+
+    //for (size_t i = 0; i < arr.GetSize(); i++)
+    //{
+    //    cout << arr[i] << endl;
+    //}
+
+    //cout << arr.GetSize();
 
     ///15.06.25-18.06.25 h/w
 
-    int N = 3;
-    Car* cars = new Car[N];
+    //int N = 3;
+    //Car* cars = new Car[N];
 
-    cars[0].set(4.2, 0.18, 2.0, 150, 17, "Красный", AUTOMATIC);
-    cars[1].set(3.9, 0.16, 1.6, 110, 15, "Синий", MANUAL);
-    cars[2].set(4.5, 0.20, 2.5, 200, 18, "Красный", AUTOMATIC);
+    //cars[0].set(4.2, 0.18, 2.0, 150, 17, "Красный", AUTOMATIC);
+    //cars[1].set(3.9, 0.16, 1.6, 110, 15, "Синий", MANUAL);
+    //cars[2].set(4.5, 0.20, 2.5, 200, 18, "Красный", AUTOMATIC);
 
-    for (size_t i = 0; i < N; i++)
-        cout << cars[i] << endl;
+    //for (size_t i = 0; i < N; i++)
+    //    cout << cars[i] << endl;
 
-    cout << searchByColor(cars, N, "Красный");
+    //cout << searchByColor(cars, N, "Красный");
 
-    fraction fr1{ 1, 2 };
-    fraction fr2{ 4, 5 };
-    
-    try {
-        cin >> fr1;
-        cin >> fr2;
+    //fraction fr1{ 1, 2 };
+    //fraction fr2{ 4, 5 };
+    //
+    //try {
+    //    cin >> fr1;
+    //    cin >> fr2;
 
-        cout << fr1 + fr2 << endl;
-        cout << fr1 - fr2 << endl;
-        cout << fr1 * fr2 << endl;
-        cout << fr1 / fr2 << endl;
-    }
-    catch(exception &ex){
-        cout << "ЗНАМЕНАТЕЛЬ НЕ МОЖЕТ РАВНЯТЬСЯ НУЛЮ!" << endl;
-    }
+    //    cout << fr1 + fr2 << endl;
+    //    cout << fr1 - fr2 << endl;
+    //    cout << fr1 * fr2 << endl;
+    //    cout << fr1 / fr2 << endl;
+    //}
+    //catch(exception &ex){
+    //    cout << "ЗНАМЕНАТЕЛЬ НЕ МОЖЕТ РАВНЯТЬСЯ НУЛЮ!" << endl;
+    //}
 
     ///14.06.25 lesson
 
