@@ -9,6 +9,7 @@
 #include <cstring>
 #include <cctype>
 #include <string>
+#include <fstream>
 
 #include "MyFunctions.h"
 #include "mylibrary.h"
@@ -24,10 +25,198 @@ int main() {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
     srand(time(0));
+
+    ///21.06.25 lesson
+
+    //ofstream fout;
+
+    //fout.open("log.txt");
+
+    //int arr[] = { 1,2,3,4,5 };
+    //fillArr(arr, 5, 0, 100);
+
+    //for (size_t i = 0; i < 5; i++)
+    //{
+    //    fout << arr[i] << " ";
+    //}
+
+    //fout.close();
+
+
+
+    //int* b = nullptr;
+    //unsigned int size = 0;
+
+    //ifstream fin("log.txt");
+
+    //if (!fin.is_open())
+    //    exit(0);
+
+    //int r;
+    //while (fin >> r)
+    //{
+    //    if(isEven(r))
+    //        add(b, size, r);
+    //}
+
+    //fin.close();
+
+
+
+    //printArr(b, size);
+
+    //fout.open("log2.txt");
+
+    //for (size_t i = 0; i < size; i++)
+    //{
+    //    fout << b[i] << " ";
+    //}
+
+    //fout.close();
+
+
+    //const int size = 10;
+    //Point p[size];
+    //for (size_t i = 0; i < size; i++)
+    //{
+    //	p[i].x = rand() % 10;
+    //	p[i].y = rand() % 10;
+    //	p[i].name = 'A' + i;
+
+    //	p[i].print();
+    //}
+
+
+    //ifstream fin("log.txt");
+    //ofstream fout("log.txt");
+
+    //if (!fin.is_open())
+    //    exit(0);
+
+    //for (size_t i = 0; i < size; i++)
+    //{
+    //    fout << p[i].x << " ";
+    //    fout << p[i].y << " ";
+    //    fout << p[i].name << endl;
+    //}
+
+    //unsigned int size2 = 10;
+    //Point* p2 = new Point[size2];
+
+    //int r;
+    //for (size_t i = 0; i < size2; i++)
+    //{
+    //    fin >> r;
+    //    p2[i].x = r;
+    //    fin >> r;
+    //    p2[i].y = r;
+    //    fin >> r;
+    //    p2[i].name = r;
+    //}
+
+    //for (size_t i = 0; i < size2; i++)
+    //{
+    //    cout << p2[i].x << " ";
+    //    cout << p2[i].y << " ";
+    //    cout << p2[i].name << endl;
+    //}
+
+    //fin.close();
+    //fout.close();
+
+    //ifstream in("MyFunctions.h");
+
+    //ofstream fout("undmyfunc.txt");
+
+    //char buffer[800];
+    //unsigned int size = 0;
+    //char** c = new char* [size];
+    //while (in.getline(buffer, 800))
+    //{
+    //    char* newbuffer = new char[strlen(buffer) + 1];
+    //    strcpy(newbuffer, buffer);
+    //    add(c, size, newbuffer);
+    //}
+
+    //for (size_t i = size - 1; i > 0; i--)
+    //    fout << c[i] << endl;
+
+    //fout.close();
+
+
+    //ifstream in("MyFunctions.h");
+
+    //ofstream fout("undmyfunc.txt");
+
+    //char buffer[800];
+    //unsigned int size = 0;
+    //char** c = new char* [size];
+    //char d[] = "------------";
+    //unsigned int s = 0;
+    //while (in.getline(buffer, 800))
+    //{
+    //    char* newbuffer = new char[strlen(buffer) + 1];
+    //    strcpy(newbuffer, buffer);
+    //    if (newbuffer[strlen(buffer) - 1] == ' ')
+    //    {
+    //        add(c, size, newbuffer);
+    //        if(s == 0)
+    //            add(c, size, d);
+    //        s++;
+    //    }
+    //    else
+    //        add(c, size, newbuffer);
+    //}
+    //if(s == 0)
+    //    add(c, size, d);
+
+    //for (size_t i = 0; i < size; i++)
+    //    fout << c[i] << endl;
+
+    //fout.close();
+
+    ifstream in("MyFunctions.h");
+
+    ofstream fout("undmyfunc.txt");
+
+    char buffer[800];
+    unsigned int size = 0;
+    char** c = new char* [size];
+    char d[] = "------------";
+    unsigned int s = 0;
+    while (in.getline(buffer, 800))
+    {
+        char* newbuffer = new char[strlen(buffer) + 1];
+        strcpy(newbuffer, buffer);
+        for (size_t i = 0; i < strlen(buffer); i++)
+        {
+            if (newbuffer[i] == '1')
+                newbuffer[i] = '0';
+            else if (newbuffer[i] == '0')
+                newbuffer[i] = '1';
+        }
+        fout << newbuffer << endl;
+    }
+
+//ifstream fin("log.txt");
+
+    //if (!fin.is_open())
+    //    exit(0);
+
+    //int r;
+    //while (fin >> r)
+    //{
+    //    if(isEven(r))
+    //        add(b, size, r);
+    //}
+
+    //fin.close();
+
+
     ///18.06.25 lesson
 
-    Bank bank;
-    bank.menu();
+    //Bank bank;
+    //bank.menu();
 
 
     ///17.06.25 anyType
