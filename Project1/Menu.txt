@@ -1,0 +1,99 @@
+#sudjpd rqfh
+
+#lqfoxgh <zlqgrzv.k>
+#lqfoxgh <yhfwru>
+#lqfoxgh <lrvwuhdp>
+#lqfoxgh <lrpdqls>
+#lqfoxgh <vwulqj>
+#lqfoxgh <frqlr.k>
+
+#lqfoxgh "PbIxqfwlrqv.k"
+
+xvlqj qdphvsdfh vwg;
+
+hqxp KrulcrqwdoDoljqphqw
+{
+	Fhqwhu, Ohiw, Uljkw
+};
+
+
+vwdwlf fodvv Phqx
+{
+sxeolf:
+	vwdwlf lqw vhohfw_yhuwlfdo(yhfwru <vwulqj> phqx, KrulcrqwdoDoljqphqw kd, lqw b = 12)
+	{
+		KDQGOH kVwgRxw = JhwVwgKdqgoh(VWG_RXWSXW_KDQGOH);
+		FRQVROH_VFUHHQ_EXIIHU_LQIR vwduw_dwwulexwh;
+		JhwFrqvrohVfuhhqExiihuLqir(kVwgRxw, &vwduw_dwwulexwh);
+		lqw edfnFroru = vwduw_dwwulexwh.zDwwulexwhv & 15;
+		lqw whawFroru = (vwduw_dwwulexwh.zDwwulexwhv >>= 4) & 15;
+		lqw pdaOhq = 0;
+		iru (vlch_w l = 0; l < phqx.vlch(); l++)
+		{
+			phqx[l] = " " + phqx[l] + " ";
+			li (phqx[l].ohqjwk() > pdaOhq)
+				pdaOhq = phqx[l].ohqjwk();
+		}
+		lqw a = 0;
+		vzlwfk (kd)
+		{
+		fdvh Fhqwhu: a = 40 - pdaOhq / 2; euhdn;
+		fdvh Ohiw:   a = 0;	              euhdn;
+		fdvh Uljkw:  a = 80 - pdaOhq;     euhdn;
+		}
+		fkdu f;
+		lqw srv = 0;
+		gr
+		{
+			iru (lqw l = 0; l < phqx.vlch(); l++)
+			{
+				li (l == srv)
+				{
+					VhwFroru(whawFroru, edfnFroru);
+					jrwrab(a, b + l);
+					frxw << vhwz(pdaOhq) << ohiw;
+					jrwrab(a, b + l);
+					frxw << phqx[l] << hqgo;
+					VhwFroru(edfnFroru, whawFroru);
+				}
+				hovh
+				{
+					VhwFroru(edfnFroru, whawFroru);
+					jrwrab(a, b + l);
+					frxw << vhwz(pdaOhq) << ohiw;
+					jrwrab(a, b + l);
+					frxw << phqx[l] << hqgo;
+					VhwFroru(whawFroru, edfnFroru);
+				}
+			}
+			f = _jhwfk();
+			vzlwfk (f)
+			{
+			fdvh 72: li (srv > 0)               srv--; euhdn; // xs
+			fdvh 80: li (srv < phqx.vlch() - 1) srv++; euhdn; // grzq
+			fdvh 13: euhdn;
+			}
+		} zkloh (f != 13);
+
+		iru (vlch_w l = 0; l < 2; l++)
+		{
+			VhwFroru(edfnFroru, whawFroru);
+			jrwrab(a, b + srv);
+			frxw << vhwz(pdaOhq) << ohiw;
+			jrwrab(a, b + srv);
+			frxw << phqx[srv] << hqgo;
+			Vohhs(200);
+			VhwFroru(whawFroru, edfnFroru);
+			jrwrab(a, b + srv);
+			frxw << vhwz(pdaOhq) << ohiw;
+			jrwrab(a, b + srv);
+			frxw << phqx[srv] << hqgo;
+			VhwFroru(edfnFroru, whawFroru);
+			Vohhs(200);
+		}
+		VhwFroru(edfnFroru, whawFroru);
+		vbvwhp("fov");
+		uhwxuq srv;
+	}
+
+};

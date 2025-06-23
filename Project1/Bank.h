@@ -35,7 +35,7 @@ struct Account
 	void menu()
 	{
 		system("cls");
-		cout << currency.name << endl;
+		cout << " User: " << currency.name << endl;
 		cout << "----------------" << endl;
 		int c = Menu::select_vertical({ "Add sum", "Withdraw sum", "Exit" }, HorizontalAlignment::Left, 2);
 		switch (c)
@@ -97,8 +97,7 @@ struct Account
 
 	void print()
 	{
-		cout << currency.name << " " << balance << endl;
-		cout << "CreditBalance" << creditBalance << endl;
+		cout << "Balance: " << balance << " " << currency.name << " | CreditBalance - " << creditBalance << " " << currency.name << endl;
 	}
 };
 
@@ -114,7 +113,7 @@ struct Client
 		system("cls");
 		cout << name << " : Add Account" << endl;
 		cout << "----------------------------" << endl;
-		cout << "choose currency plz";
+		cout << "       Choose currency plz";
 		Account account;
 		int c = Menu::select_vertical({ currencys[0], currencys[1], currencys[2]}, HorizontalAlignment::Left, 2);
 		switch (c)
@@ -180,7 +179,7 @@ struct Client
 		cout << "-----------------" << endl;
 		for (size_t i = 0; i < size; i++)
 		{
-			cout << i + 1 << " ";
+			cout << i + 1 << " - ";
 			accounts[i].print();
 		}
 		cout << endl;
@@ -234,7 +233,7 @@ struct Bank
 		cout << "Add Client" << endl;
 		cout << "-------------" << endl;
 		char buffer[80];
-		cout << "Enter Name :";
+		cout << "Enter Name: ";
 		cin.getline(buffer, 80);
 		Client client;
 		client.name = new char[strlen(buffer) + 1];
@@ -257,7 +256,7 @@ struct Bank
 			cout << i + 1 << " " << clients[i].name << endl;
 		}
 		cout << endl;
-		cout << "Enter Number";
+		cout << "Enter Number: ";
 		int number;
 		cin >> number;
 		cin.ignore();
@@ -285,10 +284,10 @@ struct Bank
 		cout << "-------------" << endl;
 		for (size_t i = 0; i < size; i++)
 		{
-			cout << i + 1 << " " << clients[i].name << endl;
+			cout << i + 1 << " - " << clients[i].name << endl;
 		}
 		cout << endl;
-		cout << "Enter Number";
+		cout << "Enter Number: ";
 		int number;
 		cin >> number;
 		cin.ignore();
