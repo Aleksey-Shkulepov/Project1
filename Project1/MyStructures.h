@@ -240,45 +240,85 @@ double len2Point(Point p1, Point p2)
 	return sqrt(pow(p1.x - p2.x, 2) + pow(p1.y - p2.y, 2));
 }
 
-struct Date
-{
-	int day;
-	int month;
-	int year;
+struct Date {
+	unsigned int day : 5;
+	unsigned int month : 4;
+	unsigned int year : 12;
 
-	void print()
-	{
-		if (day < 10)
-			cout << 0;
-		cout << day << ".";
-		if (month < 10)
-			cout << 0;
-		cout << month << "." << year << endl;
+	void print() const {
+		cout << (day < 10 ? "0" : "") << day << '.'
+		<< (month < 10 ? "0" : "") << month << '.' << year << '\n';
 	}
 
+	void save(ofstream& out) const {
+		out.write((char*)this, sizeof(Date));
+	}
 
-	char* to_string()
-	{
-		char* str = new char[11];
-		str[0] = day / 10 + 48;
-		str[1] = day % 10 + 48;
-		str[2] = '.';
-		str[3] = month / 10 + 48;
-		str[4] = month % 10 + 48;
-		str[5] = '.';
-		str[6] = year / 1000 + 48;
-		str[7] = year / 100 % 10 + 48;
-		str[8] = year / 10 % 10 + 48;
-		str[9] = year % 10 + 48;
-		str[10] = '\0';
-		return str;
+	void load(ifstream& in) {
+		in.read((char*)this, sizeof(Date));
 	}
 };
 
-struct Human
-{
-	char* name;
+struct Human {
+	char* name = nullptr;
 	Date birthDay;
+
+	void save(ofstream& out) const {
+		birthDay.save(out);
+		unsigned short len = strlen(name) + 1;
+		out.write((char*)&len, sizeof len);
+		out.write(name, len);
+	}
+	void load(ifstream& in) {
+		birthDay.load(in);
+		unsigned short len;
+		in.read((char*)&len, sizeof len);
+		name = new char[len];
+		in.read(name, len);
+	}
+	void print() const {
+		cout << name << '\n';
+		birthDay.print();
+	}
+};
+
+struct Apartment {
+	Human* owner = nullptr;
+	int size = 0;
+	int number = 0;
+	float square = 0;
+
+	void save(ofstream& out) const {
+		out.write((char*)this, sizeof Apartment);
+		for (int i = 0; i < size; ++i) owner[i].save(out);
+	}
+	void load(ifstream& in) {
+		in.read((char*)this, sizeof Apartment);
+		owner = new Human[size];
+		for (int i = 0; i < size; ++i) owner[i].load(in);
+	}
+	void print() const {
+		for (int i = 0; i < size; ++i) owner[i].print();
+		cout << "Номер: " << number << ", площадь" << square << "\n";
+	}
+};
+
+struct House {
+	Apartment* apartments = nullptr;
+	int size = 0;
+
+	void save(ofstream& out) const {
+		out.write((char*)&size, sizeof size);
+		for (int i = 0; i < size; ++i) apartments[i].save(out);
+	}
+	void load(ifstream& in) {
+		in.read((char*)&size, sizeof size);
+		apartments = new Apartment[size];
+		for (int i = 0; i < size; ++i) apartments[i].load(in);
+	}
+	void print() const {
+		for (int i = 0; i < size; ++i) apartments[i].print();
+	}
 };
 
 ///12.06.25-15.06.25 My first structure

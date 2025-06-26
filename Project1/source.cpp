@@ -10,6 +10,7 @@
 #include <cctype>
 #include <string>
 #include <fstream>
+#include <cstdio>
 
 #include "MyFunctions.h"
 #include "mylibrary.h"
@@ -21,117 +22,79 @@
 
 using namespace std;
 
-void compareFiles(ifstream& file1, ifstream& file2)
-{
-    if (!file1.is_open() or !file2.is_open())
-        exit(0);
-
-    char buffer1[800];
-    char buffer2[800];
-    while (file1.getline(buffer1, 800) and file2.getline(buffer2, 800))
-    {
-        if (strcmp(buffer1, buffer2) != 0)
-        {
-            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x4F);
-            cout << buffer1;
-            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x2F);
-            cout << buffer2;
-            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0F);
-            cout << endl << endl;
-        }
-    }
-
-    file1.close(); file2.close();
-}
-
-bool _isVowel(char ch) {
-    ch = tolower(ch);
-    return ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u';
-}
-
-void getDataFile(ifstream& fileIn, ofstream& fileOut)
-{
-    if (!fileIn.is_open() or !fileOut.is_open())
-        exit(0);
-
-    unsigned int charCount = 0, lineCount = 0, vowelCount = 0, consonantCount = 0, digitCount = 0;
-
-    char buffer[800];
-
-    while (fileIn.getline(buffer, 800))
-    {
-        lineCount++;
-        for (size_t i = 0; i < strlen(buffer); i++)
-        {
-            char currentChar = buffer[i];
-            if (!(currentChar >= 255 or currentChar < 0)) {
-                charCount++;
-                if (isdigit(currentChar))
-                    digitCount++;
-                else if (isalpha(currentChar)) {
-                    if (_isVowel(currentChar)) {
-                        vowelCount++;
-                    }
-                    else {
-                        consonantCount++;
-                    }
-                }
-            }
-        }
-    }
-
-    fileOut << "Amount of symbols: " << charCount << endl;
-    fileOut << "Amount of strings: " << lineCount << endl;
-    fileOut << "Amount of vovel letters: " << vowelCount << endl;
-    fileOut << "Amount of consonant letters: " << consonantCount << endl;
-    fileOut << "Amount of numbers: " << digitCount << endl;
-
-    fileIn.close(); fileOut.close();
-}
-
-char _encryptChar(char ch, int key) {
-    if (isupper(ch)) {
-        return 'A' + (ch - 'A' + key) % 26;
-    }
-    if (islower(ch)) {
-        return 'a' + (ch - 'a' + key) % 26;
-    }
-    return ch;
-}
-
-void encryptFilebyChezar(ifstream& fileIn, ofstream& fileOut, int key)
-{
-    if (!fileIn.is_open() or !fileOut.is_open())
-        exit(0);
-
-    char ch;
-    while (fileIn.get(ch))
-        fileOut.put(_encryptChar(ch, key));
-
-    fileIn.close(); fileOut.close();
-}
-
 int main() {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
     srand(time(0));
 
+    ///25.06.25 lesson
+
+    Human h1 = { new char[5] {"Ivan"}, {20, 6, 2025} };
+    Human h2 = { new char[5] {"sana"}, {20, 6, 2025} };
+    Human h3 = { new char[5] {"peta"}, {20, 6, 2025} };
+    Human h4 = { new char[7] {"grisha"}, {20, 6, 2025} };
+    
+    Apartment a1 = { new Human[2], 2, 1, 100 };
+    a1.owner[0] = h1;
+    a1.owner[1] = h2;
+
+    Apartment a2 = { new Human[2], 2, 1, 100 };
+    a2.owner[0] = h3;
+    a2.owner[1] = h4;
+
+    House h = { new Apartment[2], 2 };
+    h.apartments[0] = a1;
+    h.apartments[1] = a2;
+
+
+
+    ofstream out("House.bin", ios::binary);
+    h.save(out);
+    out.close();
+
+    House hcopy;
+    ifstream in("House.bin", ios::binary);
+    hcopy.load(in);
+    in.close();
+
+    hcopy.print();
+
+    //ofstream out("test.bin", ios::binary);
+
+    //int arr[] = { 1,2,3,4,5 };
+    //for (size_t i = 0; i < 5; i++)
+    //{
+    //    out.write((char*)&arr[i], sizeof(int));
+    //}
+    //out.close();
+
+    //ifstream in("test.bin", ios::binary);
+    //int num[5];
+    //for (size_t i = 0; i < 5; i++)
+    //{
+    //    in.read((char*)&num[i], sizeof(int));
+    //}
+
+    //in.close();
+
+    //printArr(num, 5);
+
     ///25.06.25 h/w
 
-    ifstream inM("Bank.h");
-    ifstream inL("source.cpp");
+    //ifstream inM("Bank.h");
+    //ifstream inL("source.cpp");
 
     //compareFiles(inL, inM);
 
-    ifstream in("MyVector.h");
-    ofstream out("stats.txt");
+    //ifstream in("MyVector.h");
+    //ofstream out("stats.txt");
 
-    //getDataFile(in, out);
+    ////getDataFile(in, out);
 
-    ifstream in1("Menu.h");
-    ofstream out1("Menu.txt");
+    //ifstream in1("Menu.h");
+    //ofstream out1("Menu.txt");
 
-    encryptFilebyChezar(in1, out1, 3);
+    //encryptFilebyChezar(in1, out1, 3);
 
     ///21.06.25 lesson
 
@@ -148,8 +111,6 @@ int main() {
     //}
 
     //fout.close();
-
-
 
     //int* b = nullptr;
     //unsigned int size = 0;

@@ -140,6 +140,9 @@
     <ClInclude Include="MyStructures.h" />
     <ClInclude Include="MyVector.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="House.bin" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
