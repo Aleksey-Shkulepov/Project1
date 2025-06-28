@@ -13,6 +13,11 @@ const long double pi = 3.14159265358979L;
 /// </Переменные константы>
 
 /// <Енумы>
+void SetColor(int text, int background) 
+{
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (WORD)((background << 4) | text));
+}
+
 enum DIRECTION
 {
     UP = 72, DOWN = 80, LEFT = 75, RIGHT = 77, ESC = 27
@@ -111,9 +116,6 @@ void fillArr(T(&arr)[ROWS][COLS], T min = 0, T max = 9, bool repeat = true) {
 }
 
 /// 14.05.25 h/w
-void SetColor(int text, int background) {
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (WORD)((background << 4) | text));
-}
 
 int getDaysInMonth(int month) {
     if (month == 2) return 28;

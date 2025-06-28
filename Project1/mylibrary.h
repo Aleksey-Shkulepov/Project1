@@ -1,5 +1,15 @@
 ﻿#pragma once
 
+#include "MyFunctions.h"
+#include "mylibrary.h"
+#include "myVector.h"
+#include "myStructures.h"
+#include "mylist.h"
+#include "anyTypeArray.h"
+#include "Bank.h"
+
+///28.06.25 exam
+
 ///08.06.25-12.06.25 hw
 
 /// <summary>

@@ -26,41 +26,25 @@ unsigned int CountFreePoints(ifstream& in)
     if (!in.is_open())
         exit(0);
     unsigned int n, m, k;
-
-    in >> n;
-    in >> m;
-    in >> k;
-
+    in >> n; in >> m; in >> k;
     if ((n >= 1 and n <= 1000000000) and (k >= 0 and k <= 1000))
     {
-
         int** gorodReshetkovo = nullptr;
         createArray2D(gorodReshetkovo, n, m);
-        int freePoints = 0;
+        unsigned int freePoints = 0;
 
         for (size_t i = 0; i < k; i++)
         {
             int r, c1, c2;
-            in >> r;
-            in >> c1;
-            in >> c2;
-            if ((r >= 1 and r <= n) and (c1 >= 1 and c1 <= m) and (c2 >= 1 and c2 <= m)) {
-                for (size_t i = c1; i < c2; i++)
-                {
-                    gorodReshetkovo[r][i] = 0;
-                }
-                cout << freePoints;
-            }
+            in >> r; in >> c1; in >> c2;
+            if ((r >= 1 and r <= n) and (c1 >= 1 and c1 <= m) and (c2 >= 1 and c2 <= m))
+                for (size_t i = c1 - 1; i < c2; i++)
+                    gorodReshetkovo[r-1][i] = 0;
         }
         for (size_t i = 0; i < n; i++)
-        {
-            for (size_t i = 0; i < m; i++)
-            {
-                if ((gorodReshetkovo[n][m]) != 0)
+            for (size_t j = 0; j < m; j++)
+                if ((gorodReshetkovo[i][j]) != 0)
                     freePoints++;
-            }
-        }
-
         return freePoints;
     }
 }
@@ -74,9 +58,9 @@ int main() {
 
     ifstream in("test1-in.txt");
 
-    ///28.06.25 lesson
+    ///28.06.25 exam
 
-    cout << CountFreePoints(in);
+    cout << "Result:" << CountFreePoints(in) << endl;
 
     ///25.06.25 lesson
 
