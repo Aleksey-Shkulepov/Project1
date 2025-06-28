@@ -19,6 +19,51 @@
 #include "mylist.h"
 #include "anyTypeArray.h"
 #include "Bank.h"
+#include "examtramvai.cpp"
+
+unsigned int CountFreePoints(ifstream& in)
+{
+    if (!in.is_open())
+        exit(0);
+    unsigned int n, m, k;
+
+    in >> n;
+    in >> m;
+    in >> k;
+
+    if ((n >= 1 and n <= 1000000000) and (k >= 0 and k <= 1000))
+    {
+
+        int** gorodReshetkovo = nullptr;
+        createArray2D(gorodReshetkovo, n, m);
+        int freePoints = 0;
+
+        for (size_t i = 0; i < k; i++)
+        {
+            int r, c1, c2;
+            in >> r;
+            in >> c1;
+            in >> c2;
+            if ((r >= 1 and r <= n) and (c1 >= 1 and c1 <= m) and (c2 >= 1 and c2 <= m)) {
+                for (size_t i = c1; i < c2; i++)
+                {
+                    gorodReshetkovo[r][i] = 0;
+                }
+                cout << freePoints;
+            }
+        }
+        for (size_t i = 0; i < n; i++)
+        {
+            for (size_t i = 0; i < m; i++)
+            {
+                if ((gorodReshetkovo[n][m]) != 0)
+                    freePoints++;
+            }
+        }
+
+        return freePoints;
+    }
+}
 
 using namespace std;
 
@@ -27,37 +72,43 @@ int main() {
     SetConsoleOutputCP(1251);
     srand(time(0));
 
+    ifstream in("test1-in.txt");
+
+    ///28.06.25 lesson
+
+    cout << CountFreePoints(in);
+
     ///25.06.25 lesson
 
-    Human h1 = { new char[5] {"Ivan"}, {20, 6, 2025} };
-    Human h2 = { new char[5] {"sana"}, {20, 6, 2025} };
-    Human h3 = { new char[5] {"peta"}, {20, 6, 2025} };
-    Human h4 = { new char[7] {"grisha"}, {20, 6, 2025} };
-    
-    Apartment a1 = { new Human[2], 2, 1, 100 };
-    a1.owner[0] = h1;
-    a1.owner[1] = h2;
+    //Human h1 = { new char[5] {"Ivan"}, {20, 6, 2025} };
+    //Human h2 = { new char[5] {"sana"}, {20, 6, 2025} };
+    //Human h3 = { new char[5] {"peta"}, {20, 6, 2025} };
+    //Human h4 = { new char[7] {"grisha"}, {20, 6, 2025} };
+    //
+    //Apartment a1 = { new Human[2], 2, 1, 100 };
+    //a1.owner[0] = h1;
+    //a1.owner[1] = h2;
 
-    Apartment a2 = { new Human[2], 2, 1, 100 };
-    a2.owner[0] = h3;
-    a2.owner[1] = h4;
+    //Apartment a2 = { new Human[2], 2, 1, 100 };
+    //a2.owner[0] = h3;
+    //a2.owner[1] = h4;
 
-    House h = { new Apartment[2], 2 };
-    h.apartments[0] = a1;
-    h.apartments[1] = a2;
+    //House h = { new Apartment[2], 2 };
+    //h.apartments[0] = a1;
+    //h.apartments[1] = a2;
 
 
 
-    ofstream out("House.bin", ios::binary);
-    h.save(out);
-    out.close();
+    //ofstream out("House.bin", ios::binary);
+    //h.save(out);
+    //out.close();
 
-    House hcopy;
-    ifstream in("House.bin", ios::binary);
-    hcopy.load(in);
-    in.close();
+    //House hcopy;
+    //ifstream in("House.bin", ios::binary);
+    //hcopy.load(in);
+    //in.close();
 
-    hcopy.print();
+    //hcopy.print();
 
     //ofstream out("test.bin", ios::binary);
 
