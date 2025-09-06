@@ -257,6 +257,19 @@ T maxArray(T arr[], size_t size)
 }
 
 template<class T>
+T minArray(T arr[], size_t size)
+{
+    T min = arr[0];
+    for (size_t i = 0; i < size; i++)
+    {
+        if (arr[i] < min)
+            min = arr[i];
+    }
+    return min;
+}
+
+
+template<class T>
 T sumArray(T arr[], int size)
 {
     T sum = 0;

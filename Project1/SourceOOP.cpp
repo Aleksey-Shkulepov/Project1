@@ -144,7 +144,7 @@ int main()
 	//p.load(in);
 	//cout << "load - " << p << endl;
 
-	Student st;
-	st.setName("lalala");
-	st.print();
+	//Student st;
+	//st.setName("lalala");
+	//st.print();
 }

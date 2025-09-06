@@ -49,11 +49,11 @@ public:
     }
 
     /// Конструктор по умол.
-    myVector()
-    {
-        arr = nullptr;
-        s = 0;
-    }
+    //myVector()
+    //{
+    //    arr = nullptr;
+    //    s = 0;
+    //}
 
     /// Конструктор с параметрами
     myVector(size_t s, T n = 0)
@@ -138,7 +138,7 @@ public:
     }
 
     /// Заполняет вектор рандомными числами от мин(по умол. 0) до макс(по умол. 9)
-    void fill(T min = 0, T max = 9)
+    void randomFill(T min = 0, T max = 9)
     {
         for (auto i = 0; i < s; i++)
         {
@@ -172,7 +172,15 @@ public:
     }
 
     /// Возвращает размер вектора
-    int get_size() const {
+    T get_size() const {
         return this->s;
+    }
+
+    T get_MAX() const {
+        return maxArray(arr, s);
+    }
+
+    T get_MIN() const {
+        return minArray(arr, s);
     }
 };
