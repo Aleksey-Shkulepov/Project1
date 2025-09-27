@@ -124,5 +124,8 @@
     <None Include="House.bin">
       <Filter>Исходные файлы\functional</Filter>
     </None>
+    <None Include="HouseClass.bin">
+      <Filter>Исходные файлы\OOP</Filter>
+    </None>
   </ItemGroup>
 </Project>

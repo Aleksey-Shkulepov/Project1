@@ -155,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="House.bin" />
+    <None Include="HouseClass.bin" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
