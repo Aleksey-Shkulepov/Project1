@@ -1,18 +1,6 @@
 #pragma once
 
-#include<iostream>
-#include<Windows.h>
-#include<iomanip>
-#include<algorithm>
-#include<conio.h>
-#include <vector>
-#include <cstring>
-#include <cctype>
-#include <string>
-#include <fstream>
-#include <cstdio>
-
-using namespace std;
+#include "SOSL.h"
 
 class String
 {
@@ -30,6 +18,9 @@ public:
 	size_t length() const;
 
 	String& operator = (const String& other);
+	bool operator == (const String& other);
+	bool operator != (const String& other);
+
 
 	friend ostream& operator<<(ostream& os, const String& fr);
 };
@@ -49,6 +40,28 @@ String& String::operator=(const String& other)
 
 	return *this;
 }
+
+//bool String::operator==(const String& other)
+//{
+//	if (this == &other)
+//		return true;
+//
+//	if (this->size != other.size) return false;
+//
+//	return ;
+//}
+//
+//
+//String& String::operator!=(const String& other)
+//{
+//	if (this == &other)
+//		return *this;
+//
+//	set(other.str);
+//
+//	return *this;
+//}
+
 
 
 String::String(int size)

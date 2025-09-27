@@ -13,44 +13,116 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Файлы заголовков\homework">
+      <UniqueIdentifier>{03b84dec-0e1f-449c-9960-879207f1a5f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\mystd">
+      <UniqueIdentifier>{ced2e10b-7ac0-4f41-b533-f2a3843098ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\test_extra">
+      <UniqueIdentifier>{522916e5-c7a8-4be0-b679-4215ab61590f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\03_09_25">
+      <UniqueIdentifier>{6571e561-8b5f-432a-842c-d264ba2ccc90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\06_09_25">
+      <UniqueIdentifier>{a9846a22-3587-4d6a-b072-ee3d91d626d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\classwork">
+      <UniqueIdentifier>{44d1f231-8093-4ec1-acc3-acffc3278435}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\classwork\functional">
+      <UniqueIdentifier>{009b09f2-aed4-427a-ba5b-071edfa24200}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\functional">
+      <UniqueIdentifier>{4e7585e5-82be-41e4-ac6a-c06e69a7abeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\OOP">
+      <UniqueIdentifier>{a5044d8b-2aa9-4670-80ea-715d82a4ad11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\17_09_25">
+      <UniqueIdentifier>{eba28646-0d9a-43e5-a44c-e3f49e29dca1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\classwork\OOP">
+      <UniqueIdentifier>{6505da5b-8c15-4f8e-afb7-0696cc21ccb9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\functional</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceOOP.cpp">
+      <Filter>Исходные файлы\OOP</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MyFunctions.h">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="PhoneBook.h">
+      <Filter>Файлы заголовков\homework\06_09_25</Filter>
     </ClInclude>
-    <ClInclude Include="mylibrary.h">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="Contact.h">
+      <Filter>Файлы заголовков\homework\06_09_25</Filter>
     </ClInclude>
-    <ClInclude Include="MyStructures.h">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="Student_New.h">
+      <Filter>Файлы заголовков\homework\03_09_25</Filter>
     </ClInclude>
-    <ClInclude Include="MyVector.h">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="new_PointNew.h">
+      <Filter>Файлы заголовков\homework\03_09_25</Filter>
     </ClInclude>
-    <ClInclude Include="MyException.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="mylist.h">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="SOSL.h">
+      <Filter>Файлы заголовков\test_extra</Filter>
     </ClInclude>
     <ClInclude Include="anyTypeArray.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Файлы заголовков\test_extra</Filter>
     </ClInclude>
     <ClInclude Include="Menu.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Файлы заголовков\test_extra</Filter>
+    </ClInclude>
+    <ClInclude Include="Fraction.h">
+      <Filter>Файлы заголовков\classwork\OOP</Filter>
+    </ClInclude>
+    <ClInclude Include="MyFunctions.h">
+      <Filter>Файлы заголовков\classwork\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="mylibrary.h">
+      <Filter>Файлы заголовков\classwork\functional</Filter>
     </ClInclude>
     <ClInclude Include="Bank.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Файлы заголовков\classwork\OOP</Filter>
+    </ClInclude>
+    <ClInclude Include="MyStructures.h">
+      <Filter>Файлы заголовков\classwork\OOP</Filter>
+    </ClInclude>
+    <ClInclude Include="MyVector.h">
+      <Filter>Файлы заголовков\mystd</Filter>
+    </ClInclude>
+    <ClInclude Include="String.h">
+      <Filter>Файлы заголовков\mystd</Filter>
+    </ClInclude>
+    <ClInclude Include="ReservoirType.h">
+      <Filter>Файлы заголовков\classwork\OOP</Filter>
+    </ClInclude>
+    <ClInclude Include="Human.h">
+      <Filter>Файлы заголовков\homework\17_09_25</Filter>
+    </ClInclude>
+    <ClInclude Include="Apartment.h">
+      <Filter>Файлы заголовков\homework\17_09_25</Filter>
+    </ClInclude>
+    <ClInclude Include="House.h">
+      <Filter>Файлы заголовков\homework\17_09_25</Filter>
+    </ClInclude>
+    <ClInclude Include="Date.h">
+      <Filter>Файлы заголовков\homework\17_09_25</Filter>
+    </ClInclude>
+    <ClInclude Include="MyException.h">
+      <Filter>Файлы заголовков\mystd</Filter>
+    </ClInclude>
+    <ClInclude Include="mylist.h">
+      <Filter>Файлы заголовков\mystd</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="House.bin">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\functional</Filter>
     </None>
   </ItemGroup>
 </Project>

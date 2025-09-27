@@ -1,16 +1,6 @@
 ﻿#define _CRT_SECURE_NO_WARNINGS
 
-#include<iostream>
-#include<Windows.h>
-#include<iomanip>
-#include<algorithm>
-#include<conio.h>
-#include <vector>
-#include <cstring>
-#include <cctype>
-#include <string>
-#include <fstream>
-#include <cstdio>
+#include "SOSL.h" 
 
 #include "MyFunctions.h"
 #include "mylibrary.h"
@@ -19,14 +9,7 @@
 #include "mylist.h"
 #include "anyTypeArray.h"
 #include "Bank.h"
-
-///❗❗❗ОЧЕНЬ ВАЖНАЯ СКЛАДОВАЯ ПРОГРАММЫ❗❗❗
-///❗❗❗ОЧЕНЬ ВАЖНАЯ СКЛАДОВАЯ ПРОГРАММЫ❗❗❗
-#include "DifferentTrash.h"
-///❗❗❗ОЧЕНЬ ВАЖНАЯ СКЛАДОВАЯ ПРОГРАММЫ❗❗❗
-///❗❗❗ОЧЕНЬ ВАЖНАЯ СКЛАДОВАЯ ПРОГРАММЫ❗❗❗
-
-using namespace std;
+#include "String.h"
 
 int main()
 {
@@ -34,7 +17,21 @@ int main()
     SetConsoleOutputCP(1251);
     srand(time(0));
 
-    //Student_New a;
-    //a.input();
-    //a.print();
+    //❗❗❗
+    //❗❗❗
+    //❗❗❗
+    //❗❗❗
+    //❗❗❗
+    //❗❗❗
+    //❗❗❗
+    // 
+    // Все дз в папке homework пронумерованы числом их выдачи/создания
+    // 
+    //❗❗❗
+    //❗❗❗
+    //❗❗❗
+    //❗❗❗
+    //❗❗❗
+    //❗❗❗
+    //❗❗❗
 }

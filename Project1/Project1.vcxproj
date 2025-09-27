@@ -132,8 +132,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="anyTypeArray.h" />
+    <ClInclude Include="Apartment.h" />
     <ClInclude Include="Bank.h" />
-    <ClInclude Include="DifferentTrash.h" />
+    <ClInclude Include="Contact.h" />
+    <ClInclude Include="Date.h" />
+    <ClInclude Include="Fraction.h" />
+    <ClInclude Include="House.h" />
+    <ClInclude Include="Human.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="MyException.h" />
     <ClInclude Include="MyFunctions.h" />
@@ -141,8 +146,12 @@
     <ClInclude Include="mylist.h" />
     <ClInclude Include="MyStructures.h" />
     <ClInclude Include="MyVector.h" />
+    <ClInclude Include="new_PointNew.h" />
+    <ClInclude Include="PhoneBook.h" />
     <ClInclude Include="ReservoirType.h" />
+    <ClInclude Include="SOSL.h" />
     <ClInclude Include="String.h" />
+    <ClInclude Include="Student_New.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="House.bin" />
