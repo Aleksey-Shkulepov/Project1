@@ -1,128 +1,159 @@
 #pragma once
 
 #include "SOSL.h"
+#include "mystd.h"
 
 class String
 {
-	char* str = nullptr;
-	size_t size;
+    char* str = nullptr;
+    size_t size;
 
 public:
-	String(int size = 80);
-	String(const char* str);
-	String(const String& obj);
-	~String();
-	void set();
-	void set(const char* str);
-	void print() const;
-	size_t length() const;
+    String(int size = 80);
+    String(const char* str);
+    String(const String& obj);
 
-	String& operator = (const String& other);
-	bool operator == (const String& other);
-	bool operator != (const String& other);
+    String& operator=(const String& obj);
 
+    ~String();
 
-	friend ostream& operator<<(ostream& os, const String& fr);
+    size_t get_length() const;
+    char* to_char() const;
+
+    String operator+(const String& other) const;
+    void operator+=(const String& other);
+
+    char operator[](int index);
+
+    bool operator==(const String& other) const;
+    bool operator!=(const String& other) const;
+    bool operator>(const String& other)  const;
+    bool operator<(const String& other)  const;
+    bool operator>=(const String& other) const;
+    bool operator<=(const String& other) const;
+
+    friend ostream& operator<<(ostream& os, const String& obj);
+    friend istream& operator>>(istream& is, String& obj);
 };
-
-ostream& operator<<(ostream& os, const String& str)
-{
-	os << str.str;
-	return os;
-}
-
-String& String::operator=(const String& other)
-{
-	if (this == &other)
-		return *this;
-
-	set(other.str); 
-
-	return *this;
-}
-
-//bool String::operator==(const String& other)
-//{
-//	if (this == &other)
-//		return true;
-//
-//	if (this->size != other.size) return false;
-//
-//	return ;
-//}
-//
-//
-//String& String::operator!=(const String& other)
-//{
-//	if (this == &other)
-//		return *this;
-//
-//	set(other.str);
-//
-//	return *this;
-//}
-
-
 
 String::String(int size)
 {
-	if (size < 0)
-		size = 0;
-	this->size = size;
-	this->str = new char[size + 1];
-	this->str[0] = '\0';
+    if (size < 0) size = 0;
+    this->size = size;
+    str = new char[size + 1];
+    str[0] = '\0';
 }
 
-String::String(const char* str)
+String::String(const char* s)
 {
-	size = strlen(str);
-	this->str = new char[size + 1];
-	strcpy_s(this->str, size + 1, str);
+    size = strlen(s);
+    str = new char[size + 1];
+    strcpy_s(str, size + 1, s);
 }
 
 String::String(const String& obj)
 {
-	size = obj.size;
-	str = new char[size + 1];
-	strcpy_s(str, size + 1, obj.str);
+    size = obj.size;
+    str = new char[size + 1];
+    strcpy_s(str, size + 1, obj.str);
+}
+
+String& String::operator=(const String& other)
+{
+    if (this == &other) return *this;
+
+    delete[] str;
+    size = other.size;
+    str = new char[size + 1];
+    strcpy_s(str, size + 1, other.str);
+    return *this;
 }
 
 String::~String()
 {
-	if (str != nullptr)
-		delete[] str;
+    delete[] str;
 }
 
-void String::set()
+size_t String::get_length() const
 {
-	char buffer[1000];
-	cin.getline(buffer, 1000);
-	set(buffer);
+    return size;
 }
 
-void String::set(const char* str)
+char* String::to_char() const
 {
-	if (str == nullptr)
-	{
-		if (this->str != nullptr)
-			this->str[0] = '\0';
-		size = 0;
-		return;
-	}
-	size = strlen(str);
-	if (this->str != nullptr)
-		delete[] this->str;
-	this->str = new char[size + 1];
-	strcpy_s(this->str, size + 1, str);
+    return str;
 }
 
-void String::print() const
+String String::operator+(const String& other) const
 {
-	if (str != nullptr)
-		cout << str << endl;
+    String result(size + other.size);
+    strcpy_s(result.str, result.size + 1, str);
+    strcat_s(result.str, result.size + 1, other.str);
+    return result;
 }
 
-size_t String::length() const
+void String::operator+=(const String& other)
 {
-	return size;
+    char* temp = new char[size + other.size + 1];
+    strcpy_s(temp, size + 1, str);
+    strcat_s(temp, size + other.size + 1, other.str);
+    delete[] str;
+    str = temp;
+    size += other.size;
+}
+
+char String::operator[](int index)
+{
+    if (index < 0 || index >= size)
+        throw my_out_of_range();
+    return str[index];
+}
+
+bool String::operator==(const String& other) const
+{
+    return strcmp(str, other.str) == 0;
+}
+
+bool String::operator!=(const String& other) const
+{
+    return strcmp(str, other.str) != 0;
+}
+
+bool String::operator>(const String& other) const
+{
+    return strcmp(str, other.str) > 0;
+}
+
+bool String::operator<(const String& other) const
+{
+    return strcmp(str, other.str) < 0;
+}
+
+bool String::operator>=(const String& other) const
+{
+    return strcmp(str, other.str) >= 0;
+}
+
+bool String::operator<=(const String& other) const
+{
+    return strcmp(str, other.str) <= 0;
+}
+
+ostream& operator<<(ostream& os, const String& obj)
+{
+    os << obj.str;
+    return os;
+}
+
+istream& operator>>(istream& in, String& obj)
+{
+    char buffer[1000];
+    in.getline(buffer, 1000);
+
+    delete[] obj.str;
+    obj.size = strlen(buffer);
+    obj.str = new char[obj.size + 1];
+    strcpy_s(obj.str, obj.size + 1, buffer);
+
+    return in;
 }

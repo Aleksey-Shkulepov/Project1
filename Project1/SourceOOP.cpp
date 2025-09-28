@@ -10,12 +10,6 @@
 #include "anyTypeArray.h"
 #include "Bank.h"
 #include "String.h"
-#include "Apartment.h"
-#include "Date.h"
-#include "House.h"
-#include "Human.h"
-
-using namespace hw17_09_25;
 
 int main()
 {
@@ -40,4 +34,5 @@ int main()
     //❗❗❗
     //❗❗❗
     //❗❗❗
+
 }

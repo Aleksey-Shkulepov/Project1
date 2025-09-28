@@ -46,6 +46,18 @@
     <Filter Include="Файлы заголовков\classwork\OOP">
       <UniqueIdentifier>{6505da5b-8c15-4f8e-afb7-0696cc21ccb9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\homework\20_09_25">
+      <UniqueIdentifier>{786fbdd7-5333-4688-8ad2-55a189546a7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\20_09_25\main">
+      <UniqueIdentifier>{dd98f42c-d6a7-4a5e-957b-9e3df54bf751}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\24_09_25">
+      <UniqueIdentifier>{00a839ec-ee90-4637-af92-3320c64cbb1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\mystd\components">
+      <UniqueIdentifier>{5ee2852c-88d2-4d5e-802f-931f6fd69615}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source.cpp">
@@ -92,12 +104,6 @@
     <ClInclude Include="MyStructures.h">
       <Filter>Файлы заголовков\classwork\OOP</Filter>
     </ClInclude>
-    <ClInclude Include="MyVector.h">
-      <Filter>Файлы заголовков\mystd</Filter>
-    </ClInclude>
-    <ClInclude Include="String.h">
-      <Filter>Файлы заголовков\mystd</Filter>
-    </ClInclude>
     <ClInclude Include="ReservoirType.h">
       <Filter>Файлы заголовков\classwork\OOP</Filter>
     </ClInclude>
@@ -113,11 +119,35 @@
     <ClInclude Include="Date.h">
       <Filter>Файлы заголовков\homework\17_09_25</Filter>
     </ClInclude>
-    <ClInclude Include="MyException.h">
+    <ClInclude Include="Book.h">
+      <Filter>Файлы заголовков\homework\20_09_25</Filter>
+    </ClInclude>
+    <ClInclude Include="Worker.h">
+      <Filter>Файлы заголовков\homework\20_09_25</Filter>
+    </ClInclude>
+    <ClInclude Include="20_09_25-main.cpp">
+      <Filter>Файлы заголовков\homework\20_09_25\main</Filter>
+    </ClInclude>
+    <ClInclude Include="Circle.h">
+      <Filter>Файлы заголовков\homework\24_09_25</Filter>
+    </ClInclude>
+    <ClInclude Include="Airplane.h">
+      <Filter>Файлы заголовков\homework\24_09_25</Filter>
+    </ClInclude>
+    <ClInclude Include="mystd.h">
       <Filter>Файлы заголовков\mystd</Filter>
     </ClInclude>
+    <ClInclude Include="MyException.h">
+      <Filter>Файлы заголовков\mystd\components</Filter>
+    </ClInclude>
     <ClInclude Include="mylist.h">
-      <Filter>Файлы заголовков\mystd</Filter>
+      <Filter>Файлы заголовков\mystd\components</Filter>
+    </ClInclude>
+    <ClInclude Include="MyVector.h">
+      <Filter>Файлы заголовков\mystd\components</Filter>
+    </ClInclude>
+    <ClInclude Include="String.h">
+      <Filter>Файлы заголовков\mystd\components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
