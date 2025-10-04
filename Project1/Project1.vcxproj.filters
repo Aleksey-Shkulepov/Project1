@@ -149,6 +149,15 @@
     <ClInclude Include="String.h">
       <Filter>Файлы заголовков\mystd\components</Filter>
     </ClInclude>
+    <ClInclude Include="Queue.h">
+      <Filter>Файлы заголовков\mystd\components</Filter>
+    </ClInclude>
+    <ClInclude Include="PriorityQueue.h">
+      <Filter>Файлы заголовков\mystd\components</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>Файлы заголовков\mystd\components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="House.bin">

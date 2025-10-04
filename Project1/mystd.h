@@ -5,6 +5,8 @@
 
 /// My std
 
+#include "Queue.h"
+#include "PriorityQueue.h"
 #include "MyException.h"
 #include "mylist.h"
 #include "MyVector.h"

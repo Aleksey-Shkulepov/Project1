@@ -10,6 +10,7 @@
 #include "anyTypeArray.h"
 #include "Bank.h"
 #include "String.h"
+#include "Queue.h"
 
 int main()
 {
@@ -35,4 +36,11 @@ int main()
     //❗❗❗
     //❗❗❗
 
+    PriorityQueue<int, int> a;
+    a.enqueue(5, 3);
+    a.enqueue(64, 9);
+    a.enqueue(3, 1);
+    a.enqueue(5, 1);
+    a.enqueue(55, 0);
+    a.print();
 }

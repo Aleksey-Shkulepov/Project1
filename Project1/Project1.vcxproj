@@ -152,7 +152,10 @@
     <ClInclude Include="MyStructures.h" />
     <ClInclude Include="MyVector.h" />
     <ClInclude Include="new_PointNew.h" />
+    <ClInclude Include="Node.h" />
     <ClInclude Include="PhoneBook.h" />
+    <ClInclude Include="PriorityQueue.h" />
+    <ClInclude Include="Queue.h" />
     <ClInclude Include="ReservoirType.h" />
     <ClInclude Include="SOSL.h" />
     <ClInclude Include="String.h" />
