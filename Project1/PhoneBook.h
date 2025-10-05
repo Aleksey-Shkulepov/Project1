@@ -1,10 +1,8 @@
 #pragma once
 
-#include "SOSL.h"
+#include "fullstd.h"
 
 #include"Contact.h"
-
-using namespace std;
 
 /// PhoneBook
 class PhoneBook {

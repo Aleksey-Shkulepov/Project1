@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SOSL.h"
+#include "fullstd.h"
 
 #include "Date.h"
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SOSL.h"
+#include "fullstd.h"
 
 #include "Book.h"
 #include "Worker.h"

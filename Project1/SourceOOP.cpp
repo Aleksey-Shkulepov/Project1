@@ -1,15 +1,9 @@
 ﻿#define _CRT_SECURE_NO_WARNINGS
 
-#include "SOSL.h" 
+#include "fullstd.h" 
+#include "mystd.h"
 
-#include "MyFunctions.h"
-#include "mylibrary.h"
-#include "myVector.h"
-#include "myStructures.h"
-#include "mylist.h"
-#include "anyTypeArray.h"
-#include "Bank.h"
-#include "String.h"
+#include "04_10_25-main.h"
 
 int main()
 {
@@ -35,4 +29,5 @@ int main()
     //❗❗❗
     //❗❗❗
 
+    hw04_10_25::main();
 }

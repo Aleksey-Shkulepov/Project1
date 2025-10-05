@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SOSL.h" 
+#include "fullstd.h" 
 
 /// функция для копирования строки
 char* mystrcpy(const char* src) {

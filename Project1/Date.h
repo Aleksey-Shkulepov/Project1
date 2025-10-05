@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SOSL.h"
+#include "fullstd.h"
 
 namespace hw17_09_25 {
 

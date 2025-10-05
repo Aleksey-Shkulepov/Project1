@@ -1,8 +1,6 @@
 #pragma once
 
-#include "SOSL.h" 
-
-using namespace std;
+#include "fullstd.h" 
 
 class Contact {
 private:

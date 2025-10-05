@@ -1,9 +1,9 @@
 #pragma once
 
-#ifndef _SOSL_DEF_
-#define _SOSL_DEF_
+#ifndef _fullstd_DEF_
+#define _fullstd_DEF_
 
-/// Set Of Standard Libraries 
+/// FULL SET OF STD
 
 #include <iostream>
 #include <Windows.h>
@@ -17,7 +17,10 @@
 #include <fstream>
 #include <cstdio>
 #include <chrono>
+#include <stack>
+#include <queue>
+#include <exception>
 
 using namespace std;
 
-#endif // _SOSL_DEF_
+#endif // _fullstd_DEF_

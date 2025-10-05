@@ -1,159 +1,162 @@
 #pragma once
 
-#include "SOSL.h"
+#include "fullstd.h"
 #include "mystd.h"
 
-class String
-{
-    char* str = nullptr;
-    size_t size;
+namespace mystd {
 
-public:
-    String(int size = 80);
-    String(const char* str);
-    String(const String& obj);
+    class String
+    {
+        char* str = nullptr;
+        size_t size;
 
-    String& operator=(const String& obj);
+    public:
+        String(int size = 80);
+        String(const char* str);
+        String(const String& obj);
 
-    ~String();
+        String& operator=(const String& obj);
 
-    size_t get_length() const;
-    char* to_char() const;
+        ~String();
 
-    String operator+(const String& other) const;
-    void operator+=(const String& other);
+        size_t get_length() const;
+        const char* to_char() const;
 
-    char operator[](int index);
+        String operator+(const String& other) const;
+        void operator+=(const String& other);
 
-    bool operator==(const String& other) const;
-    bool operator!=(const String& other) const;
-    bool operator>(const String& other)  const;
-    bool operator<(const String& other)  const;
-    bool operator>=(const String& other) const;
-    bool operator<=(const String& other) const;
+        char operator[](int index) const;
 
-    friend ostream& operator<<(ostream& os, const String& obj);
-    friend istream& operator>>(istream& is, String& obj);
-};
+        bool operator==(const String& other) const;
+        bool operator!=(const String& other) const;
+        bool operator>(const String& other)  const;
+        bool operator<(const String& other)  const;
+        bool operator>=(const String& other) const;
+        bool operator<=(const String& other) const;
 
-String::String(int size)
-{
-    if (size < 0) size = 0;
-    this->size = size;
-    str = new char[size + 1];
-    str[0] = '\0';
-}
+        friend ostream& operator<<(ostream& os, const String& obj);
+        friend istream& operator>>(istream& is, String& obj);
+    };
 
-String::String(const char* s)
-{
-    size = strlen(s);
-    str = new char[size + 1];
-    strcpy_s(str, size + 1, s);
-}
+    String::String(int size)
+    {
+        if (size < 0) size = 0;
+        this->size = size;
+        str = new char[size + 1];
+        str[0] = '\0';
+    }
 
-String::String(const String& obj)
-{
-    size = obj.size;
-    str = new char[size + 1];
-    strcpy_s(str, size + 1, obj.str);
-}
+    String::String(const char* s)
+    {
+        size = strlen(s);
+        str = new char[size + 1];
+        strcpy_s(str, size + 1, s);
+    }
 
-String& String::operator=(const String& other)
-{
-    if (this == &other) return *this;
+    String::String(const String& obj)
+    {
+        size = obj.size;
+        str = new char[size + 1];
+        strcpy_s(str, size + 1, obj.str);
+    }
 
-    delete[] str;
-    size = other.size;
-    str = new char[size + 1];
-    strcpy_s(str, size + 1, other.str);
-    return *this;
-}
+    String& String::operator=(const String& other)
+    {
+        if (this == &other) return *this;
 
-String::~String()
-{
-    delete[] str;
-}
+        delete[] str;
+        size = other.size;
+        str = new char[size + 1];
+        strcpy_s(str, size + 1, other.str);
+        return *this;
+    }
 
-size_t String::get_length() const
-{
-    return size;
-}
+    String::~String()
+    {
+        delete[] str;
+    }
 
-char* String::to_char() const
-{
-    return str;
-}
+    size_t String::get_length() const
+    {
+        return size;
+    }
 
-String String::operator+(const String& other) const
-{
-    String result(size + other.size);
-    strcpy_s(result.str, result.size + 1, str);
-    strcat_s(result.str, result.size + 1, other.str);
-    return result;
-}
+    const char* String::to_char() const
+    {
+        return str;
+    }
 
-void String::operator+=(const String& other)
-{
-    char* temp = new char[size + other.size + 1];
-    strcpy_s(temp, size + 1, str);
-    strcat_s(temp, size + other.size + 1, other.str);
-    delete[] str;
-    str = temp;
-    size += other.size;
-}
+    String String::operator+(const String& other) const
+    {
+        String result(size + other.size);
+        strcpy_s(result.str, result.size + 1, str);
+        strcat_s(result.str, result.size + 1, other.str);
+        return result;
+    }
 
-char String::operator[](int index)
-{
-    if (index < 0 || index >= size)
-        throw my_out_of_range();
-    return str[index];
-}
+    void String::operator+=(const String& other)
+    {
+        char* temp = new char[size + other.size + 1];
+        strcpy_s(temp, size + 1, str);
+        strcat_s(temp, size + other.size + 1, other.str);
+        delete[] str;
+        str = temp;
+        size += other.size;
+    }
 
-bool String::operator==(const String& other) const
-{
-    return strcmp(str, other.str) == 0;
-}
+    char String::operator[](int index) const
+    {
+        if (index < 0 || index >= size)
+            throw mystd::Out_of_range();
+        return str[index];
+    }
 
-bool String::operator!=(const String& other) const
-{
-    return strcmp(str, other.str) != 0;
-}
+    bool String::operator==(const String& other) const
+    {
+        return strcmp(str, other.str) == 0;
+    }
 
-bool String::operator>(const String& other) const
-{
-    return strcmp(str, other.str) > 0;
-}
+    bool String::operator!=(const String& other) const
+    {
+        return strcmp(str, other.str) != 0;
+    }
 
-bool String::operator<(const String& other) const
-{
-    return strcmp(str, other.str) < 0;
-}
+    bool String::operator>(const String& other) const
+    {
+        return strcmp(str, other.str) > 0;
+    }
 
-bool String::operator>=(const String& other) const
-{
-    return strcmp(str, other.str) >= 0;
-}
+    bool String::operator<(const String& other) const
+    {
+        return strcmp(str, other.str) < 0;
+    }
 
-bool String::operator<=(const String& other) const
-{
-    return strcmp(str, other.str) <= 0;
-}
+    bool String::operator>=(const String& other) const
+    {
+        return strcmp(str, other.str) >= 0;
+    }
 
-ostream& operator<<(ostream& os, const String& obj)
-{
-    os << obj.str;
-    return os;
-}
+    bool String::operator<=(const String& other) const
+    {
+        return strcmp(str, other.str) <= 0;
+    }
 
-istream& operator>>(istream& in, String& obj)
-{
-    char buffer[1000];
-    in.getline(buffer, 1000);
+    ostream& operator<<(ostream& os, const String& obj)
+    {
+        os << obj.str;
+        return os;
+    }
 
-    delete[] obj.str;
-    obj.size = strlen(buffer);
-    obj.str = new char[obj.size + 1];
-    strcpy_s(obj.str, obj.size + 1, buffer);
+    istream& operator>>(istream& in, String& obj)
+    {
+        char buffer[1000];
+        in.getline(buffer, 1000);
 
-    return in;
+        delete[] obj.str;
+        obj.size = strlen(buffer);
+        obj.str = new char[obj.size + 1];
+        strcpy_s(obj.str, obj.size + 1, buffer);
+
+        return in;
+    }
 }

@@ -5,9 +5,14 @@
 
 /// My std
 
-#include "MyException.h"
-#include "mylist.h"
-#include "MyVector.h"
+#include "Out_of_range.h"
+#include "List.h"
+#include "Vector.h"
 #include "String.h"
+#include "Stack.h"
+#include "Queue.h"
+#include "PriorityQueue.h"
+
+using namespace mystd;
 
 #endif // _MYSTD_DEF_

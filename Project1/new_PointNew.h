@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SOSL.h" 
+#include "fullstd.h" 
 
 class new_PointNew {
     int x, y, z;
