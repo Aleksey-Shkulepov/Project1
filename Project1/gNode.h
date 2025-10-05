@@ -10,6 +10,7 @@ struct gNode
 	TPri priority;
 	gNode* pNext;
 
+	gNode(T val) : value(val), pNext(nullptr) {}
 	gNode(T val, TPri pri) : value(val), priority(pri), pNext(nullptr) {}
 };
 
