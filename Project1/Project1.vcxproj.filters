@@ -91,6 +91,12 @@
     <Filter Include="Файлы заголовков\homework\xx_10_25\04_10_25\main">
       <UniqueIdentifier>{345924c5-edd4-46e4-8f13-73b39c60ba4a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\homework\xx_10_25\01_10_25">
+      <UniqueIdentifier>{4d5cacef-e2ca-43c9-8253-23866c5bff27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\xx_10_25\01_10_25\main">
+      <UniqueIdentifier>{58899bf4-52fa-42de-9955-aadea5d92ef6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source.cpp">
@@ -211,6 +217,12 @@
     </ClInclude>
     <ClInclude Include="PrintStat.h">
       <Filter>Файлы заголовков\homework\xx_10_25\04_10_25</Filter>
+    </ClInclude>
+    <ClInclude Include="01_10_25-main.h">
+      <Filter>Файлы заголовков\homework\xx_10_25\01_10_25\main</Filter>
+    </ClInclude>
+    <ClInclude Include="SyntaxChecker.h">
+      <Filter>Файлы заголовков\homework\xx_10_25\01_10_25</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

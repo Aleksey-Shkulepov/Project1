@@ -131,6 +131,7 @@
     <ClCompile Include="SourceOOP.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="01_10_25-main.h" />
     <ClInclude Include="04_10_25-main.h" />
     <ClInclude Include="Airplane.h" />
     <ClInclude Include="anyTypeArray.h" />
@@ -155,6 +156,7 @@
     <ClInclude Include="MyStructures.h" />
     <ClInclude Include="Printer.h" />
     <ClInclude Include="PrintStat.h" />
+    <ClInclude Include="SyntaxChecker.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="new_PointNew.h" />
     <ClInclude Include="PhoneBook.h" />
