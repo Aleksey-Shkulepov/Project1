@@ -224,6 +224,9 @@
     <ClInclude Include="SyntaxChecker.h">
       <Filter>Файлы заголовков\homework\xx_10_25\01_10_25</Filter>
     </ClInclude>
+    <ClInclude Include="ForwardList.h">
+      <Filter>Файлы заголовков\mystd\components\List</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="House.bin">

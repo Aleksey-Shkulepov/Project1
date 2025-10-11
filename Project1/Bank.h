@@ -12,9 +12,7 @@
 
 #include "MyFunctions.h"
 #include "mylibrary.h"
-#include "myVector.h"
 #include "myStructures.h"
-#include "mylist.h"
 #include "anyTypeArray.h"
 #include "Bank.h"
 #include"Menu.h"

@@ -11,7 +11,7 @@ namespace mystd {
         const char* message;
 
     public:
-        Out_of_range(const char*& msg) : message(msg) {}
+        Out_of_range(const char* msg) : message(msg) {}
         Out_of_range() : message("Index out of range") {}
 
         const char* what() const noexcept override

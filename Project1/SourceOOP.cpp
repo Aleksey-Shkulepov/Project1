@@ -3,8 +3,6 @@
 #include "fullstd.h" 
 #include "mystd.h"
 
-#include "01_10_25-main.h"
-
 int main()
 {
     SetConsoleCP(1251);
@@ -28,6 +26,4 @@ int main()
     //❗❗❗
     //❗❗❗
     //❗❗❗
-
-    hw01_10_25::main();
 }
