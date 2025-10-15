@@ -3,6 +3,8 @@
 #include "fullstd.h" 
 #include "mystd.h"
 
+#include "exam-main.h"
+
 int main()
 {
     SetConsoleCP(1251);
@@ -26,4 +28,6 @@ int main()
     //❗❗❗
     //❗❗❗
     //❗❗❗
+
+    TestingSystem::main();
 }

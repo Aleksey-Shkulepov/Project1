@@ -1,27 +1,7 @@
 #pragma once
 
-#include<iostream>
-#include<Windows.h>
-#include<iomanip>
-#include<algorithm>
-#include<conio.h>
-#include <vector>
-#include <cstring>
-#include <cctype>
-#include <string>
-#include <fstream>
-#include <cstdio>
-
-#include "MyFunctions.h"
-#include "mylibrary.h"
-#include "myVector.h"
-#include "myStructures.h"
-#include "mylist.h"
-#include "anyTypeArray.h"
-#include "Bank.h"
-#include "String.h"
-
-using namespace std;
+#include "fullstd.h"
+#include "mystd.h"
 
 class Reservoir
 {

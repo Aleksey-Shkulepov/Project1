@@ -3,6 +3,13 @@
 #include "fullstd.h"
 
 namespace mystd {
+	inline void gotoxy(int x, int y)
+	{
+		COORD coord;
+		coord.X = x;
+		coord.Y = y;
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+	}
 
 	template<typename T>
 	class ForwardList
@@ -25,9 +32,13 @@ namespace mystd {
 		size_t get_size() const { return size; }
 		void clear();
 		void print();
+		void print(int x, int y, int count);
 		int find(const T& value);
 
-		T& operator[](const size_t index) const;
+		bool is_empty() const { return size == 0; }
+
+		T& operator[](const size_t index);
+		const T& operator[](const size_t index) const;
 		ForwardList operator+=(const ForwardList& obj);
 		ForwardList operator+(const ForwardList& obj);
 	private:
@@ -231,7 +242,14 @@ namespace mystd {
 	}
 
 	template<typename T>
-	T& ForwardList<T>::operator[](const size_t index) const
+	T& ForwardList<T>::operator[](const size_t index)
+	{
+		if (index >= size) throw mystd::Out_of_range("Index out of range");
+		return getNode(index)->value;
+	}
+
+	template<typename T>
+	const T& ForwardList<T>::operator[](const size_t index) const
 	{
 		if (index >= size) throw mystd::Out_of_range("Index out of range");
 		return getNode(index)->value;
@@ -255,5 +273,24 @@ namespace mystd {
 		result += obj;
 		return result;
 	}
+
+	template<class T>
+	void ForwardList<T>::print(int x, int y, int count)
+	{
+		Node<T>* temp = first;
+		if (count != -1)
+		{
+			if (size > count)
+				temp = getNode(size - count);
+		}
+		while (temp)
+		{
+			gotoxy(x, y++);
+			cout << temp->value;
+			temp = temp->pNext;
+		}
+		cout << endl;
+	}
+
 }
 

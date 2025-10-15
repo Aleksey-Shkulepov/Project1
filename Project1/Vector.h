@@ -1,92 +1,160 @@
 ﻿#pragma once
 
-#include "fullstd.h"
+#include <algorithm>
+#include <stdexcept>
+#include <utility>
+#include <initializer_list>
+#include <type_traits>
+#include <cstdlib>
+#include <limits>
+
+#include "String.h"
 
 namespace mystd {
 
     template<typename T>
     class Vector {
     private:
-        T* arr;
-        size_t s;
-    public:
-        /// Перегрузка оператора [] (индексирования)
-        T& operator[] (size_t index)
-        {
-            return arr[index];
+        T* arr = nullptr;
+        size_t s = 0;
+
+        static T* allocate_and_copy(const T* src, size_t n) {
+            if (n == 0) return nullptr;
+            T* newArr = new T[n];
+            for (size_t i = 0; i < n; ++i) newArr[i] = src[i];
+            return newArr;
         }
 
-        /// Перегрузка оператора = (присваивания)
-        Vector& operator = (const Vector& other)
-        {
-            this->s = other.s;
+    public:
+        Vector() noexcept = default;
 
-            delete this->arr;
-
-            this->arr = new T[other.s];
-
-            for (size_t i = 0; i < other.s; i++)
-            {
-                this->arr[i] = other.arr[i];
+        explicit Vector(size_t n, const T& value = T()) {
+            s = n;
+            if (s) {
+                arr = new T[s];
+                for (size_t i = 0; i < s; ++i) arr[i] = value;
             }
+        }
 
+        Vector(initializer_list<T> il) {
+            s = il.size();
+            if (s) {
+                arr = new T[s];
+                size_t i = 0;
+                for (auto& v : il) arr[i++] = v;
+            }
+        }
+
+        Vector(const Vector& other) {
+            s = other.s;
+            arr = allocate_and_copy(other.arr, s);
+        }
+
+        void swap(Vector& other) noexcept {
+            std::swap(arr, other.arr);
+            std::swap(s, other.s);
+        }
+
+        Vector(Vector&& other) noexcept {
+            arr = other.arr;
+            s = other.s;
+            other.arr = nullptr;
+            other.s = 0;
+        }
+
+        ~Vector() {
+            delete[] arr;
+            arr = nullptr;
+            s = 0;
+        }
+
+        Vector& operator=(Vector other) noexcept(std::is_nothrow_move_constructible<T>::value) {
+            swap(other);
             return *this;
         }
 
-        /// Конструктор копирования
-        Vector(const Vector& other)
-        {
-            this->s = other.s;
-
-            this->arr = new T[other.s];
-
-            for (size_t i = 0; i < other.s; i++)
-            {
-                this->arr[i] = other.arr[i];
-            }
+        T& operator[](size_t index) {
+            return arr[index];
+        }
+        const T& operator[](size_t index) const {
+            return arr[index];
         }
 
-        /// Конструктор по умол.
-        //Vector()
-        //{
-        //    arr = nullptr;
-        //    s = 0;
-        //}
-
-        /// Конструктор с параметрами
-        Vector(size_t s, T n = 0)
-        {
-            this->s = s;
-
-            this->arr = new T[s];
-
-            for (size_t i = 0; i < s; i++)
-            {
-                arr[i] = n;
-            }
+        T& at(size_t index) {
+            if (index >= s) throw mystd::Out_of_range();
+            return arr[index];
+        }
+        const T& at(size_t index) const {
+            if (index >= s) throw mystd::Out_of_range();
+            return arr[index];
         }
 
-        /// Деструктор
-        ~Vector()
-        {
+        T& front() {
+            if (is_empty()) throw mystd::Out_of_range();
+            return arr[0];
+        }
+        const T& front() const {
+            if (is_empty()) throw mystd::Out_of_range();
+            return arr[0];
+        }
+
+        T& back() {
+            if (is_empty()) throw mystd::Out_of_range();
+            return arr[s - 1];
+        }
+        const T& back() const {
+            if (is_empty()) throw mystd::Out_of_range();
+            return arr[s - 1];
+        }
+
+        size_t get_size() const noexcept { return s; }
+        bool is_empty() const noexcept { return s == 0; }
+
+        void clear() noexcept {
             delete[] arr;
+            arr = nullptr;
+            s = 0;
         }
 
-        /// Добавляет указанный элемент в конец вектора
-        void add(T elem) {
+        void push_back(const T& value) {
             T* newArr = new T[s + 1];
-
-            for (size_t i = 0; i < s; i++)
-                newArr[i] = arr[i];
-            newArr[s] = elem;
-
+            for (size_t i = 0; i < s; ++i) newArr[i] = arr[i];
+            newArr[s] = value;
             delete[] arr;
             arr = newArr;
-
-            this->s++;
+            ++s;
         }
 
-        /// Вставляет элемент на указанную позицую вектора
+        void pop_back() {
+            if (s == 0) return;
+            if (s == 1) {
+                delete[] arr;
+                arr = nullptr;
+                s = 0;
+                return;
+            }
+            T* newArr = new T[s - 1];
+            for (size_t i = 0; i < s - 1; ++i) newArr[i] = arr[i];
+            delete[] arr;
+            arr = newArr;
+            --s;
+        }
+
+        void resize(size_t new_size, const T& value = T()) {
+            if (new_size == s) return;
+            if (new_size == 0) {
+                clear();
+                return;
+            }
+            T* newArr = new T[new_size];
+            size_t min_s = (new_size < s) ? new_size : s;
+            for (size_t i = 0; i < min_s; ++i) newArr[i] = arr[i];
+            for (size_t i = min_s; i < new_size; ++i) newArr[i] = value;
+            delete[] arr;
+            arr = newArr;
+            s = new_size;
+        }
+
         bool insert(T elem, size_t pos) {
             if (pos >= this->s)
                 return false;
@@ -102,7 +170,6 @@ namespace mystd {
             this->s++;
         }
 
-        /// Удаляет элемент вектора на указаной позиции
         bool pop(size_t pos) {
             if (pos >= this->s)
                 return false;
@@ -118,38 +185,48 @@ namespace mystd {
             this->s--;
         }
 
-        /// Расширяет вектор до n-го размера элементов
-        void resize(size_t s, T value = 0) {
-            T* newArr = new T[s];
-
-            size_t min_s = (s < this->s) ? s : this->s;
-
-            for (size_t i = 0; i < min_s; i++)
-                newArr[i] = arr[i];
-            for (size_t i = min_s; i < s; i++)
-                newArr[i] = value;
-
+        T* insert(const T* pos_c, const T& value) {
+            size_t pos = pos_c - arr;
+            if (pos > s) pos = s;
+            T* newArr = new T[s + 1];
+            for (size_t i = 0, j = 0; i < s + 1; ++i) {
+                if (i == pos) {
+                    newArr[i] = value;
+                }
+                else {
+                    newArr[i] = arr[j++];
+                }
+            }
             delete[] arr;
             arr = newArr;
-
-            this->s = s;
+            ++s;
+            return arr + pos;
         }
 
-        /// Заполняет вектор рандомными числами от мин(по умол. 0) до макс(по умол. 9)
-        void randomFill(T min = 0, T max = 9)
-        {
-            for (auto i = 0; i < s; i++)
-            {
-                arr[i] = rand() % ((int)max - (int)min + 1) + min;
+        T* erase(const T* pos_c) {
+            if (pos_c < begin() || pos_c >= end()) throw mystd::Out_of_range("Vector::erase out of range");
+            size_t pos = pos_c - arr;
+            if (s == 1) {
+                clear();
+                return end();
             }
+            T* newArr = new T[s - 1];
+            for (size_t i = 0, j = 0; i < s; ++i) {
+                if (i == pos) continue;
+                newArr[j++] = arr[i];
+            }
+            delete[] arr;
+            arr = newArr;
+            --s;
+            return arr + pos;
         }
+
 
         template<class T>
         bool asc(T a, T b) {
             return a > b;
         }
 
-        /// Сортирует вектор, по умол. от мин до макс
         void sort(bool(*comp)(T, T) = asc)
         {
             for (size_t i = 0; i < s - 1; i++)
@@ -161,25 +238,44 @@ namespace mystd {
             }
         }
 
-        /// Выводит вектор в консоль
         void print() const {
-            for (size_t i = 0; i < s; i++) {
+            for (size_t i = 0; i < s; ++i) {
                 cout << arr[i] << " ";
             }
             cout << endl;
         }
 
-        /// Возвращает размер вектора
-        T get_size() const {
-            return this->s;
-        }
+        T* begin() noexcept { return arr; }
+        T* end() noexcept { return arr + s; }
+        const T* begin() const noexcept { return arr; }
+        const T* end() const noexcept { return arr + s; }
+        const T* cbegin() const noexcept { return arr; }
+        const T* cend() const noexcept { return arr + s; }
 
-        T get_MAX() const {
-            return maxArray(arr, s);
-        }
-
-        T get_MIN() const {
-            return minArray(arr, s);
-        }
+        //void save(ofstream& out) const;
+        //void load(ifstream& in);
     };
+
+    template<typename T>
+    void swap(Vector<T>& a, Vector<T>& b) noexcept {
+        a.swap(b);
+    }
+
+    //template<>
+    //inline void Vector<String>::save(ofstream& out) const
+    //{
+    //    out.write((const char*)&s, sizeof(s));
+    //    for (size_t i = 0; i < s; i++)
+    //        arr[i].save(out);
+    //}
+
+    //template<>
+    //inline void Vector<String>::load(ifstream& in)
+    //{
+    //    in.read((char*)&s, sizeof(s));
+    //    clear();
+    //    for (size_t i = 0; i < s; ++i) {
+    //        String str; str.load(in); push_back(str);
+    //    }
+    //}
 }

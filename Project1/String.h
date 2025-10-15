@@ -11,7 +11,7 @@ namespace mystd {
         size_t size;
 
     public:
-        String(int size = 80);
+        String(int size = 0);
         String(const char* str);
         String(const String& obj);
 
@@ -21,6 +21,10 @@ namespace mystd {
 
         size_t get_length() const;
         const char* to_char() const;
+        string to_str() const;
+
+        void save(ofstream& out) const;
+        void load(ifstream& in);
 
         String operator+(const String& other) const;
         void operator+=(const String& other);
@@ -36,6 +40,7 @@ namespace mystd {
 
         friend ostream& operator<<(ostream& os, const String& obj);
         friend istream& operator>>(istream& is, String& obj);
+        bool is_empty() const noexcept { return size == 0; }
     };
 
     String::String(int size)
@@ -84,6 +89,31 @@ namespace mystd {
     const char* String::to_char() const
     {
         return str;
+    }
+
+    string String::to_str() const
+    {
+        return (string)(str);
+    }
+
+    void String::save(ofstream& out) const
+    {
+        out.write((const char*)&size, sizeof(size));
+        out.write(str, size);
+    }
+
+    void String::load(ifstream& in)
+    {
+        size_t newSize;
+        in.read((char*)&newSize, sizeof(newSize));
+
+        char* newStr = new char[newSize + 1];
+        in.read(newStr, newSize);
+        newStr[newSize] = '\0';
+
+        delete[] str;
+        str = newStr;
+        size = newSize;
     }
 
     String String::operator+(const String& other) const

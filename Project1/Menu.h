@@ -7,8 +7,6 @@
 #include <string>
 #include <conio.h>
 
-#include "MyFunctions.h"
-
 using namespace std;
 
 enum HorizontalAlignment
@@ -16,7 +14,26 @@ enum HorizontalAlignment
 	Center, Left, Right
 };
 
+void SetColor(int text, int background)
+{
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (WORD)((background << 4) | text));
+}
 
+enum Color {
+	Black = 0, Blue = 1, Green = 2, Cyan = 3, Red = 4, Magenta = 5, Brown = 6, LightGray = 7,
+	DarkGray = 8, LightBlue = 9, LightGreen = 10, LightCyan = 11, LightRed = 12,
+	LightMagenta = 13, Yellow = 14, White = 15
+};
+
+namespace menu {
+	inline void gotoxy(int x, int y)
+	{
+		COORD coord;
+		coord.X = x;
+		coord.Y = y;
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+	}
+}
 static class Menu
 {
 public:
@@ -50,18 +67,18 @@ public:
 				if (i == pos)
 				{
 					SetColor(textColor, backColor);
-					gotoxy(x, y + i);
+					menu::gotoxy(x, y + i);
 					cout << setw(maxLen) << left;
-					gotoxy(x, y + i);
+					menu::gotoxy(x, y + i);
 					cout << menu[i] << endl;
 					SetColor(backColor, textColor);
 				}
 				else
 				{
 					SetColor(backColor, textColor);
-					gotoxy(x, y + i);
+					menu::gotoxy(x, y + i);
 					cout << setw(maxLen) << left;
-					gotoxy(x, y + i);
+					menu::gotoxy(x, y + i);
 					cout << menu[i] << endl;
 					SetColor(textColor, backColor);
 				}
@@ -78,15 +95,15 @@ public:
 		for (size_t i = 0; i < 2; i++)
 		{
 			SetColor(backColor, textColor);
-			gotoxy(x, y + pos);
+			menu::gotoxy(x, y + pos);
 			cout << setw(maxLen) << left;
-			gotoxy(x, y + pos);
+			menu::gotoxy(x, y + pos);
 			cout << menu[pos] << endl;
 			Sleep(200);
 			SetColor(textColor, backColor);
-			gotoxy(x, y + pos);
+			menu::gotoxy(x, y + pos);
 			cout << setw(maxLen) << left;
-			gotoxy(x, y + pos);
+			menu::gotoxy(x, y + pos);
 			cout << menu[pos] << endl;
 			SetColor(backColor, textColor);
 			Sleep(200);

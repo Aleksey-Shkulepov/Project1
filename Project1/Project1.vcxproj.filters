@@ -13,29 +13,14 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Файлы заголовков\homework">
-      <UniqueIdentifier>{03b84dec-0e1f-449c-9960-879207f1a5f6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Файлы заголовков\mystd">
       <UniqueIdentifier>{ced2e10b-7ac0-4f41-b533-f2a3843098ff}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Файлы заголовков\test_extra">
-      <UniqueIdentifier>{522916e5-c7a8-4be0-b679-4215ab61590f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Файлы заголовков\classwork">
-      <UniqueIdentifier>{44d1f231-8093-4ec1-acc3-acffc3278435}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Файлы заголовков\classwork\functional">
-      <UniqueIdentifier>{009b09f2-aed4-427a-ba5b-071edfa24200}</UniqueIdentifier>
     </Filter>
     <Filter Include="Исходные файлы\functional">
       <UniqueIdentifier>{4e7585e5-82be-41e4-ac6a-c06e69a7abeb}</UniqueIdentifier>
     </Filter>
     <Filter Include="Исходные файлы\OOP">
       <UniqueIdentifier>{a5044d8b-2aa9-4670-80ea-715d82a4ad11}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Файлы заголовков\classwork\OOP">
-      <UniqueIdentifier>{6505da5b-8c15-4f8e-afb7-0696cc21ccb9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Файлы заголовков\mystd\components">
       <UniqueIdentifier>{5ee2852c-88d2-4d5e-802f-931f6fd69615}</UniqueIdentifier>
@@ -61,8 +46,47 @@
     <Filter Include="Файлы заголовков\mystd\components\List">
       <UniqueIdentifier>{87859cb1-99fa-4624-b75a-20870b65b807}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\mystd\components\DateTime">
+      <UniqueIdentifier>{4a2ab871-88ad-44aa-9634-1866586ca509}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\classwork">
+      <UniqueIdentifier>{44d1f231-8093-4ec1-acc3-acffc3278435}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\classwork\functional">
+      <UniqueIdentifier>{009b09f2-aed4-427a-ba5b-071edfa24200}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\classwork\OOP">
+      <UniqueIdentifier>{6505da5b-8c15-4f8e-afb7-0696cc21ccb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework">
+      <UniqueIdentifier>{03b84dec-0e1f-449c-9960-879207f1a5f6}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Файлы заголовков\homework\xx_10_25">
       <UniqueIdentifier>{d12a81a1-40ab-4d70-a6a8-069604650e96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\xx_10_25\04_10_25">
+      <UniqueIdentifier>{77527a29-16eb-4002-9344-bf7b8cfcd9b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\xx_10_25\04_10_25\main">
+      <UniqueIdentifier>{345924c5-edd4-46e4-8f13-73b39c60ba4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\xx_10_25\01_10_25">
+      <UniqueIdentifier>{4d5cacef-e2ca-43c9-8253-23866c5bff27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\xx_10_25\01_10_25\main">
+      <UniqueIdentifier>{58899bf4-52fa-42de-9955-aadea5d92ef6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\xx_10_25\08_10_25">
+      <UniqueIdentifier>{66e4e605-c20b-4377-98bb-4b2156bf207e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\xx_10_25\08_10_25\main">
+      <UniqueIdentifier>{bfe3c901-7cae-40fb-a89d-521d34aa164a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\xx_10_25\11_10_25">
+      <UniqueIdentifier>{9ced7905-9f09-4f9e-89a5-b2fd12c9c84e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\xx_10_25\11_10_25\main">
+      <UniqueIdentifier>{5e01a9bf-180c-4e3e-9480-d2e3d983a224}</UniqueIdentifier>
     </Filter>
     <Filter Include="Файлы заголовков\homework\xx_09_25">
       <UniqueIdentifier>{8eeb9797-bf3b-4299-8e3e-f125e4e3639c}</UniqueIdentifier>
@@ -85,17 +109,29 @@
     <Filter Include="Файлы заголовков\homework\xx_09_25\03_09_25">
       <UniqueIdentifier>{6571e561-8b5f-432a-842c-d264ba2ccc90}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Файлы заголовков\homework\xx_10_25\04_10_25">
-      <UniqueIdentifier>{77527a29-16eb-4002-9344-bf7b8cfcd9b5}</UniqueIdentifier>
+    <Filter Include="Файлы заголовков\exam">
+      <UniqueIdentifier>{7d0a0319-8030-4385-af7d-ef225d116c34}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Файлы заголовков\homework\xx_10_25\04_10_25\main">
-      <UniqueIdentifier>{345924c5-edd4-46e4-8f13-73b39c60ba4a}</UniqueIdentifier>
+    <Filter Include="Файлы заголовков\extra">
+      <UniqueIdentifier>{522916e5-c7a8-4be0-b679-4215ab61590f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Файлы заголовков\homework\xx_10_25\01_10_25">
-      <UniqueIdentifier>{4d5cacef-e2ca-43c9-8253-23866c5bff27}</UniqueIdentifier>
+    <Filter Include="Файлы заголовков\exam\main">
+      <UniqueIdentifier>{df91a7a0-6aa0-438a-9a1a-d45d292ae4ea}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Файлы заголовков\homework\xx_10_25\01_10_25\main">
-      <UniqueIdentifier>{58899bf4-52fa-42de-9955-aadea5d92ef6}</UniqueIdentifier>
+    <Filter Include="Файлы заголовков\exam\Users">
+      <UniqueIdentifier>{4fd72d75-f290-426b-a519-8149f8b803b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\exam\Managers">
+      <UniqueIdentifier>{d88c4da9-7deb-4c93-a1e3-3494f9c8e74e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\exam\Tests">
+      <UniqueIdentifier>{831da3af-e9e3-4fef-be6a-22a2c6c3e461}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\exam\Menu">
+      <UniqueIdentifier>{0c5da4e2-7045-4b11-81fa-6a39c6c12e18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\exam\Hash">
+      <UniqueIdentifier>{5d256b29-0356-45c2-9638-b2c8725d0853}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -120,13 +156,13 @@
       <Filter>Файлы заголовков\homework\xx_09_25\03_09_25</Filter>
     </ClInclude>
     <ClInclude Include="fullstd.h">
-      <Filter>Файлы заголовков\test_extra</Filter>
+      <Filter>Файлы заголовков\extra</Filter>
     </ClInclude>
     <ClInclude Include="anyTypeArray.h">
-      <Filter>Файлы заголовков\test_extra</Filter>
+      <Filter>Файлы заголовков\extra</Filter>
     </ClInclude>
     <ClInclude Include="Menu.h">
-      <Filter>Файлы заголовков\test_extra</Filter>
+      <Filter>Файлы заголовков\extra</Filter>
     </ClInclude>
     <ClInclude Include="Fraction.h">
       <Filter>Файлы заголовков\classwork\OOP</Filter>
@@ -226,6 +262,72 @@
     </ClInclude>
     <ClInclude Include="ForwardList.h">
       <Filter>Файлы заголовков\mystd\components\List</Filter>
+    </ClInclude>
+    <ClInclude Include="08_10_25-main.h">
+      <Filter>Файлы заголовков\homework\xx_10_25\08_10_25\main</Filter>
+    </ClInclude>
+    <ClInclude Include="StopType.h">
+      <Filter>Файлы заголовков\homework\xx_10_25\08_10_25</Filter>
+    </ClInclude>
+    <ClInclude Include="Passenger.h">
+      <Filter>Файлы заголовков\homework\xx_10_25\08_10_25</Filter>
+    </ClInclude>
+    <ClInclude Include="Minibus.h">
+      <Filter>Файлы заголовков\homework\xx_10_25\08_10_25</Filter>
+    </ClInclude>
+    <ClInclude Include="Stop.h">
+      <Filter>Файлы заголовков\homework\xx_10_25\08_10_25</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>Файлы заголовков\extra</Filter>
+    </ClInclude>
+    <ClInclude Include="DateTime.h">
+      <Filter>Файлы заголовков\mystd\components\DateTime</Filter>
+    </ClInclude>
+    <ClInclude Include="11_10_25-main.h">
+      <Filter>Файлы заголовков\homework\xx_10_25\11_10_25\main</Filter>
+    </ClInclude>
+    <ClInclude Include="PrintServer.h">
+      <Filter>Файлы заголовков\homework\xx_10_25\11_10_25</Filter>
+    </ClInclude>
+    <ClInclude Include="exam-main.h">
+      <Filter>Файлы заголовков\exam\main</Filter>
+    </ClInclude>
+    <ClInclude Include="IUser.h">
+      <Filter>Файлы заголовков\exam\Users</Filter>
+    </ClInclude>
+    <ClInclude Include="Admin.h">
+      <Filter>Файлы заголовков\exam\Users</Filter>
+    </ClInclude>
+    <ClInclude Include="Participant.h">
+      <Filter>Файлы заголовков\exam\Users</Filter>
+    </ClInclude>
+    <ClInclude Include="UserManager.h">
+      <Filter>Файлы заголовков\exam\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="TestManager.h">
+      <Filter>Файлы заголовков\exam\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Category.h">
+      <Filter>Файлы заголовков\exam\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="Test.h">
+      <Filter>Файлы заголовков\exam\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="Question.h">
+      <Filter>Файлы заголовков\exam\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="TestResult.h">
+      <Filter>Файлы заголовков\exam\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticipantMenu.h">
+      <Filter>Файлы заголовков\exam\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="AdminMenu.h">
+      <Filter>Файлы заголовков\exam\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Hash.h">
+      <Filter>Файлы заголовков\exam\Hash</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
