@@ -40,8 +40,14 @@ namespace TestingSystem {
                 Participant* pt = userManager.loginUser(l, p, isAdmin);
                 if (isAdmin)
                     AdminMenu::open(userManager, testManager);
-                else if (pt)
+                else if (pt) {
+                    if (hasPausedTest()) {
+                        cout << "Ви маєте незавершений тест. Продовжити? (y/n): ";
+                        char c; cin >> c;
+                        if (c == 'y') resumeTest();
+                    }
                     ParticipantMenu::open(userManager, testManager, pt);
+                }
                 else { cout << "Bad credentials" << endl << "Press Enter..."; cin.get(); }
             }
             else if (sel == 1) {

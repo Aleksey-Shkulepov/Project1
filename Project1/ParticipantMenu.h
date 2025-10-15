@@ -20,7 +20,6 @@ namespace TestingSystem {
                 int sel = Menu::select_vertical({ "View past results", "Start/Resume test", "Back" }, Center, 8);
                 if (sel == 0) { p->viewResults(); cout << "Press Enter..."; cin.get(); }
                 else if (sel == 1) {
-                    // show categories -> tests -> questions; minimal test engine with pause/resume
                     auto cats = tm.listCategories();
                     if (cats.is_empty()) { cout << "No categories\n"; cout << "Press Enter..."; cin.get(); continue; }
                     vector<string> catNames;
@@ -35,7 +34,6 @@ namespace TestingSystem {
                     String chosenTest(testNames[ti].c_str());
                     const Test* testPtr = tm.findTest(chosenCat, chosenTest);
                     if (!testPtr) { cout << "Test not found\n"; cout << "Press Enter..."; cin.get(); continue; }
-                    // run test
                     const Test& test = *testPtr;
                     int total = (int)test.questions.get_size();
                     int correct = 0;
@@ -46,9 +44,14 @@ namespace TestingSystem {
                             cout << "  " << oi << ") " << q.options[oi].to_char() << "\n";
                         }
                         cout << "Answer (index), or -1 to pause: ";
-                        int ans; cin >> ans; cin.ignore(/*std::numeric_limits<std::streamsize>::max()*/1, '\n');
+                        int ans; cin >> ans; cin.ignore(1, '\n');
                         if (ans == -1) {
-                            cout << "Paused. (resume not implemented in demo)\n"; break;
+                            currentResult.isPaused = true;
+                            currentResult.currentQuestion = i;
+                            currentResult.userAnswers.push_back(-1);
+                            um.saveAll();
+                            cout << "Paused.\n";
+                            return;
                         }
                         if (ans == q.correctIndex) ++correct;
                     }

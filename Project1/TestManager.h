@@ -134,11 +134,11 @@ namespace TestingSystem {
         ofstream out(filename.to_char());
         if (!out) return false;
         for (const auto& c : categories) {
-            out << "Category: " << c.name.to_char() << "\n";
+            out << "Category: " << c.name << "\n";
             for (const auto& t : c.tests) {
-                out << "Test: " << t.name.to_char() << "\n";
+                out << "Test: " << t.name << "\n";
                 for (const auto& q : t.questions) {
-                    out << "Q: " << q.text.to_char() << "\n";
+                    out << "Q: " << q.text << "\n";
                     for (const auto& o : q.options) out << "O: " << o.to_char() << "\n";
                     out << "A: " << q.correctIndex << "\n";
                     out << "\n";

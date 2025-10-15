@@ -253,7 +253,7 @@ namespace mystd {
         const T* cend() const noexcept { return arr + s; }
 
         //void save(ofstream& out) const;
-        //void load(ifstream& in);
+        void load(ifstream& in);
     };
 
     template<typename T>
@@ -269,13 +269,14 @@ namespace mystd {
     //        arr[i].save(out);
     //}
 
-    //template<>
-    //inline void Vector<String>::load(ifstream& in)
+    //template<typename T>
+    //requires void(load) 
+    //inline void Vector<T>::load(ifstream& in)
     //{
     //    in.read((char*)&s, sizeof(s));
     //    clear();
     //    for (size_t i = 0; i < s; ++i) {
-    //        String str; str.load(in); push_back(str);
+    //        T ojb; str.load(in); push_back(str);
     //    }
     //}
 }
