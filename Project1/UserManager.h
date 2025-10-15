@@ -43,7 +43,7 @@ namespace TestingSystem {
         : usersFile(usersFile_), adminFile(adminFile_) {}
 
     void UserManager::loadAll() {
-        ifstream in(usersFile.to_str(), ios::binary);
+        ifstream in(usersFile.to_char(), ios::binary);
         if (in) {
             size_t s; in.read((char*)&s, sizeof(s));
             participants.clear();
@@ -52,7 +52,7 @@ namespace TestingSystem {
             }
             in.close();
         }
-        ifstream ain(adminFile.to_str(), ios::binary);
+        ifstream ain(adminFile.to_char(), ios::binary);
         if (ain) {
             admin.load(ain);
             ain.close();
@@ -60,7 +60,7 @@ namespace TestingSystem {
     }
 
     void UserManager::saveAll() {
-        ofstream out(usersFile.to_str(), ios::binary);
+        ofstream out(usersFile.to_char(), ios::binary);
 
         size_t s = participants.get_size();
         out.write((const char*)&s, sizeof(s));
@@ -69,7 +69,7 @@ namespace TestingSystem {
 
         out.close();
 
-        ofstream aout(adminFile.to_str(), ios::binary);
+        ofstream aout(adminFile.to_char(), ios::binary);
         admin.save(aout);
         aout.close();
     }

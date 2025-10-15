@@ -21,7 +21,6 @@ namespace mystd {
 
         size_t get_length() const;
         const char* to_char() const;
-        string to_str() const;
 
         void save(ofstream& out) const;
         void load(ifstream& in);
@@ -89,11 +88,6 @@ namespace mystd {
     const char* String::to_char() const
     {
         return str;
-    }
-
-    string String::to_str() const
-    {
-        return (string)(str);
     }
 
     void String::save(ofstream& out) const

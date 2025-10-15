@@ -38,7 +38,7 @@ namespace TestingSystem {
     TestManager::TestManager(const String& storageFile_) : storageFile(storageFile_) {}
 
     void TestManager::loadAll() {
-        ifstream in(storageFile.to_str(), ios::binary);
+        ifstream in(storageFile.to_char(), ios::binary);
         if (!in) return;
 
         size_t s; in.read((char*)&s, sizeof(s));
@@ -49,7 +49,7 @@ namespace TestingSystem {
     }
 
     void TestManager::saveAll() {
-        ofstream out(storageFile.to_str(), ios::binary);
+        ofstream out(storageFile.to_char(), ios::binary);
 
         size_t s = categories.get_size();
         out.write((const char*)&s, sizeof(s));
@@ -131,7 +131,7 @@ namespace TestingSystem {
     }
 
     bool TestManager::exportToText(const String& filename) const {
-        ofstream out(filename.to_str());
+        ofstream out(filename.to_char());
         if (!out) return false;
         for (const auto& c : categories) {
             out << "Category: " << c.name.to_char() << "\n";
@@ -151,7 +151,7 @@ namespace TestingSystem {
     }
 
     bool TestManager::importFromText(const String& filename) {
-        ifstream in(filename.to_str());
+        ifstream in(filename.to_char());
         if (!in) return false;
         string line;
         Category curCat;
