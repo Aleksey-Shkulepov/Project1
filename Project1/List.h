@@ -23,11 +23,11 @@ namespace mystd {
 
 		T& at(size_t index) {
 			if (index >= size) throw mystd::Out_of_range();
-			return this[index];
+			return getNode(index)->value;
 		}
 		const T& at(size_t index) const {
 			if (index >= size) throw mystd::Out_of_range();
-			return this[index];
+			return getNode(index)->value;
 		}
 
 		T& front() {
@@ -51,7 +51,6 @@ namespace mystd {
 		size_t get_size() const { return size; }
 		void clear();
 		void print();
-		void print(int x, int y, int count);
 
 		bool is_empty() const { return size == 0; }
 
@@ -61,8 +60,15 @@ namespace mystd {
 		List operator+(const List& obj);
 
 		int find(const T& value);
+
 		void for_each(void(*method)(T& value));
 
+		/// <summary>
+		/// Удаляет из списка диапазон элементов и возвращает их как новый список.
+		/// </summary>
+		/// <param name="index1">Начальный индекс (включительно) диапазона для вырезания.</param>
+		/// <param name="index2">Конечный индекс (включительно) диапазона для вырезания.</param>
+		/// <returns> Новый List[T], содержащий элементы с индексами от index1 до index2 включительно </returns>
 		List splice(int index1, int index2);
 	private:
 
@@ -73,10 +79,11 @@ namespace mystd {
 			Node* pNext;
 			Node* pPrev;
 			T value;
-			Node(T value = T(), Node* pNext = nullptr)
+			Node(T value = T(), Node* pNext = nullptr, Node* pPrev = nullptr)
 			{
 				this->value = value;
 				this->pNext = pNext;
+				this->pPrev = pPrev;
 			}
 		};
 
@@ -284,13 +291,11 @@ namespace mystd {
 	int List<T>::find(const T& value)
 	{
 		Node<T>* temp = first;
-		for (size_t i = 0; i < size; i++)
-		{
-			if (temp->value == value)
-			{
-				return i;
-			}
+		size_t i = 0;
+		while (temp) {
+			if (temp->value == value) return i;
 			temp = temp->pNext;
+			i++;
 		}
 		return -1;
 	}
@@ -308,17 +313,28 @@ namespace mystd {
 	template<typename T>
 	inline List<T> List<T>::splice(int index1, int index2)
 	{ 
-		//List newList;
-		//for (size_t i = index1 - 1; i <= index2 - 1; i++)
-		//{
-		//	newList.push_back(this[i]);
-		//}
-		//for (size_t i = index1 - 1; i <= index2 - 1; i++)
-		//{
-		//	this->remove(i);
-		//}
-		//return newList;
-		return List();
+		List<T> newList;
+		if (index2 < index1) return newList;
+		if (index1 >= size) return newList;
+
+		Node<T>* start = getNode(index1);
+		Node<T>* end = getNode(index2);
+		if (!start or !end) return newList;
+
+		Node<T>* before = start->pPrev;
+		Node<T>* after = end->pNext;
+
+		if (before) before->pNext = after; else first = after;
+		if (after) after->pPrev = before; else last = before;
+
+		size_t count = index2 - index1 + 1;
+		Node<T>* cur = start;
+		for (size_t i = 0; i < count; i++) {
+			newList.push_back(cur->value);
+			cur = cur->pNext;
+		}
+		size -= count;
+		return newList;
 	}
 
 	template<typename T>
