@@ -23,6 +23,7 @@ namespace TestingSystem {
                         cout << "No categories" << endl;
                         cout << "Press Enter..."; cin.get(); continue; 
                     }
+                    cout << "Choose the category: " << endl;
                     String selectedCategory = categoriesNames.at(Menu::select_vertical(categoriesNames, Left, 2));
 
                     Vector<String> testsNames = testManager.listTests(selectedCategory);
@@ -30,7 +31,8 @@ namespace TestingSystem {
                         cout << "No tests in category" << endl; 
                         cout << "Press Enter..."; cin.get(); continue; 
                     }
-                    String selectedTest = testsNames.at(Menu::select_vertical(testsNames, Left, 8));
+                    cout << "Choose the test: " << endl;
+                    String selectedTest = testsNames.at(Menu::select_vertical(testsNames, Left, 2));
 
                     const Test& test = *testManager.findTest(selectedCategory, selectedTest);
 
@@ -40,8 +42,7 @@ namespace TestingSystem {
                     bool isFinish = true;
                     
                     Vector<TestResult>& pResults = p->getResults();
-                    TestResult emptyTR;
-                    TestResult& trg = emptyTR;
+                    TestResult* trg = nullptr;
                     if (!pResults.is_empty())
                     {
                         for (size_t i = 0; i < pResults.get_size(); i++)
@@ -51,9 +52,12 @@ namespace TestingSystem {
                                 system("cls");
                                 cout << "Choose the option: ";
                                 int selectedDoResetTest = Menu::select_vertical({ "Continue.", "Start again." }, Left, 2);
-                                if (selectedDoResetTest == 1) break;
+                                if (selectedDoResetTest == 1) { 
+                                    p->deleteResult(i);
+                                    break; 
+                                }
                                 else {
-                                    trg = tr;
+                                    trg = &tr;
                                     correct = tr.correct;
                                     currentQustion = tr.currentQuestion;
                                     break;
@@ -66,7 +70,7 @@ namespace TestingSystem {
                         system("cls");
                         const Question& q = test.questions.at(i);
                         cout << "Question " << (i + 1) << ": " << q.text << endl;
-                        int selectedAnswer = Menu::select_vertical(q.options + Vector<String>{"Pause"}, Left, q.options.get_size());
+                        int selectedAnswer = Menu::select_vertical(q.options + Vector<String>{"Pause"}, Left, q.options.get_size() - 2);
                         if (selectedAnswer == q.correctIndex) ++correct;
                         else if (selectedAnswer == q.options.get_size()) {
                             TestResult tr; 
@@ -86,12 +90,12 @@ namespace TestingSystem {
                     }
                     if (isFinish) {
                         int mark = (int)((double)correct / total * 12 + 0.5);
-                        if (trg.isPaused == false) {
+                        if (!trg) {
                             TestResult tr; tr.testName = test.name; tr.correct = correct; tr.total = total; tr.mark = mark;
                             p->addResult(tr);
                         }
                         else {
-                            trg.correct = correct; trg.total = total; trg.mark = mark; trg.isPaused = false;
+                            trg->correct = correct; trg->total = total; trg->mark = mark; trg->isPaused = false;
                         }
                         userManager.saveAll();
                         cout << "Test finished. Correct " << correct << "/" << total << ". Mark: " << mark << "/12\n";

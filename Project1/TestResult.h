@@ -41,7 +41,8 @@ namespace TestingSystem {
     }
 
     void TestResult::print() const {
-        cout << testName << " - "
+        if (isPaused) cout << testName << " test hasnt finished yet. Finish it to see the mark." << endl;
+        else cout << testName << " - "
              << correct << "/" << total << " ("
              << 100.0 * correct / (double)total
              << "%)  mark: " << mark << "/12" << endl;

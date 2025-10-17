@@ -58,12 +58,13 @@ namespace TestingSystem {
                     int selectedActionWithTests = Menu::select_vertical({ "List categories", "Create category", "Create test", "Add question", "Import from txt", "Export to txt", "Back" }, Left, 2);
                     if (selectedActionWithTests == 0) {
                         Vector<String> categories = testManager.listCategories();
-                        cout << "List of categories: " << endl;
-                        if (!categories.is_empty())
+                        if (!categories.is_empty()){
+                            cout << "List of categories: " << endl;
                             for (size_t i = 0; i < categories.get_size(); i++)
                                 cout << i + 1 << "." << categories.at(i);
+                        }
                         else cout << "No catogories yet." << endl << "Create at least one." << endl;
-                        cout << endl << "Press Enter..."; cin.get();
+                        cout << endl << endl << "Press Enter..."; cin.get();
                     }
                     else if (selectedActionWithTests == 1) {
                         cout << "Type category name: "; String cn; cin >> cn;
@@ -72,9 +73,9 @@ namespace TestingSystem {
                         cout << "Press Enter..."; cin.get();
                     }
                     else if (selectedActionWithTests == 2) {
-                        cout << "Choose the category: " << endl;
                         Vector<String> categories = testManager.listCategories();
                         if (!categories.is_empty()) {
+                            cout << "Choose the category: " << endl;
                             int selectedCategory = Menu::select_vertical(categories, Left, 2);
                             cout << "Type test name: "; String tn; cin >> tn;
                             Test t; t.name = tn;
@@ -87,14 +88,14 @@ namespace TestingSystem {
                         cout << "Press Enter..." << endl; cin.get();
                     }
                     else if (selectedActionWithTests == 3) {
-                        cout << "Choose the category: " << endl;
                         Vector<String> categories = testManager.listCategories();
                         if (!categories.is_empty()) {
+                            cout << "Choose the category: " << endl;
                             int selectedCategory = Menu::select_vertical(categories, Left, 2);
 
-                            cout << "Choose the test: " << endl;
                             Vector<String> tests = testManager.listTests(categories.at(selectedCategory));
                             if (!tests.is_empty()) {
+                                cout << "Choose the test: " << endl;
                                 int selectedTest = Menu::select_vertical(tests, Left, 2);
 
                                 Question q;
@@ -109,6 +110,7 @@ namespace TestingSystem {
                                     cout << "Question Successfully added!" << endl;
                                 else
                                     cout << "Error" << endl;
+                                cout << "Press Enter..."; cin.get();
                             }
                             else cout << "No tests yet." << endl << " Create at least one.";
                         }

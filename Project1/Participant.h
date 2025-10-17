@@ -47,6 +47,7 @@ namespace TestingSystem {
 
 		Vector<TestResult>& getResults() { return results; }
 		void addResult(const TestResult& r)			 { results.push_back(r); }
+		void deleteResult(const size_t i) { results.pop(i); }
 	};
 
 	Participant::Participant (
