@@ -10,57 +10,93 @@ namespace TestingSystem {
 
     class ParticipantMenu
     {
-        static int calculateMark(int correct, int total) {
-            if (total <= 0) return 0;
-            return (int)((double)correct / total * 12 + 0.5);
-        }
     public:
-        static void open(UserManager& um, TestManager& tm, Participant* p) {
+        static void open(UserManager& userManager, TestManager& testManager, Participant* p) {
             while (true) {
-                int sel = Menu::select_vertical({ "View past results", "Start/Resume test", "Back" }, Center, 8);
-                if (sel == 0) { p->viewResults(); cout << "Press Enter..."; cin.get(); }
-                else if (sel == 1) {
-                    auto cats = tm.listCategories();
-                    if (cats.is_empty()) { cout << "No categories\n"; cout << "Press Enter..."; cin.get(); continue; }
-                    vector<string> catNames;
-                    for (auto& c : cats) catNames.push_back(string(c.to_char()));
-                    int ci = Menu::select_vertical(catNames, Left, 6);
-                    String chosenCat(catNames[ci].c_str());
-                    auto tests = tm.listTests(chosenCat);
-                    if (tests.is_empty()) { cout << "No tests in category\n"; cout << "Press Enter..."; cin.get(); continue; }
-                    vector<string> testNames;
-                    for (auto& t : tests) testNames.push_back(string(t.to_char()));
-                    int ti = Menu::select_vertical(testNames, Left, 8);
-                    String chosenTest(testNames[ti].c_str());
-                    const Test* testPtr = tm.findTest(chosenCat, chosenTest);
-                    if (!testPtr) { cout << "Test not found\n"; cout << "Press Enter..."; cin.get(); continue; }
-                    const Test& test = *testPtr;
-                    int total = (int)test.questions.get_size();
-                    int correct = 0;
-                    for (int qi = 0; qi < total; ++qi) {
-                        const Question& q = test.questions[qi];
-                        cout << "Q" << (qi + 1) << ": " << q.text.to_char() << "\n";
-                        for (int oi = 0; oi < (int)q.options.get_size(); ++oi) {
-                            cout << "  " << oi << ") " << q.options[oi].to_char() << "\n";
-                        }
-                        cout << "Answer (index), or -1 to pause: ";
-                        int ans; cin >> ans; cin.ignore(1, '\n');
-                        if (ans == -1) {
-                            currentResult.isPaused = true;
-                            currentResult.currentQuestion = i;
-                            currentResult.userAnswers.push_back(-1);
-                            um.saveAll();
-                            cout << "Paused.\n";
-                            return;
-                        }
-                        if (ans == q.correctIndex) ++correct;
+                system("cls");
+                cout << "Choose action: " << endl;
+                int selectedAction = Menu::select_vertical({ "View past results", "Start/Resume test", "Back" }, Left, 2);
+                if (selectedAction == 0) { p->viewResults(); cout << "Press Enter..."; cin.get(); }
+                else if (selectedAction == 1) {
+                    Vector<String> categoriesNames = testManager.listCategories();
+                    if (categoriesNames.is_empty()) {
+                        cout << "No categories" << endl;
+                        cout << "Press Enter..."; cin.get(); continue; 
                     }
-                    int mark = calculateMark(correct, total);
-                    TestResult tr; tr.testName = test.name; tr.correct = correct; tr.total = total; tr.mark = mark;
-                    p->addResult(tr);
-                    um.saveAll();
-                    cout << "Test finished. Correct " << correct << "/" << total << ". Mark: " << mark << "/12\n";
-                    cout << "Press Enter..."; cin.get();
+                    String selectedCategory = categoriesNames.at(Menu::select_vertical(categoriesNames, Left, 2));
+
+                    Vector<String> testsNames = testManager.listTests(selectedCategory);
+                    if (testsNames.is_empty()) {
+                        cout << "No tests in category" << endl; 
+                        cout << "Press Enter..."; cin.get(); continue; 
+                    }
+                    String selectedTest = testsNames.at(Menu::select_vertical(testsNames, Left, 8));
+
+                    const Test& test = *testManager.findTest(selectedCategory, selectedTest);
+
+                    int currentQustion = 0;
+                    int total = test.questions.get_size();
+                    int correct = 0;
+                    bool isFinish = true;
+                    
+                    Vector<TestResult>& pResults = p->getResults();
+                    TestResult emptyTR;
+                    TestResult& trg = emptyTR;
+                    if (!pResults.is_empty())
+                    {
+                        for (size_t i = 0; i < pResults.get_size(); i++)
+                        {
+                            TestResult& tr = pResults.at(i);
+                            if (tr.testName == test.name && tr.isPaused == true) {
+                                system("cls");
+                                cout << "Choose the option: ";
+                                int selectedDoResetTest = Menu::select_vertical({ "Continue.", "Start again." }, Left, 2);
+                                if (selectedDoResetTest == 1) break;
+                                else {
+                                    trg = tr;
+                                    correct = tr.correct;
+                                    currentQustion = tr.currentQuestion;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    for (size_t i = currentQustion; i < total; ++i) {
+                        system("cls");
+                        const Question& q = test.questions.at(i);
+                        cout << "Question " << (i + 1) << ": " << q.text << endl;
+                        int selectedAnswer = Menu::select_vertical(q.options + Vector<String>{"Pause"}, Left, q.options.get_size());
+                        if (selectedAnswer == q.correctIndex) ++correct;
+                        else if (selectedAnswer == q.options.get_size()) {
+                            TestResult tr; 
+                            tr.testName = test.name; 
+                            tr.correct = correct; 
+                            tr.total = total;
+                            tr.isPaused = true;
+                            tr.currentQuestion = i;
+                            p->addResult(tr);
+                            userManager.saveAll();
+                            system("cls");
+                            cout << "Successfully paused!" << endl;
+                            cout << "Returning to the main menu." << endl;
+                            cout << "Press Enter..."; cin.get(); 
+                            isFinish = false; break;
+                        }
+                    }
+                    if (isFinish) {
+                        int mark = (int)((double)correct / total * 12 + 0.5);
+                        if (trg.isPaused == false) {
+                            TestResult tr; tr.testName = test.name; tr.correct = correct; tr.total = total; tr.mark = mark;
+                            p->addResult(tr);
+                        }
+                        else {
+                            trg.correct = correct; trg.total = total; trg.mark = mark; trg.isPaused = false;
+                        }
+                        userManager.saveAll();
+                        cout << "Test finished. Correct " << correct << "/" << total << ". Mark: " << mark << "/12\n";
+                        cout << "Press Enter..."; cin.get();
+                    }
                 }
                 else break;
             }

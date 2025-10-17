@@ -308,16 +308,17 @@ namespace mystd {
 	template<typename T>
 	inline List<T> List<T>::splice(int index1, int index2)
 	{ 
-		List newList;
-		for (size_t i = index1 - 1; i <= index2 - 1; i++)
-		{
-			newList.push_back(this[i]);
-		}
+		//List newList;
+		//for (size_t i = index1 - 1; i <= index2 - 1; i++)
+		//{
+		//	newList.push_back(this[i]);
+		//}
 		//for (size_t i = index1 - 1; i <= index2 - 1; i++)
 		//{
 		//	this->remove(i);
 		//}
-		return newList;
+		//return newList;
+		return List();
 	}
 
 	template<typename T>

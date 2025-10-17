@@ -28,6 +28,8 @@ namespace mystd {
         String operator+(const String& other) const;
         void operator+=(const String& other);
 
+        void operator+=(char c);
+
         char operator[](int index) const;
 
         bool operator==(const String& other) const;
@@ -126,6 +128,21 @@ namespace mystd {
         delete[] str;
         str = temp;
         size += other.size;
+    }
+
+    void String::operator+=(char c) {
+        char* temp = new char[size + 2];
+        if (str) {
+            strcpy_s(temp, size + 2, str);
+        }
+        else {
+            temp[0] = '\0';
+        }
+        temp[size] = c;
+        temp[size + 1] = '\0';
+        delete[] str;
+        str = temp;
+        ++size;
     }
 
     char String::operator[](int index) const

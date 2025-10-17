@@ -34,6 +34,8 @@ namespace TestingSystem {
 
         Admin* getAdmin();
 
+        Vector<Participant> listParticipants() const;
+
         Vector<String> listUserLogins() const;
 
         void setAdmin(const String& login, const String& passwordPlain);
@@ -106,7 +108,7 @@ namespace TestingSystem {
     Participant* UserManager::loginUser(const String& login, const String& password, bool& isAdmin) {
         if (!admin.isEmpty()) {
             if (admin.getLogin() == login) {
-                if (admin.getPasswordHash() == Hash::MD5(password)) {
+                if (admin.getPasswordHash() == Hash::MD5(password.to_char())) {
                     isAdmin = true; 
                     return nullptr;
                 }
@@ -119,7 +121,7 @@ namespace TestingSystem {
 
         for (auto& p : participants) {
             if (p.getLogin() == login) {
-                if (p.getPassword() == Hash::MD5(password)) {
+                if (p.getPassword() == Hash::MD5(password.to_char())) {
                     isAdmin = false;
                     return &p;
                 }
@@ -128,6 +130,7 @@ namespace TestingSystem {
                 }
             }
         }
+
         isAdmin = false;
         return nullptr;
     }
@@ -136,15 +139,21 @@ namespace TestingSystem {
         return &admin;
     }
 
+    Vector<Participant> UserManager::listParticipants() const {
+        Vector<Participant> res;
+        for (const auto& p : participants) res.push_back(p);
+        return res;
+    }
+
     Vector<String> UserManager::listUserLogins() const {
         Vector<String> res;
         for (const auto& p : participants) res.push_back(p.getLogin());
         return res;
     }
 
-    void UserManager::setAdmin(const String& login, const String& passwordPlain) {
+    void UserManager::setAdmin(const String& login, const String& password) {
         admin.setLogin(login);
-        admin.setPasswordHash(Hash::MD5(passwordPlain));
+        admin.setPasswordHash(Hash::MD5(password));
         saveAll();
     }
 }

@@ -41,6 +41,6 @@ namespace TestingSystem {
 	}
 
 	inline void Admin::changePassword(const String& newPassword) {
-		password = newPassword;
+		password = Hash::MD5(newPassword);
 	}
 }

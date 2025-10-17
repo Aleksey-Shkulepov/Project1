@@ -27,12 +27,17 @@ namespace TestingSystem {
             String l, p; 
             cout << "Admin login: "; cin >> l;
             cout << "Admin password: "; cin >> p;
-            userManager.setAdmin(l, Hash::MD5(p));
+            userManager.setAdmin(l,p);
             userManager.saveAll();
+
+            cout << endl << "Congractulations!" << endl;
+            cout << "Press Enter..."; cin.get();
         }
         while (true) {
-            int sel = Menu::select_vertical({ "Login", "Register", "Exit" }, Center, 6);
-            if (sel == 0) {
+            system("cls");
+            cout << "Hey! Glad to see you." << endl << "So register or login to continue.";
+            int selectedAction = Menu::select_vertical({ "Login", "Register", "Exit" }, Left, 3);
+            if (selectedAction == 0) {
                 String l, p; 
                 cout << "Login: "; cin >> l;
                 cout << "Password: "; cin >> p;
@@ -41,26 +46,19 @@ namespace TestingSystem {
                 if (isAdmin)
                     AdminMenu::open(userManager, testManager);
                 else if (pt) {
-                    if (hasPausedTest()) {
-                        cout << "Ви маєте незавершений тест. Продовжити? (y/n): ";
-                        char c; cin >> c;
-                        if (c == 'y') resumeTest();
-                    }
                     ParticipantMenu::open(userManager, testManager, pt);
                 }
                 else { cout << "Bad credentials" << endl << "Press Enter..."; cin.get(); }
             }
-            else if (sel == 1) {
+            else if (selectedAction == 1) {
                 String fn, adr, ph, l, p;
                 cout << "Full name: "; cin >> fn;
                 cout << "Address: ";   cin >> adr;
                 cout << "Phone: ";     cin >> ph;
                 cout << "Login: ";     cin >> l;
                 if (!userManager.isLoginUnique(l)) { 
-                    cout << "Login taken\n";
-                    cout << "Press Enter...";
-                    cin.get();
-                    continue; 
+                    cout << "Login taken" << endl;
+                    cout << "Press Enter..."; cin.get(); continue; 
                 }
                 cout << "Password: "; cin >> p;
                 Participant pt(fn, adr, ph, l, Hash::MD5(p));

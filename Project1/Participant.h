@@ -45,7 +45,7 @@ namespace TestingSystem {
 		void setAddress(const String& s)  { address = s; }
 		void setPhone(const String& s)    { phone = s; }
 
-		const Vector<TestResult>& getResults() const { return results; }
+		Vector<TestResult>& getResults() { return results; }
 		void addResult(const TestResult& r)			 { results.push_back(r); }
 	};
 
@@ -102,11 +102,7 @@ namespace TestingSystem {
 			return;
 		}
 		for (const auto& tr : results) {
-			cout 
-			<< tr.testName << " - "
-			<< tr.correct << "/" << tr.total << " ("
-			<< 100.0 * tr.correct / (double)tr.total
-			<< "%)  mark: " << tr.mark << "/12" << endl;
+			tr.print();
 		}
 	}
 }

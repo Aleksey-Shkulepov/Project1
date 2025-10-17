@@ -10,6 +10,16 @@
 
 #include "String.h"
 
+template<typename T>
+concept HasLoad = requires(T t, std::ifstream & in) {
+    t.load(in);
+};
+template<typename T>
+concept HasSave = requires(T t, std::ofstream & out) {
+    t.save(out);
+};
+
+
 namespace mystd {
 
     template<typename T>
@@ -252,31 +262,47 @@ namespace mystd {
         const T* cbegin() const noexcept { return arr; }
         const T* cend() const noexcept { return arr + s; }
 
-        //void save(ofstream& out) const;
-        void load(ifstream& in);
+        void save(ofstream& out) const requires HasSave<T>;
+        void load(ifstream& in) requires HasLoad<T>;
+
+        Vector operator+(const Vector& other) const;
     };
+
+    template<typename T>
+    Vector<T> Vector<T>::operator+(const Vector& other) const {
+        Vector result;
+        result.s = this->s + other.s;
+        if (result.s == 0) return result;
+
+        result.arr = new T[result.s];
+        for (size_t i = 0; i < this->s; ++i)
+            result.arr[i] = this->arr[i];
+        for (size_t i = 0; i < other.s; ++i)
+            result.arr[this->s + i] = other.arr[i];
+
+        return result;
+    }
 
     template<typename T>
     void swap(Vector<T>& a, Vector<T>& b) noexcept {
         a.swap(b);
     }
 
-    //template<>
-    //inline void Vector<String>::save(ofstream& out) const
-    //{
-    //    out.write((const char*)&s, sizeof(s));
-    //    for (size_t i = 0; i < s; i++)
-    //        arr[i].save(out);
-    //}
+    template<typename T>
+    inline void Vector<T>::save(ofstream& out) const requires HasSave<T>
+    {
+        out.write((const char*)&s, sizeof(s));
+        for (size_t i = 0; i < s; ++i)
+            this->at(i).save(out);
+    }
 
-    //template<typename T>
-    //requires void(load) 
-    //inline void Vector<T>::load(ifstream& in)
-    //{
-    //    in.read((char*)&s, sizeof(s));
-    //    clear();
-    //    for (size_t i = 0; i < s; ++i) {
-    //        T ojb; str.load(in); push_back(str);
-    //    }
-    //}
+    template<typename T>
+    inline void Vector<T>::load(ifstream& in) requires HasLoad<T>
+    {
+        in.read((char*)&s, sizeof(s));
+        clear();
+        for (size_t i = 0; i < s; ++i) {
+            T obj; obj.load(in); push_back(obj);
+        }
+    }
 }
