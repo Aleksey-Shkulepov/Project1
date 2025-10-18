@@ -134,17 +134,17 @@ namespace TestingSystem {
         ofstream out(filename.to_char());
         if (!out) return false;
         for (const auto& c : categories) {
-            out << "Category: " << c.name << "\n";
+            out << "Category: " << c.name << endl;
             for (const auto& t : c.tests) {
-                out << "Test: " << t.name << "\n";
+                out << "Test: " << t.name << endl;
                 for (const auto& q : t.questions) {
-                    out << "Q: " << q.text << "\n";
-                    for (const auto& o : q.options) out << "O: " << o.to_char() << "\n";
-                    out << "A: " << q.correctIndex << "\n";
-                    out << "\n";
+                    out << "Q: " << q.text << endl;
+                    for (const auto& o : q.options) out << "O: " << o << endl;
+                    out << "A: " << q.correctIndex << endl;
+                    out << endl;
                 }
             }
-            out << "===\n";
+            out << "===" << endl;
         }
         out.close();
         return true;
@@ -153,45 +153,49 @@ namespace TestingSystem {
     bool TestManager::importFromText(const String& filename) {
         ifstream in(filename.to_char());
         if (!in) return false;
-        string line;
-        Category curCat;
+
+        Category curCategory;
         Test curTest;
-        Question curQ;
-        bool inQ = false;
+        Question curQuestion;
+
+        bool inQuestion = false;
         bool inTest = false;
+
         categories.clear();
-        while (getline(in, line)) {
+        String line;
+        while (in >> line) {
             if (line.rfind("Category:", 0) == 0) {
                 if (inTest) { curTest = Test(); inTest = false; }
-                if (inQ) { curQ = Question(); inQ = false; }
-                if (curCat.name.get_length() != 0) { categories.push_back(curCat); curCat = Category(); }
-                std::string nm = line.substr(9);
-                String s(nm.c_str()); curCat.name = s;
+                if (inQuestion) { curQuestion = Question(); inQuestion = false; }
+                if (!curCategory.name.is_empty()) { 
+                    categories.push_back(curCategory); curCategory = Category(); 
+                }
+                curCategory.name = line.substr(10);
             }
             else if (line.rfind("Test:", 0) == 0) {
-                if (inQ) { curTest.questions.push_back(curQ); inQ = false; }
-                if (curTest.name.get_length() != 0) { curCat.tests.push_back(curTest); curTest = Test(); }
-                std::string nm = line.substr(5); curTest.name = String(nm.c_str()); inTest = true;
+                if (inQuestion) { curTest.questions.push_back(curQuestion); inQuestion = false; }
+                if (!curTest.name.is_empty()) { curCategory.tests.push_back(curTest); curTest = Test(); }
+                curTest.name = line.substr(6); inTest = true;
             }
             else if (line.rfind("Q:", 0) == 0) {
-                if (inQ) { curTest.questions.push_back(curQ); curQ = Question(); }
-                std::string txt = line.substr(2); curQ.text = String(txt.c_str()); curQ.options.clear(); inQ = true;
+                if (inQuestion) { curTest.questions.push_back(curQuestion); curQuestion = Question(); }
+                curQuestion.text = line.substr(3); curQuestion.options.clear(); inQuestion = true;
             }
             else if (line.rfind("O:", 0) == 0) {
-                std::string op = line.substr(2); curQ.options.push_back(String(op.c_str()));
+                curQuestion.options.push_back(line.substr(3));
             }
             else if (line.rfind("A:", 0) == 0) {
-                int idx = stoi(line.substr(2)); curQ.correctIndex = idx;
+                int idx = line.substr(3).to_int(); curQuestion.correctIndex = idx;
             }
             else if (line == "===") {
-                if (inQ) { curTest.questions.push_back(curQ); inQ = false; }
-                if (curTest.name.get_length() != 0) { curCat.tests.push_back(curTest); curTest = Test(); }
-                if (curCat.name.get_length() != 0) { categories.push_back(curCat); curCat = Category(); }
+                if (inQuestion) { curTest.questions.push_back(curQuestion); inQuestion = false; }
+                if (!curTest.name.is_empty()) { curCategory.tests.push_back(curTest); curTest = Test(); }
+                if (!curCategory.name.is_empty()) { categories.push_back(curCategory); curCategory = Category(); }
             }
         }
-        if (inQ) curTest.questions.push_back(curQ);
-        if (curTest.name.get_length() != 0) curCat.tests.push_back(curTest);
-        if (curCat.name.get_length() != 0) categories.push_back(curCat);
+        if (inQuestion) curTest.questions.push_back(curQuestion);
+        if (!curTest.name.is_empty()) curCategory.tests.push_back(curTest);
+        if (!curCategory.name.is_empty()) categories.push_back(curCategory);
         saveAll();
         return true;
     }

@@ -21,6 +21,7 @@ namespace mystd {
 
         size_t get_length() const;
         const char* to_char() const;
+        int to_int() const;
 
         void save(ofstream& out) const;
         void load(ifstream& in);
@@ -42,6 +43,10 @@ namespace mystd {
         friend ostream& operator<<(ostream& os, const String& obj);
         friend istream& operator>>(istream& is, String& obj);
         bool is_empty() const noexcept { return size == 0; }
+
+        int rfind(const char* substr, size_t pos = 0) const;
+        String substr(size_t pos) const;
+        String substr(size_t pos, size_t len) const;
     };
 
     String::String(int size)
@@ -90,6 +95,33 @@ namespace mystd {
     const char* String::to_char() const
     {
         return str;
+    }
+
+    inline int String::to_int() const
+    {
+        if (!str) return 0;
+
+        const char* p = str;
+
+        while (*p && isspace((unsigned char)*p)) ++p;
+
+        int sign = 1;
+        if (*p == '+' || *p == '-') {
+            if (*p == '-') sign = -1;
+            ++p;
+        }
+
+        if (!isdigit((unsigned char)*p)) return 0;
+
+        int acc = 0;
+
+        while (*p && isdigit((unsigned char)*p)) {
+            int d = *p - '0';
+            acc = acc * 10 + d;
+            ++p;
+        }
+
+        return sign * acc;
     }
 
     void String::save(ofstream& out) const
@@ -199,5 +231,36 @@ namespace mystd {
         strcpy_s(obj.str, obj.size + 1, buffer);
 
         return in;
+    }
+
+    int String::rfind(const char* substr, size_t pos) const {
+        size_t subLen = strlen(substr);
+        if (pos > size) pos = 0;
+
+        if (strncmp(str + pos, substr, subLen) == 0)
+            return pos;
+        return -1;
+    }
+
+    String String::substr(size_t pos) const {
+        if (pos >= size) return String("");
+        size_t newLen = size - pos;
+        char* buffer = new char[newLen + 1];
+        strncpy(buffer, str + pos, newLen);
+        buffer[newLen] = '\0';
+        String res(buffer);
+        delete[] buffer;
+        return res;
+    }
+
+    String String::substr(size_t pos, size_t len) const {
+        if (pos >= size) return String("");
+        if (pos + len > size) len = size - pos;
+        char* buffer = new char[len + 1];
+        strncpy(buffer, str + pos, len);
+        buffer[len] = '\0';
+        String res(buffer);
+        delete[] buffer;
+        return res;
     }
 }

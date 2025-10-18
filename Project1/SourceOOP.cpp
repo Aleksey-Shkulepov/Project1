@@ -3,7 +3,7 @@
 #include "fullstd.h" 
 #include "mystd.h"
 
-//#include "exam-main.h"
+#include "exam-main.h"
 
 int main()
 {
@@ -29,8 +29,5 @@ int main()
     //❗❗❗
     //❗❗❗
 
-    //TestingSystem::main();
-    List<int> list = { 1,2,3,4 };
-    List<int> list2 = list.splice(1, 3);
-    list.print(); list2.print();
+    TestingSystem::main();
 }
