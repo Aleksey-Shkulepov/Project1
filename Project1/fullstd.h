@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <conio.h>
 #include <vector>
+#include <set>
 #include <cstring>
 #include <cctype>
 #include <string>

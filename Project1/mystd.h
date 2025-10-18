@@ -7,6 +7,7 @@
 
 #include "Out_of_range.h"
 #include "List.h"
+#include "BTree.h"
 #include "Vector.h"
 #include "String.h"
 #include "Stack.h"

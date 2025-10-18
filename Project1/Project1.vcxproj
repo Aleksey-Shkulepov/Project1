@@ -143,6 +143,7 @@
     <ClInclude Include="Apartment.h" />
     <ClInclude Include="Bank.h" />
     <ClInclude Include="Book.h" />
+    <ClInclude Include="BTree.h" />
     <ClInclude Include="Category.h" />
     <ClInclude Include="Circle.h" />
     <ClInclude Include="Client.h" />
