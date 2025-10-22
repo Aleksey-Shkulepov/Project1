@@ -136,6 +136,7 @@
     <ClInclude Include="04_10_25-main.h" />
     <ClInclude Include="08_10_25-main.h" />
     <ClInclude Include="11_10_25-main.h" />
+    <ClInclude Include="22_10_25-main.h" />
     <ClInclude Include="Admin.h" />
     <ClInclude Include="AdminMenu.h" />
     <ClInclude Include="Airplane.h" />

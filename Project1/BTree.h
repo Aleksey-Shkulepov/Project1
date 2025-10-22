@@ -95,7 +95,7 @@ namespace mystd {
 					return true;
 				}
 			}
-			else if (key > current->value)
+			else if (key > current->key)
 			{
 				if (current->pRight)
 				{

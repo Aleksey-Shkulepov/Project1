@@ -133,6 +133,15 @@
     <Filter Include="Файлы заголовков\exam\Hash">
       <UniqueIdentifier>{5d256b29-0356-45c2-9638-b2c8725d0853}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\mystd\components\BTree">
+      <UniqueIdentifier>{11cc7f09-ba12-42b1-9609-226ec5cc936b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\xx_10_25\22_10_25">
+      <UniqueIdentifier>{9b3590b0-c51d-482d-a2b7-5e62a8a931e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\xx_10_25\22_10_25\main">
+      <UniqueIdentifier>{f13dcec6-5ae4-4b39-b548-d198c6e2b50c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source.cpp">
@@ -328,6 +337,12 @@
     </ClInclude>
     <ClInclude Include="Hash.h">
       <Filter>Файлы заголовков\exam\Hash</Filter>
+    </ClInclude>
+    <ClInclude Include="BTree.h">
+      <Filter>Файлы заголовков\mystd\components\BTree</Filter>
+    </ClInclude>
+    <ClInclude Include="22_10_25-main.h">
+      <Filter>Файлы заголовков\homework\xx_10_25\22_10_25\main</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
