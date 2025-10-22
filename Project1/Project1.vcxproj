@@ -170,6 +170,7 @@
     <ClInclude Include="Participant.h" />
     <ClInclude Include="ParticipantMenu.h" />
     <ClInclude Include="Passenger.h" />
+    <ClInclude Include="Passport.h" />
     <ClInclude Include="Printer.h" />
     <ClInclude Include="PrintServer.h" />
     <ClInclude Include="PrintStat.h" />

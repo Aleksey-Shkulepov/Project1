@@ -29,5 +29,7 @@ int main()
     //❗❗❗
     //❗❗❗
 
-    TestingSystem::main();
+    //TestingSystem::main();
+
+    printf("33fsf");
 }
