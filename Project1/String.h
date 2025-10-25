@@ -7,6 +7,7 @@ namespace mystd {
 
     class String
     {
+    protected:
         char* str = nullptr;
         size_t size;
 
@@ -21,6 +22,7 @@ namespace mystd {
 
         size_t get_length() const;
         const char* to_char() const;
+        void clear();
         int to_int() const;
 
         void save(ofstream& out) const;
@@ -95,6 +97,13 @@ namespace mystd {
     const char* String::to_char() const
     {
         return str;
+    }
+
+    inline void String::clear()
+    {
+        delete[] str;
+        str = nullptr;
+        size = 0;
     }
 
     inline int String::to_int() const

@@ -142,6 +142,12 @@
     <Filter Include="Файлы заголовков\homework\xx_10_25\22_10_25\main">
       <UniqueIdentifier>{f13dcec6-5ae4-4b39-b548-d198c6e2b50c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\homework\xx_10_25\25_10_25">
+      <UniqueIdentifier>{fc1bb731-e43c-4b4f-80b0-0170fbf72dfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\xx_10_25\25_10_25\main">
+      <UniqueIdentifier>{8e923fd6-fa6a-4aae-9c83-c902abd2f44e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source.cpp">
@@ -343,6 +349,18 @@
     </ClInclude>
     <ClInclude Include="22_10_25-main.h">
       <Filter>Файлы заголовков\homework\xx_10_25\22_10_25\main</Filter>
+    </ClInclude>
+    <ClInclude Include="BitString.h">
+      <Filter>Файлы заголовков\homework\xx_10_25\25_10_25</Filter>
+    </ClInclude>
+    <ClInclude Include="Pet.h">
+      <Filter>Файлы заголовков\homework\xx_10_25\25_10_25</Filter>
+    </ClInclude>
+    <ClInclude Include="Passport.h">
+      <Filter>Файлы заголовков\classwork\OOP</Filter>
+    </ClInclude>
+    <ClInclude Include="25_10_25-main.h">
+      <Filter>Файлы заголовков\homework\xx_10_25\25_10_25\main</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

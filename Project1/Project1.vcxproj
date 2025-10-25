@@ -137,12 +137,15 @@
     <ClInclude Include="08_10_25-main.h" />
     <ClInclude Include="11_10_25-main.h" />
     <ClInclude Include="22_10_25-main.h" />
+    <ClInclude Include="25_10_25-main.h" />
     <ClInclude Include="Admin.h" />
     <ClInclude Include="AdminMenu.h" />
     <ClInclude Include="Airplane.h" />
+    <ClInclude Include="Pet.h" />
     <ClInclude Include="anyTypeArray.h" />
     <ClInclude Include="Apartment.h" />
     <ClInclude Include="Bank.h" />
+    <ClInclude Include="BitString.h" />
     <ClInclude Include="Book.h" />
     <ClInclude Include="BTree.h" />
     <ClInclude Include="Category.h" />

@@ -25,7 +25,7 @@ namespace TestingSystem {
                         system("cls");
                         cout << "List of users: " << endl;
                         for (size_t i = 0; i < logins.get_size(); i++)
-                            cout << i+1 << "." << logins.at(i);
+                            cout << i+1 << "." << logins.at(i) << endl;
                         cout << endl << "Press Enter..."; cin.get();
                     }
                     else if (selectedActionWithUser == 1) {

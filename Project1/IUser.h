@@ -8,7 +8,7 @@ namespace TestingSystem {
 	class IUser
 	{
 	public:
-		virtual ~IUser() {}
+		virtual ~IUser() = default;
 
 		/// <summary>
 		/// —охран€ет данные пользовател€ в поток вывода.
