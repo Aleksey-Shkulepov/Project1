@@ -48,6 +48,13 @@ namespace mystd {
 			return last->value;
 		}
 
+		T* begin() noexcept { return first; }
+		T* end()   noexcept { return last;  }
+		const T* begin()  const noexcept { return first; }
+		const T* end()    const noexcept { return last;  }
+		const T* cbegin() const noexcept { return first; }
+		const T* cend()   const noexcept { return last;  }
+
 		size_t get_size() const { return size; }
 		void clear();
 		void print();

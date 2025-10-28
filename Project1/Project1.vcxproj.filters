@@ -362,6 +362,9 @@
     <ClInclude Include="25_10_25-main.h">
       <Filter>Файлы заголовков\homework\xx_10_25\25_10_25\main</Filter>
     </ClInclude>
+    <ClInclude Include="DAI.h">
+      <Filter>Файлы заголовков\homework\xx_10_25\22_10_25</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="House.bin">

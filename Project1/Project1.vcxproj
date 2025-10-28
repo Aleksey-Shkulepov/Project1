@@ -141,6 +141,7 @@
     <ClInclude Include="Admin.h" />
     <ClInclude Include="AdminMenu.h" />
     <ClInclude Include="Airplane.h" />
+    <ClInclude Include="DAI.h" />
     <ClInclude Include="Pet.h" />
     <ClInclude Include="anyTypeArray.h" />
     <ClInclude Include="Apartment.h" />

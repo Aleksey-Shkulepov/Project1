@@ -32,13 +32,11 @@ namespace mystd {
 			TValue* getValue(const TKey& key)
 			{
 				if (key == this->key) return &value;
-				else if (key < this->key && pLeft != nullptr) pLeft->getValue(key);
-				else if (key > this->key && pRight != nullptr) pRight->getValue(key);
+				else if (key < this->key && pLeft != nullptr) return pLeft->getValue(key);
+				else if (key > this->key && pRight != nullptr) return pRight->getValue(key);
 				else return nullptr;
 			}
 		};
-
-		Node<TKey, TValue>* root = nullptr;
 
 		Node<TKey, TValue>* push_r(const TKey& key, const TValue& value, Node<TKey, TValue>*& node)
 		{
@@ -54,27 +52,38 @@ namespace mystd {
 				node->pRight = push_r(key, value, node->pRight);
 			return node;
 		}
+
+		void traverseInOrder(Node<TKey, TValue>* node, void (*callback)(const TKey&, const TValue&)) const {
+			if (!node) return;
+			traverseInOrder(node->pLeft, callback);
+			callback(node->key, node->value);
+			traverseInOrder(node->pRight, callback);
+		}
+
+		void traverseRange(Node<TKey, TValue>* node, const TKey& minKey, const TKey& maxKey, void (*callback)(const TKey&, const TValue&)) const {
+			if (!node) return;
+			if (minKey < node->key)
+				traverseRange(node->pLeft, minKey, maxKey, callback);
+			if (node->key >= minKey && node->key <= maxKey)
+				callback(node->key, node->value);
+			if (maxKey > node->key)
+				traverseRange(node->pRight, minKey, maxKey, callback);
+		}
+
+		Node<TKey, TValue>* root = nullptr;
 	public:
 		~BTree() { clear(); }
-		void clear();
-		void print();
+		void clear() { if (root) root->del(); }
+		void print() { if (root) root->print(); }
+
 		bool push(const TKey& key, const TValue& value);
 		TValue* getValue(const TKey& key);
 
+		void traverseInOrder(void (*callback)(const TKey&, const TValue&)) const;
+		void traverseRange(const TKey& minKey, const TKey& maxKey, void (*callback)(const TKey&, const TValue&)) const;
+
 		bool push_r(const TKey& key, const TValue& value);
 	};
-
-	template<typename TKey, typename TValue>
-	inline void BTree<TKey, TValue>::clear()
-	{
-		if (root) root->del();
-	}
-
-	template<typename TKey, typename TValue>
-	inline void BTree<TKey, TValue>::print()
-	{
-		if (root) root->print();
-	}
 
 	template<typename TKey, typename TValue>
 	inline bool BTree<TKey, TValue>::push(const TKey& key, const TValue& value)
@@ -121,9 +130,20 @@ namespace mystd {
 	}
 
 	template<typename TKey, typename TValue>
+	inline void BTree<TKey, TValue>::traverseInOrder(void(*callback)(const TKey&, const TValue&)) const
+	{
+		this->traverseInOrder(root, callback);
+	}
+
+	template<typename TKey, typename TValue>
+	inline void BTree<TKey, TValue>::traverseRange(const TKey& minKey, const TKey& maxKey, void(*callback)(const TKey&, const TValue&)) const
+	{
+		this->traverseRange(root, minKey, maxKey, callback);
+	}
+
+	template<typename TKey, typename TValue>
 	inline bool BTree<TKey, TValue>::push_r(const TKey& key, const TValue& value)
 	{
 		return this->push_r(key, value, root);
 	}
-
 }
