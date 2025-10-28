@@ -7,10 +7,13 @@ namespace hw22_10_25 {
     void main() {
         DAI dai;
 
-        dai.addFine("AA1234BB", "Превышение скорости");
-        dai.addFine("AA1234BB", "Парковка в запрещенном месте");
-        dai.addFine("BC9876AA", "Проезд на красный сигнал светофора");
-        dai.addFine("AB1111CC", "Неисправные фары");
+        ifstream in("DAI.bin", ios::binary);
+        dai.load(in);
+
+        //dai.addFine("AA1234BB", "Превышение скорости");
+        //dai.addFine("AA1234BB", "Парковка в запрещенном месте");
+        //dai.addFine("BC9876AA", "Проезд на красный сигнал светофора");
+        //dai.addFine("AB1111CC", "Неисправные фары");
 
         cout << "Полная база данных" << endl;
         dai.printAll();

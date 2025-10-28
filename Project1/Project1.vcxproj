@@ -141,6 +141,7 @@
     <ClInclude Include="Admin.h" />
     <ClInclude Include="AdminMenu.h" />
     <ClInclude Include="Airplane.h" />
+    <ClInclude Include="Concepts.h" />
     <ClInclude Include="DAI.h" />
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="Pet.h" />

@@ -1,6 +1,16 @@
 #pragma once
 
 #include "mystd.h"
+
+/* <summary>
+    Скажу сразу, потратил много времени в размышлениях как лучше зделать, 
+    понятное дело использывал чат гпт мне не очень ясна робота лямбд в данном случае не понял
+    вообще почему функция traverseInOrder(printRecord) с параметром функции 
+    не может принять лямбду поэтому пришлось использывать static, хз как лучше это обойти,
+    ну а принцип сохранения и загрузки я взял с вектора, концепты находяться в Concepts.h
+    В теории дерево полностью востанавливаеться в исходный вид
+</summary> */
+
 namespace hw22_10_25 {
 
     class DAI {
@@ -9,8 +19,11 @@ namespace hw22_10_25 {
 
         static void printRecord(const String& plate, const List<String>& violations) {
             cout << "Машина: " << plate << endl;
-            for (auto& v : violations)
-                cout << "  - " << v << endl;
+            auto node = violations.getFirst();
+            while (node) {
+                cout << "  - " << node->value << endl;
+                node = node->pNext;
+            }
         }
 
     public:
@@ -41,6 +54,16 @@ namespace hw22_10_25 {
 
         void printByRange(const String& from, const String& to) {
             base.traverseRange(from, to, printRecord);
+        }
+
+        void save(ofstream& out) const {
+            if (!out) return;
+            base.save(out);
+        }
+
+        void load(ifstream& in) {
+            if (!in) return;
+            base.load(in);
         }
     };
 

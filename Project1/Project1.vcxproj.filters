@@ -365,6 +365,15 @@
     <ClInclude Include="DAI.h">
       <Filter>Файлы заголовков\homework\xx_10_25\22_10_25</Filter>
     </ClInclude>
+    <ClInclude Include="Concepts.h">
+      <Filter>Файлы заголовков\mystd\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="FileManager.h">
+      <Filter>Файлы заголовков\classwork\OOP</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
+      <Filter>Файлы заголовков\classwork\OOP</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="House.bin">

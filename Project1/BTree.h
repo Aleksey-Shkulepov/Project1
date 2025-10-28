@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Concepts.h"
+
 namespace mystd {
 
 	template<typename TKey, typename TValue>
@@ -70,6 +72,19 @@ namespace mystd {
 				traverseRange(node->pRight, minKey, maxKey, callback);
 		}
 
+		size_t countNodes(Node<TKey, TValue>* node) const {
+			if (!node) return 0;
+			return 1 + countNodes(node->pLeft) + countNodes(node->pRight);
+		}
+
+		void saveNode(Node<TKey, TValue>* node, ofstream& out) const requires HasSave<TKey>&& HasSave<TValue> {
+			if (!node) return;
+			saveNode(node->pLeft, out);
+			node->key.save(out);
+			node->value.save(out);
+			saveNode(node->pRight, out);
+		}
+
 		Node<TKey, TValue>* root = nullptr;
 	public:
 		~BTree() { clear(); }
@@ -83,6 +98,10 @@ namespace mystd {
 		void traverseRange(const TKey& minKey, const TKey& maxKey, void (*callback)(const TKey&, const TValue&)) const;
 
 		bool push_r(const TKey& key, const TValue& value);
+
+		void save(ofstream& out) const requires HasSave<TKey>&& HasSave<TValue>;
+
+		void load(ifstream& in) requires HasLoad<TKey>&& HasLoad<TValue>;
 	};
 
 	template<typename TKey, typename TValue>
@@ -145,5 +164,33 @@ namespace mystd {
 	inline bool BTree<TKey, TValue>::push_r(const TKey& key, const TValue& value)
 	{
 		return this->push_r(key, value, root);
+	}
+
+	template<typename TKey, typename TValue>
+	inline void BTree<TKey, TValue>::save(ofstream& out) const requires HasSave<TKey>&& HasSave<TValue>
+	{
+		if (!out) return;
+		size_t sz = countNodes(root);
+		out.write(reinterpret_cast<const char*>(&sz), sizeof(sz));
+		saveNode(root, out);
+	}
+
+	template<typename TKey, typename TValue>
+	inline void BTree<TKey, TValue>::load(ifstream& in) requires HasLoad<TKey>&& HasLoad<TValue>
+	{
+		if (!in) return;
+		clear();
+
+		size_t sz = 0;
+		in.read(reinterpret_cast<char*>(&sz), sizeof(sz));
+		if (!in) return;
+
+		for (size_t i = 0; i < sz; ++i) {
+			TKey key;
+			TValue value;
+			key.load(in);
+			value.load(in);
+			push(key, value);
+		}
 	}
 }

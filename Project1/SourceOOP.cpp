@@ -4,6 +4,7 @@
 #include "mystd.h"
 
 #include "exam-main.h"
+#include "22_10_25-main.h"
 
 int main()
 {
@@ -29,5 +30,5 @@ int main()
     //❗❗❗
     //❗❗❗
 
-    TestingSystem::main();
+    hw22_10_25::main();
 }

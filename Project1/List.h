@@ -2,10 +2,52 @@
 
 #include "fullstd.h"
 
+#include "Concepts.h"
+
 namespace mystd {
 	template<typename T>
 	class List
 	{
+	private:
+		template<typename T>
+		class Node
+		{
+		public:
+			Node* pNext;
+			Node* pPrev;
+			T value;
+			Node(T value = T(), Node* pNext = nullptr, Node* pPrev = nullptr)
+			{
+				this->value = value;
+				this->pNext = pNext;
+				this->pPrev = pPrev;
+			}
+		};
+
+		Node<T>* getNode(int index)
+		{
+			Node<T>* pos;
+			if (index < size / 2)
+			{
+				pos = first;
+				for (size_t i = 0; i < index; i++)
+				{
+					pos = pos->pNext;
+				}
+			}
+			else {
+				pos = last;
+				for (size_t i = 0; i < size - index - 1; i++)
+				{
+					pos = pos->pPrev;
+				}
+			}
+			return pos;
+		}
+
+		size_t   size = 0;
+		Node<T>* first = nullptr;
+		Node<T>* last = nullptr;
 	public:
 		List();
 		~List();
@@ -48,12 +90,8 @@ namespace mystd {
 			return last->value;
 		}
 
-		T* begin() noexcept { return first; }
-		T* end()   noexcept { return last;  }
-		const T* begin()  const noexcept { return first; }
-		const T* end()    const noexcept { return last;  }
-		const T* cbegin() const noexcept { return first; }
-		const T* cend()   const noexcept { return last;  }
+		Node<T>* getFirst() const { return first; }
+		Node<T>* getLast() const { return last; }
 
 		size_t get_size() const { return size; }
 		void clear();
@@ -77,47 +115,9 @@ namespace mystd {
 		/// <param name="index2">Конечный индекс (включительно) диапазона для вырезания.</param>
 		/// <returns> Новый List[T], содержащий элементы с индексами от index1 до index2 включительно </returns>
 		List splice(int index1, int index2);
-	private:
 
-		template<typename T>
-		class Node
-		{
-		public:
-			Node* pNext;
-			Node* pPrev;
-			T value;
-			Node(T value = T(), Node* pNext = nullptr, Node* pPrev = nullptr)
-			{
-				this->value = value;
-				this->pNext = pNext;
-				this->pPrev = pPrev;
-			}
-		};
-
-		Node<T>* getNode(int index)
-		{
-			Node<T>* pos;
-			if (index < size / 2)
-			{
-				pos = first;
-				for (size_t i = 0; i < index; i++)
-				{
-					pos = pos->pNext;
-				}
-			}
-			else {
-				pos = last;
-				for (size_t i = 0; i < size - index - 1; i++)
-				{
-					pos = pos->pPrev;
-				}
-			}
-			return pos;
-		}
-
-		size_t   size  = 0;
-		Node<T>* first = nullptr;
-		Node<T>* last  = nullptr;
+		void save(ofstream& out) const requires HasSave<T>;
+		void load(ifstream& in) requires HasLoad<T>;
 	};
 
 	template<typename T>
@@ -375,6 +375,33 @@ namespace mystd {
 		List<T> result(*this);
 		result += obj;
 		return result;
+	}
+
+	template<typename T>
+	inline void List<T>::save(ofstream& out) const requires HasSave<T>
+	{
+		size_t sz = get_size();
+		out.write((const char*)&sz, sizeof(sz));
+
+		auto node = first;
+		while (node) {
+			node->value.save(out);
+			node = node->pNext;
+		}
+	}
+
+	template<typename T>
+	inline void List<T>::load(ifstream& in) requires HasLoad<T>
+	{
+		size_t sz;
+		in.read((char*)&sz, sizeof(sz));
+		clear();
+
+		for (size_t i = 0; i < sz; ++i) {
+			T obj;
+			obj.load(in);
+			push_back(obj);
+		}
 	}
 }
 
