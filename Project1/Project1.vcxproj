@@ -142,6 +142,7 @@
     <ClInclude Include="AdminMenu.h" />
     <ClInclude Include="Airplane.h" />
     <ClInclude Include="DAI.h" />
+    <ClInclude Include="FileManager.h" />
     <ClInclude Include="Pet.h" />
     <ClInclude Include="anyTypeArray.h" />
     <ClInclude Include="Apartment.h" />
@@ -180,6 +181,7 @@
     <ClInclude Include="PrintStat.h" />
     <ClInclude Include="Question.h" />
     <ClInclude Include="Random.h" />
+    <ClInclude Include="Shape.h" />
     <ClInclude Include="Stop.h" />
     <ClInclude Include="StopType.h" />
     <ClInclude Include="SyntaxChecker.h" />

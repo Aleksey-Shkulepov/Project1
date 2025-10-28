@@ -5,8 +5,6 @@
 
 #include "exam-main.h"
 
-#include "25_10_25-main.h"
-
 int main()
 {
     SetConsoleCP(1251);
@@ -31,6 +29,5 @@ int main()
     //❗❗❗
     //❗❗❗
 
-    //TestingSystem::main();
-    hw25_10_25::main();
+    TestingSystem::main();
 }
