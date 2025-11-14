@@ -2,47 +2,25 @@
 
 #include "fullstd.h"
 #include "mystd.h"
+#include <bitset>
 
-class FileManager
-{
-public:
-	virtual void Display(String path) {
-        ifstream in(path.to_char());
-        if (!in) return;
+namespace hw26_10_25 {
 
-        String line;
-        while (in >> line) 
-            cout << line << endl;
+    class FileManager
+    {
+    public:
+        virtual ~FileManager() = default;
 
-        in.close();
-	}
-};
+        virtual void Display(const String& path) {
+            ifstream in(path.to_char(), ios::binary);
+            if (!in) return;
 
-class ASCIIFileManager : public FileManager
-{
-public:
-    virtual void Display(String path) override {
-        ifstream in(path.to_char());
-        if (!in) return;
+            String line;
+            while (in >> line)
+                cout << line << endl;
 
-        char ch;
-        while (in >> ch)
-            cout << std::hex << (int)ch << " ";
+            in.close();
+        }
+    };
 
-        in.close();
-    }
-};
-
-class BinaryFileManager : public FileManager
-{
-public:
-    virtual void Display(String path) override {
-        ifstream in(path.to_char());
-        if (!in) return;
-
-        char ch;
-        while (in >> ch)
-            std::cout << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(ch) << " ";
-        in.close();
-    }
-};
+}

@@ -10,6 +10,7 @@
 
 #include "String.h"
 #include "Concepts.h"
+#include "Iterator_Traits.h"
 
 namespace mystd {
 
@@ -27,6 +28,72 @@ namespace mystd {
         }
 
     public:
+        class iterator {
+        public:
+            using difference_type = long long;
+            using pointer = T*;
+            using reference = T&;
+
+            iterator(T* p = nullptr) : ptr(p) {}
+            reference operator*()  const { return *ptr; }
+            pointer   operator->() const { return ptr; }
+
+            iterator& operator++()    { ++ptr; return *this; }
+            iterator  operator++(int) { iterator tmp = *this; ++*this; return tmp; }
+            iterator& operator--()    { --ptr; return *this; }
+            iterator  operator--(int) { iterator tmp = *this; --*this; return tmp; }
+
+            iterator        operator+(difference_type d) const { return iterator(ptr + d); }
+            iterator        operator-(difference_type d) const { return iterator(ptr - d); }
+            difference_type operator-(const iterator& o) const { return (difference_type)(ptr - o.ptr); }
+            reference       operator[](size_t i)         const { return ptr[i]; }
+
+            bool operator==(const iterator& o) const { return ptr == o.ptr; }
+            bool operator!=(const iterator& o) const { return ptr != o.ptr; }
+            bool operator<(const iterator& o)  const { return ptr < o.ptr; }
+            bool operator>(const iterator& o)  const { return ptr > o.ptr; }
+            bool operator<=(const iterator& o) const { return ptr <= o.ptr; }
+            bool operator>=(const iterator& o) const { return ptr >= o.ptr; }
+
+            T* get() const { return ptr; }
+
+        private:
+            T* ptr;
+        };
+
+        class const_iterator {
+        public:
+            using difference_type = long long;
+            using pointer = const T*;
+            using reference = const T&;
+
+            const_iterator(const T* p = nullptr) : ptr(const_cast<T*>(p)) {}
+            const_iterator(const iterator& it) : ptr(it.get()) {}
+
+            reference operator*() const { return *ptr; }
+            pointer operator->()  const { return ptr; }
+
+            const_iterator& operator++()    { ++ptr; return *this; }
+            const_iterator  operator++(int) { const_iterator tmp = *this; ++*this; return tmp; }
+            const_iterator& operator--()    { --ptr; return *this; }
+            const_iterator  operator--(int) { const_iterator tmp = *this; --*this; return tmp; }
+
+            const_iterator  operator+(difference_type d)       const { return const_iterator(ptr + d); }
+            const_iterator  operator-(difference_type d)       const { return const_iterator(ptr - d); }
+            difference_type operator-(const const_iterator& o) const { return (difference_type)(ptr - o.ptr); }
+            reference       operator[](size_t i)               const { return ptr[i]; }
+
+            bool operator==(const const_iterator& o) const { return ptr == o.ptr; }
+            bool operator!=(const const_iterator& o) const { return ptr != o.ptr; }
+            bool operator<(const const_iterator& o)  const { return ptr < o.ptr; }
+            bool operator>(const const_iterator& o)  const { return ptr > o.ptr; }
+            bool operator<=(const const_iterator& o) const { return ptr <= o.ptr; }
+            bool operator>=(const const_iterator& o) const { return ptr >= o.ptr; }
+
+        private:
+            T* ptr;
+        };
+
         Vector() noexcept = default;
 
         explicit Vector(size_t n, const T& value = T()) {
@@ -186,7 +253,7 @@ namespace mystd {
             this->s--;
         }
 
-        T* insert(const T* pos_c, const T& value) {
+        iterator insert(const_iterator pos_c, const T& value) {
             size_t pos = pos_c - arr;
             if (pos > s) pos = s;
             T* newArr = new T[s + 1];
@@ -204,7 +271,7 @@ namespace mystd {
             return arr + pos;
         }
 
-        T* erase(const T* pos_c) {
+        iterator erase(const_iterator pos_c) {
             if (pos_c < begin() || pos_c >= end()) throw mystd::Out_of_range("Vector::erase out of range");
             size_t pos = pos_c - arr;
             if (s == 1) {
@@ -246,12 +313,13 @@ namespace mystd {
             cout << endl;
         }
 
-        T* begin() noexcept { return arr; }
-        T* end() noexcept { return arr + s; }
-        const T* begin() const noexcept { return arr; }
-        const T* end() const noexcept { return arr + s; }
-        const T* cbegin() const noexcept { return arr; }
-        const T* cend() const noexcept { return arr + s; }
+        iterator begin() noexcept { return iterator(arr); }
+        iterator end()   noexcept { return iterator(arr + s); }
+
+        const_iterator begin()  const noexcept { return const_iterator(arr); }
+        const_iterator end()    const noexcept { return const_iterator(arr + s); }
+        const_iterator cbegin() const noexcept { return const_iterator(arr); }
+        const_iterator cend()   const noexcept { return const_iterator(arr + s); }
 
         void save(ofstream& out) const requires HasSave<T>;
         void load(ifstream& in) requires HasLoad<T>;

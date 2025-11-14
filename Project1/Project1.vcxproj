@@ -138,12 +138,19 @@
     <ClInclude Include="11_10_25-main.h" />
     <ClInclude Include="22_10_25-main.h" />
     <ClInclude Include="25_10_25-main.h" />
+    <ClInclude Include="26_10_25-main.h" />
     <ClInclude Include="Admin.h" />
     <ClInclude Include="AdminMenu.h" />
     <ClInclude Include="Airplane.h" />
+    <ClInclude Include="ASCIIFileManager.h" />
+    <ClInclude Include="BinaryFileManager.h" />
+    <ClInclude Include="CircleNew.h" />
     <ClInclude Include="Concepts.h" />
     <ClInclude Include="DAI.h" />
+    <ClInclude Include="Employer.h" />
     <ClInclude Include="FileManager.h" />
+    <ClInclude Include="Iterator_Traits.h" />
+    <ClInclude Include="Manager.h" />
     <ClInclude Include="Pet.h" />
     <ClInclude Include="anyTypeArray.h" />
     <ClInclude Include="Apartment.h" />
@@ -177,12 +184,17 @@
     <ClInclude Include="ParticipantMenu.h" />
     <ClInclude Include="Passenger.h" />
     <ClInclude Include="Passport.h" />
+    <ClInclude Include="President.h" />
     <ClInclude Include="Printer.h" />
     <ClInclude Include="PrintServer.h" />
     <ClInclude Include="PrintStat.h" />
     <ClInclude Include="Question.h" />
     <ClInclude Include="Random.h" />
+    <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="RightTriangle.h" />
     <ClInclude Include="Shape.h" />
+    <ClInclude Include="Shared_Ptr.h" />
+    <ClInclude Include="Unique_Ptr.h" />
     <ClInclude Include="Stop.h" />
     <ClInclude Include="StopType.h" />
     <ClInclude Include="SyntaxChecker.h" />
@@ -190,6 +202,8 @@
     <ClInclude Include="Test.h" />
     <ClInclude Include="TestManager.h" />
     <ClInclude Include="TestResult.h" />
+    <ClInclude Include="Trapezoid.h" />
+    <ClInclude Include="TriangleNew.h" />
     <ClInclude Include="UserManager.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="new_PointNew.h" />
@@ -201,7 +215,10 @@
     <ClInclude Include="Stack.h" />
     <ClInclude Include="String.h" />
     <ClInclude Include="Student_New.h" />
+    <ClInclude Include="WarOfWorld.h" />
     <ClInclude Include="Worker.h" />
+    <ClInclude Include="WorkerNew.h" />
+    <ClInclude Include="cmatehelp.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="House.bin" />

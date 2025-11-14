@@ -1,15 +1,15 @@
 ﻿#define _CRT_SECURE_NO_WARNINGS
+//
+//#include "fullstd.h" 
+//#include "mystd.h"
 
-#include "fullstd.h" 
-#include "mystd.h"
-
-#include "exam-main.h"
-#include "22_10_25-main.h"
+//#include "fullstd.h"
+#include "cmatehelp.h"
 
 int main()
 {
-    SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
+    //SetConsoleCP(1251);
+    //SetConsoleOutputCP(1251);
     srand(time(0));
 
     //❗❗❗
@@ -30,5 +30,6 @@ int main()
     //❗❗❗
     //❗❗❗
 
-    hw22_10_25::main();
+    int* a;
+    unique_ptr<int> b = make_unique<int>(a);
 }

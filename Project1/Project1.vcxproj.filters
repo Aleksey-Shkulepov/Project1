@@ -148,6 +148,48 @@
     <Filter Include="Файлы заголовков\homework\xx_10_25\25_10_25\main">
       <UniqueIdentifier>{8e923fd6-fa6a-4aae-9c83-c902abd2f44e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\homework\xx_10_25\26_10_25">
+      <UniqueIdentifier>{b2da6f8c-90da-4792-ace1-c68c6475c925}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\xx_10_25\26_10_25\main">
+      <UniqueIdentifier>{d581aa9e-e090-4c87-8e1b-5b89f3d42e09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\xx_10_25\26_10_25\Task1">
+      <UniqueIdentifier>{69c51c4f-4cad-4853-8229-34ad31e4e191}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\xx_10_25\26_10_25\Task2">
+      <UniqueIdentifier>{8217536f-82fe-4e28-837f-13e9d12d2532}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\mystd\components\Iterator">
+      <UniqueIdentifier>{f0df423e-9cc0-4d4b-ab56-1167591d0e9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\xx_10_25\26_10_25\Task1\Task1">
+      <UniqueIdentifier>{aecd65c9-f52f-42fd-ad80-31991670457f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\xx_10_25\26_10_25\Task1\Task1\People">
+      <UniqueIdentifier>{d9e53c96-ebda-4589-af7c-d5dfd4c8f57f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\xx_10_25\26_10_25\Task1\Task2">
+      <UniqueIdentifier>{991e34dd-0eee-482b-b6d7-e9bdff0ad1c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\xx_10_25\26_10_25\Task1\Task2\Shape">
+      <UniqueIdentifier>{f448f8ae-e82c-4cf0-b325-815d865f1187}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\xx_10_25\26_10_25\Task1\Task1\Employer">
+      <UniqueIdentifier>{5c79687c-a031-4c89-bb7c-294bed0b68b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\xx_10_25\26_10_25\Task1\Task2\Shapes">
+      <UniqueIdentifier>{9a96a51d-66d3-43f2-96dc-aa01da375692}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\xx_10_25\26_10_25\Task2\FileManager">
+      <UniqueIdentifier>{b55451a4-e34b-4560-b735-d94b44d7ce2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\xx_10_25\26_10_25\Task2\FileManagers">
+      <UniqueIdentifier>{4f9194d0-d5e8-4a07-8cef-2eb51d54409f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\mystd\components\Pointers">
+      <UniqueIdentifier>{2e6faa07-6b43-4f0c-9294-6eee00b2ed8e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source.cpp">
@@ -223,9 +265,6 @@
     </ClInclude>
     <ClInclude Include="Airplane.h">
       <Filter>Файлы заголовков\homework\xx_09_25\24_09_25</Filter>
-    </ClInclude>
-    <ClInclude Include="mystd.h">
-      <Filter>Файлы заголовков\mystd</Filter>
     </ClInclude>
     <ClInclude Include="Out_of_range.h">
       <Filter>Файлы заголовков\mystd\components\Exception</Filter>
@@ -368,11 +407,65 @@
     <ClInclude Include="Concepts.h">
       <Filter>Файлы заголовков\mystd\Global</Filter>
     </ClInclude>
-    <ClInclude Include="FileManager.h">
-      <Filter>Файлы заголовков\classwork\OOP</Filter>
+    <ClInclude Include="26_10_25-main.h">
+      <Filter>Файлы заголовков\homework\xx_10_25\26_10_25\main</Filter>
+    </ClInclude>
+    <ClInclude Include="Iterator_Traits.h">
+      <Filter>Файлы заголовков\mystd\components\Iterator</Filter>
+    </ClInclude>
+    <ClInclude Include="President.h">
+      <Filter>Файлы заголовков\homework\xx_10_25\26_10_25\Task1\Task1\People</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager.h">
+      <Filter>Файлы заголовков\homework\xx_10_25\26_10_25\Task1\Task1\People</Filter>
+    </ClInclude>
+    <ClInclude Include="WorkerNew.h">
+      <Filter>Файлы заголовков\homework\xx_10_25\26_10_25\Task1\Task1\People</Filter>
+    </ClInclude>
+    <ClInclude Include="Employer.h">
+      <Filter>Файлы заголовков\homework\xx_10_25\26_10_25\Task1\Task1\Employer</Filter>
     </ClInclude>
     <ClInclude Include="Shape.h">
+      <Filter>Файлы заголовков\homework\xx_10_25\26_10_25\Task1\Task2\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleNew.h">
+      <Filter>Файлы заголовков\homework\xx_10_25\26_10_25\Task1\Task2\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Rectangle.h">
+      <Filter>Файлы заголовков\homework\xx_10_25\26_10_25\Task1\Task2\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="RightTriangle.h">
+      <Filter>Файлы заголовков\homework\xx_10_25\26_10_25\Task1\Task2\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Trapezoid.h">
+      <Filter>Файлы заголовков\homework\xx_10_25\26_10_25\Task1\Task2\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="TriangleNew.h">
+      <Filter>Файлы заголовков\homework\xx_10_25\26_10_25\Task1\Task2\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="FileManager.h">
+      <Filter>Файлы заголовков\homework\xx_10_25\26_10_25\Task2\FileManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ASCIIFileManager.h">
+      <Filter>Файлы заголовков\homework\xx_10_25\26_10_25\Task2\FileManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryFileManager.h">
+      <Filter>Файлы заголовков\homework\xx_10_25\26_10_25\Task2\FileManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="WarOfWorld.h">
       <Filter>Файлы заголовков\classwork\OOP</Filter>
+    </ClInclude>
+    <ClInclude Include="Unique_Ptr.h">
+      <Filter>Файлы заголовков\mystd\components\Pointers</Filter>
+    </ClInclude>
+    <ClInclude Include="mystd.h">
+      <Filter>Файлы заголовков\mystd</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared_Ptr.h">
+      <Filter>Файлы заголовков\mystd\components\Pointers</Filter>
+    </ClInclude>
+    <ClInclude Include="cmatehelp.h">
+      <Filter>Файлы заголовков\extra</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

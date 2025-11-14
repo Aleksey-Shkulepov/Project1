@@ -3,8 +3,17 @@
 #include "fullstd.h"
 
 #include "Concepts.h"
+#include "Iterator_Traits.h"
 
 namespace mystd {
+	inline void gotoxy(int x, int y)
+	{
+		COORD coord;
+		coord.X = x;
+		coord.Y = y;
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+	}
+
 	template<typename T>
 	class List
 	{
@@ -49,6 +58,52 @@ namespace mystd {
 		Node<T>* first = nullptr;
 		Node<T>* last = nullptr;
 	public:
+		class iterator {
+		public:
+			using pointer = T*;
+			using reference = T&;
+
+			iterator(Node<T>* n = nullptr) : node(n) {}
+			reference operator*() const { return node->value; }
+			pointer operator->() const { return &node->value; }
+
+			iterator& operator++() { if (node) node = node->pNext; return *this; }
+			iterator  operator++(int) { iterator tmp = *this; ++*this; return tmp; }
+			iterator& operator--() { if (node) node = node->pPrev; return *this; }
+			iterator  operator--(int) { iterator tmp = *this; --*this; return tmp; }
+
+			bool operator==(const iterator& o) const { return node == o.node; }
+			bool operator!=(const iterator& o) const { return node != o.node; }
+
+			Node<T>* getNode() const { return node; }
+
+		private:
+			Node<T>* node;
+		};
+
+		class const_iterator {
+		public:
+			using pointer = const T*;
+			using reference = const T&;
+
+			const_iterator(const Node<T>* n = nullptr) : node(const_cast<Node<T>*>(n)) {}
+			const_iterator(const iterator& it) : node(it.getNode()) {}
+
+			reference operator*() const { return node->value; }
+			pointer operator->() const { return &node->value; }
+
+			const_iterator& operator++() { if (node) node = node->pNext; return *this; }
+			const_iterator  operator++(int) { const_iterator tmp = *this; ++*this; return tmp; }
+			const_iterator& operator--() { if (node) node = node->pPrev; return *this; }
+			const_iterator  operator--(int) { const_iterator tmp = *this; --*this; return tmp; }
+
+			bool operator==(const const_iterator& o) const { return node == o.node; }
+			bool operator!=(const const_iterator& o) const { return node != o.node; }
+
+		private:
+			Node<T>* node;
+		};
+
 		List();
 		~List();
 		List(initializer_list<T> list);
@@ -90,12 +145,18 @@ namespace mystd {
 			return last->value;
 		}
 
-		Node<T>* getFirst() const { return first; }
-		Node<T>* getLast() const { return last; }
+		iterator begin() noexcept { return iterator(first); }
+		iterator end()   noexcept { return iterator(nullptr); }
+
+		const_iterator begin()  const noexcept { return const_iterator(first); }
+		const_iterator end()    const noexcept { return const_iterator(nullptr); }
+		const_iterator cbegin() const noexcept { return const_iterator(first); }
+		const_iterator cend()   const noexcept { return const_iterator(nullptr); }
 
 		size_t get_size() const { return size; }
 		void clear();
 		void print();
+		void print(int x, int y);
 
 		bool is_empty() const { return size == 0; }
 
@@ -262,11 +323,18 @@ namespace mystd {
 		else
 		{
 			Node<T>* pos = getNode(index);
-			Node<T>* newNode = new Node<T>(value);
+			Node<T>* newNode;
+			try {
+				newNode = new Node<T>(value);
+			}
+			catch (const std::exception&) {
+				throw;
+			}
+
 			newNode->pNext = pos->pNext;
-			newNode->next->prev = newNode;
-			pos->next = newNode;
-			newNode->prev = pos;
+			newNode->pNext->pPrev = newNode;
+			pos->pNext = newNode;
+			newNode->pPrev = pos;
 			size++;
 		}
 	}
@@ -288,7 +356,19 @@ namespace mystd {
 	{
 		Node<T>* temp = first;
 		while (temp) {
-			cout << temp->value << " ";
+			cout << " " << temp->value << endl;
+			temp = temp->pNext;
+		}
+	}
+
+	template<typename T>
+	void List<T>::print(int x, int y)
+	{
+		Node<T>* temp = first;
+		while (temp)
+		{
+			mystd::gotoxy(x, y++);
+			cout << temp->value;
 			temp = temp->pNext;
 		}
 		cout << endl;
@@ -310,6 +390,8 @@ namespace mystd {
 	template<typename T>
 	inline void List<T>::for_each(void(*method)(T& value))
 	{
+		if (!method) throw std::invalid_argument("invalid_argument");
+
 		Node<T>* temp = first;
 		while (temp) {
 			method(temp->value);
