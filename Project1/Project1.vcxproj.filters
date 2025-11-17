@@ -190,6 +190,15 @@
     <Filter Include="Файлы заголовков\mystd\components\Pointers">
       <UniqueIdentifier>{2e6faa07-6b43-4f0c-9294-6eee00b2ed8e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\homework\xx_11_25">
+      <UniqueIdentifier>{b10ddae5-d862-4f75-86c4-fc7865128ccb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\xx_11_25\16_11_25">
+      <UniqueIdentifier>{aba27d47-05e8-48a0-95e0-3d102bf7e184}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\homework\xx_11_25\16_11_25\main">
+      <UniqueIdentifier>{2c86d85f-41a6-468a-949a-2e4e22e52096}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source.cpp">
@@ -466,6 +475,15 @@
     </ClInclude>
     <ClInclude Include="cmatehelp.h">
       <Filter>Файлы заголовков\extra</Filter>
+    </ClInclude>
+    <ClInclude Include="RailwaySystem.h">
+      <Filter>Файлы заголовков\homework\xx_11_25\16_11_25</Filter>
+    </ClInclude>
+    <ClInclude Include="08_11_25-main.h">
+      <Filter>Файлы заголовков\homework\xx_11_25\16_11_25\main</Filter>
+    </ClInclude>
+    <ClInclude Include="Train.h">
+      <Filter>Файлы заголовков\homework\xx_11_25\16_11_25</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

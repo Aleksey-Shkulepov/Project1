@@ -136,6 +136,7 @@
     <ClInclude Include="04_10_25-main.h" />
     <ClInclude Include="08_10_25-main.h" />
     <ClInclude Include="11_10_25-main.h" />
+    <ClInclude Include="08_11_25-main.h" />
     <ClInclude Include="22_10_25-main.h" />
     <ClInclude Include="25_10_25-main.h" />
     <ClInclude Include="26_10_25-main.h" />
@@ -189,11 +190,13 @@
     <ClInclude Include="PrintServer.h" />
     <ClInclude Include="PrintStat.h" />
     <ClInclude Include="Question.h" />
+    <ClInclude Include="RailwaySystem.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="RightTriangle.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="Shared_Ptr.h" />
+    <ClInclude Include="Train.h" />
     <ClInclude Include="Unique_Ptr.h" />
     <ClInclude Include="Stop.h" />
     <ClInclude Include="StopType.h" />

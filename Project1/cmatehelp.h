@@ -1,370 +1,172 @@
 #pragma once
 
-#include <iostream>
-#include <initializer_list>
-#include <stdexcept>
-
+#include<iostream>
 using namespace std;
 
-template<class T, class TPri = int>
-struct Node
-{
-    T value;
-    TPri priority;
-    Node* next;
-    Node* prev;
+namespace cmatehelp {
+    template <class T>
+    class UniquePtr {
+    private:
+        T* ptr;
 
-    Node(T val) : value(val), next(nullptr), prev(nullptr) {}
-    Node(T val, TPri pri) : value(val), priority(pri), next(nullptr), prev(nullptr) {}
-};
+    public:
+        UniquePtr() : ptr(nullptr) {}
+        explicit UniquePtr(T* p) : ptr(p) {}
 
-template<class T>
-class List
-{
-    Node<T>* first = nullptr;
-    Node<T>* last = nullptr;
-    size_t size = 0;
 
-    Node<T>* getNode(int index) const;
+        UniquePtr(const UniquePtr&) = delete;
+        UniquePtr& operator=(const UniquePtr&) = delete;
 
-public:
-    List();
-    List(initializer_list<T> list);
-    ~List();
-    List(const List& list);
-    List& operator=(const List& list);
 
-    void push_front(const T& value);
-    void push_back(T& value);
-    void push_back(T&& value);
-    void insert(const T& value, int index);
 
-    void pop_front();
-    void pop_back();
-    void remove(int index);
-
-    T& front();
-    T& back();
-    T& at(int index);
-    T& operator[](int index) const;
-
-    void clear();
-    void print() const;
-
-    size_t length() const;
-
-    List operator+(const List& list);
-    void operator+=(const List& list);
-
-    int find(const T& value);
-
-    void for_each(void(*method)(T& value));
-
-    List splice(int index1, int index2);
-};
-
-template<class T>
-size_t List<T>::length() const
-{
-    return size;
-}
-
-template<class T>
-Node<T>* List<T>::getNode(int index) const
-{
-    Node<T>* pos = nullptr;
-    if (index < size / 2)
-    {
-        pos = first;
-        for (int i = 0; i < index; i++)
-            pos = pos->next;
-    }
-    else
-    {
-        pos = last;
-        for (int i = size - 1; i > index; i--)
-            pos = pos->prev;
-    }
-    return pos;
-}
-
-template<class T>
-List<T>::List() {}
-
-template<class T>
-List<T>::List(initializer_list<T> list)
-{
-    for (const T& elem : list)
-        push_back(elem);
-}
-
-template<class T>
-List<T>::~List()
-{
-    clear();
-}
-
-template<class T>
-List<T>::List(const List& list)
-{
-    Node<T>* temp = list.first;
-    while (temp)
-    {
-        T val = temp->value;
-        push_back(val);
-        temp = temp->next;
-    }
-}
-
-template<class T>
-List<T>& List<T>::operator=(const List<T>& list)
-{
-    if (this == &list)
-        return *this;
-
-    clear();
-    Node<T>* temp = list.first;
-    while (temp)
-    {
-        T val = temp->value;
-        push_back(val);
-        temp = temp->next;
-    }
-    return *this;
-}
-
-template<class T>
-void List<T>::push_front(const T& value)
-{
-    try
-    {
-        Node<T>* newNode = new Node<T>(value);
-        if (size == 0)
-        {
-            first = last = newNode;
+        UniquePtr(UniquePtr&& other) noexcept {
+            ptr = other.ptr;
+            other.ptr = nullptr;
         }
-        else
-        {
-            newNode->next = first;
-            first->prev = newNode;
-            first = newNode;
+
+        UniquePtr& operator=(UniquePtr&& other) noexcept {
+            if (this != &other) {
+                delete ptr;
+                ptr = other.ptr;
+                other.ptr = nullptr;
+            }
+            return *this;
         }
-        size++;
-    }
-    catch (const bad_alloc&)
-    {
-        throw;
-    }
-}
 
-template<class T>
-void List<T>::push_back(T& value)
-{
-    try
-    {
-        if (size == 0)
-        {
-            first = last = new Node<T>(value);
+        T& operator*() { return *ptr; }
+        T* operator->() { return ptr; }
+        T* get() const { return ptr; }
+
+        void reset(T* p = nullptr) {
+            delete ptr;
+            ptr = p;
         }
-        else
-        {
-            last->next = new Node<T>(value);
-            last->next->prev = last;
-            last = last->next;
+
+        T* release() {
+            T* tmp = ptr;
+            ptr = nullptr;
+            return tmp;
         }
-        size++;
-    }
-    catch (const bad_alloc&)
-    {
-        throw;
-    }
-}
 
-template<class T>
-void List<T>::push_back(T&& value)
-{
-    try
-    {
-        Node<T>* newNode = new Node<T>(move(value));
-        if (size == 0)
-        {
-            first = last = newNode;
+        ~UniquePtr() {
+            delete ptr;
         }
-        else
-        {
-            last->next = newNode;
-            newNode->prev = last;
-            last = newNode;
+    };
+
+
+
+
+    template <class T>
+    class SharedPtr {
+    private:
+        T* ptr;
+        size_t* count;
+
+    public:
+        SharedPtr() : ptr(nullptr), count(nullptr) {}
+
+        explicit SharedPtr(T* p) : ptr(p) {
+            count = new size_t(1);
         }
-        size++;
-    }
-    catch (const bad_alloc&)
+
+        SharedPtr(const SharedPtr& other) {
+            ptr = other.ptr;
+            count = other.count;
+            if (count) (*count)++;
+        }
+
+
+        SharedPtr(SharedPtr&& other) noexcept {
+            ptr = other.ptr;
+            count = other.count;
+            other.ptr = nullptr;
+            other.count = nullptr;
+        }
+
+        SharedPtr& operator=(const SharedPtr& other) {
+            if (this != &other) {
+                release();
+                ptr = other.ptr;
+                count = other.count;
+                if (count) (*count)++;
+            }
+            return *this;
+        }
+
+        SharedPtr& operator=(SharedPtr&& other) noexcept {
+            if (this != &other) {
+                release();
+                ptr = other.ptr;
+                count = other.count;
+                other.ptr = nullptr;
+                other.count = nullptr;
+            }
+            return *this;
+        }
+
+        void release() {
+            if (count) {
+                (*count)--;
+                if (*count == 0) {
+                    delete ptr;
+                    delete count;
+                    ptr = nullptr;
+                    count = nullptr;
+                }
+            }
+        }
+
+        T& operator*() { return *ptr; }
+        T* operator->() { return ptr; }
+        T* get() const { return ptr; }
+
+        size_t use_count() const {
+            return count ? *count : 0;
+        }
+
+        ~SharedPtr() {
+            release();
+        }
+    };
+
+    class Test {
+    public:
+        Test() { cout << "Test(): створено\n"; }
+        ~Test() { cout << "~Test(): видалено\n"; }
+        void hello() { cout << "Hello from Test!\n"; }
+    };
+
+    void main()
     {
-        throw;
+        cout << "====== TEST UNIQUE_PTR ======\n";
+
+        {
+            UniquePtr<Test> u1(new Test());
+            u1->hello();
+
+            UniquePtr<Test> u2 = move(u1);
+            if (!u1.get()) cout << "u1 тепер порожній\n";
+
+            u2->hello();
+        }
+
+
+        cout << "\n====== TEST SHARED_PTR ======\n";
+
+        Test* test = new Test;
+
+        SharedPtr<Test> p1(test);
+        cout << "use_count = " << p1.use_count() << "\n";
+        {
+            SharedPtr<Test> p2 = p1;
+            cout << "use_count = " << p1.use_count() << "\n";
+            p2->hello();
+        }
+
+
+        cout << "Після знищення p2 use_count = " << p1.use_count() << "\n";
+
+        SharedPtr<Test> p3 = move(p1);
+        cout << "Після move: p1=" << p1.use_count() << "  p3=" << p3.use_count() << "\n";
     }
-}
-
-template<class T>
-void List<T>::insert(const T& value, int index)
-{
-    if (index < 0 || index > size)
-        throw out_of_range("index out of range");
-
-    if (index == 0)
-    {
-        push_front(value);
-    }
-    else if (index == size)
-    {
-        push_back(value);
-    }
-    else
-    {
-        Node<T>* pos = getNode(index - 1);
-        Node<T>* newNode = new Node<T>(value);
-        newNode->next = pos->next;
-        pos->next->prev = newNode;
-        pos->next = newNode;
-        newNode->prev = pos;
-        size++;
-    }
-}
-
-template<class T>
-void List<T>::clear()
-{
-    Node<T>* temp = first;
-    while (temp)
-    {
-        first = first->next;
-        delete temp;
-        temp = first;
-    }
-    last = nullptr;
-    size = 0;
-}
-
-template<class T>
-void List<T>::print() const
-{
-    Node<T>* temp = first;
-    while (temp)
-    {
-        cout << temp->value << " ";
-        temp = temp->next;
-    }
-    cout << endl;
-}
-
-template<class T>
-void List<T>::pop_front()
-{
-    if (size == 0)
-        return;
-
-    Node<T>* temp = first->next;
-    delete first;
-    first = temp;
-    size--;
-    if (first)
-        first->prev = nullptr;
-    else
-        last = nullptr;
-}
-
-template<class T>
-void List<T>::pop_back()
-{
-    if (size == 0)
-        return;
-
-    if (size == 1)
-    {
-        delete first;
-        first = last = nullptr;
-        size = 0;
-        return;
-    }
-
-    Node<T>* temp = last->prev;
-    delete last;
-    last = temp;
-    last->next = nullptr;
-    size--;
-}
-
-template<class T>
-void List<T>::remove(int index)
-{
-    if (index < 0 || index >= size)
-        throw out_of_range("index out of range");
-
-    if (index == 0)
-        pop_front();
-    else if (index == size - 1)
-        pop_back();
-    else
-    {
-        Node<T>* pos = getNode(index - 1);
-        Node<T>* temp = pos->next;
-        pos->next = temp->next;
-        temp->next->prev = pos;
-        delete temp;
-        size--;
-    }
-}
-
-template<class T>
-T& List<T>::front()
-{
-    if (size == 0)
-        return nullptr;
-    return first->value;
-}
-
-template<class T>
-T& List<T>::back()
-{
-    if (size == 0)
-        return nullptr;
-    return last->value;
-}
-
-template<class T>
-T& List<T>::at(int index)
-{
-    if (index < 0 || index >= size)
-        throw out_of_range("index out of range");
-    return getNode(index)->value;
-}
-
-template<class T>
-T& List<T>::operator[](int index) const
-{
-    if (index < 0 || index >= size)
-        throw out_of_range("index out of range");
-    return getNode(index)->value;
-}
-
-template<class T>
-void List<T>::for_each(void(*method)(T& value))
-{
-    Node<T>* temp = first;
-    while (temp)
-    {
-        method(temp->value);
-        temp = temp->next;
-    }
-}
-
-template<class T>
-List<T> List<T>::splice(int index1, int index2)
-{
-    if (index1 < 0 || index2 >= size || index1 > index2)
-        throw out_of_range("invalid range");
-
-    List<T> result;
-    for (int i = index1; i <= index2; i++)
-        result.push_back(this->at(i));
-    return result;
 }

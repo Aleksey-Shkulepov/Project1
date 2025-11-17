@@ -47,12 +47,12 @@ public:
 		denominator /= g;
 	}
 
-	fraction operator+ (const fraction& other)
+	Fraction operator+ (const Fraction& other)
 	{
 		if (this->denominator == 0 || other.denominator == 0)
 			throw exception("Знаменатель не может ровняться 0!");
 
-		fraction fr;
+		Fraction fr;
 
 		int common_denominator = _lcm(this->denominator, other.denominator);
 
@@ -66,12 +66,12 @@ public:
 		return fr;
 	}
 
-	fraction operator- (const fraction& other)
+	Fraction operator- (const Fraction& other)
 	{
 		if (this->denominator == 0 || other.denominator == 0)
 			throw exception("Знаменатель не может ровняться 0!");
 
-		fraction fr;
+		Fraction fr;
 
 		int common_denominator = _lcm(this->denominator, other.denominator);
 
@@ -85,12 +85,12 @@ public:
 		return fr;
 	}
 
-	fraction operator* (const fraction& other)
+	Fraction operator* (const Fraction& other)
 	{
 		if (this->denominator == 0 || other.denominator == 0)
 			throw exception("Знаменатель не может ровняться 0!");
 
-		fraction fr;
+		Fraction fr;
 
 		fr.numerator = this->numerator * other.numerator;
 		fr.denominator = this->denominator * other.denominator;
@@ -99,12 +99,12 @@ public:
 		return fr;
 	}
 
-	fraction operator/ (const fraction& other)
+	Fraction operator/ (const Fraction& other)
 	{
 		if (this->denominator == 0 || other.denominator == 0)
 			throw exception("Знаменатель не может ровняться 0!");
 
-		fraction fr;
+		Fraction fr;
 
 		fr.numerator = this->numerator * other.denominator;
 		fr.denominator = this->denominator * other.numerator;
@@ -113,17 +113,17 @@ public:
 		return fr;
 	}
 
-	friend ostream& operator<<(ostream& os, const fraction& fr);
-	friend istream& operator>>(istream& in, fraction& obj);
+	friend ostream& operator<<(ostream& os, const Fraction& fr);
+	friend istream& operator>>(istream& in, Fraction& obj);
 };
 
-ostream& operator<<(ostream& os, const fraction& obj)
+ostream& operator<<(ostream& os, const Fraction& obj)
 {
 	os << obj.numerator << "/" << obj.denominator;
 	return os;
 }
 
-istream& operator>>(istream& in, fraction& obj)
+istream& operator>>(istream& in, Fraction& obj)
 {
 	char slash;
 

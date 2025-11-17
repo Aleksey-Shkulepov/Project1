@@ -27,6 +27,7 @@ class DateTime
 	tm dt;
 
 public:
+	DateTime() {}
 	DateTime(tm& dt);
 	DateTime(int year, int month, int day);
 	DateTime(int year, int month, int day, int hour, int minute, int second);
@@ -57,6 +58,8 @@ public:
 	const char* to_shortDate() const;
 
 	friend std::ostream& operator<<(std::ostream& out, const DateTime& datetime);
+	friend std::istream& operator>>(std::istream& in, DateTime& obj);
+
 };
 
 
@@ -323,3 +326,16 @@ std::ostream& operator<<(std::ostream& out, const DateTime& datetime)
 	return out;
 }
 
+std::istream& operator>>(std::istream& in, DateTime& obj)
+{
+	int year, month, day, hour, minute, second;
+	cout << "Year: ";   cin >> year;   obj.dt.tm_year = year - 1900;
+	cout << "month: ";  cin >> month;  obj.dt.tm_mon = month - 1;
+	cout << "day: ";    cin >> day;    obj.dt.tm_mday = day;
+	cout << "hour: ";   cin >> hour;   obj.dt.tm_hour = hour;
+	cout << "minute: "; cin >> minute; obj.dt.tm_min = minute;
+	cout << "second: "; cin >> second; obj.dt.tm_sec = second;
+	mktime(&obj.dt);
+
+	return in;
+}

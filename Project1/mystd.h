@@ -15,6 +15,8 @@
 #include "PriorityQueue.h"
 #include "ForwardList.h"
 #include "DateTime.h"
+#include "Shared_ptr.h"
+#include "Unique_ptr.h"
 
 using namespace mystd;
 
